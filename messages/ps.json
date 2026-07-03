@@ -1,0 +1,98 @@
+{
+  "nav": {
+    "home": "کور",
+    "opportunities": "فرصتونه",
+    "saved": "خوندي شوي",
+    "dashboard": "ډشبورډ",
+    "about": "زموږ په اړه",
+    "contact": "اړیکه"
+  },
+  "home": {
+    "title": "کارياب افغانستان",
+    "subtitle": "دنده، انترنشيپ، بورسيه او د زده کړې فرصتونه په يوه ځای کې ومومئ.",
+    "ctaBrowse": "د فرصتونو لټون",
+    "ctaAdd": "نوی فرصت ثبت کړئ",
+    "featured": "ځانګړي فرصتونه"
+  },
+  "opportunities": {
+    "title": "ټول فرصتونه",
+    "searchPlaceholder": "د سرلیک له مخې لټون...",
+    "allCategories": "ټول ډولونه",
+    "allTypes": "ټول ډولونه",
+    "sortNewest": "تازه ترین",
+    "sortDeadline": "نږدې نیټه",
+    "empty": "له دې فلټر سره سم هیڅ فرصت ونه موندل شو.",
+    "details": "نور توضیحات"
+  },
+  "categories": {
+    "Job": "دنده",
+    "Internship": "انترنشیپ",
+    "Scholarship": "بورسیه",
+    "Online Course": "آنلاین کورس",
+    "Remote Work": "لرې کار",
+    "Training Program": "روزنیز برنامه",
+    "Volunteer Work": "رضاکارانه کار"
+  },
+  "types": {
+    "Remote": "لرې",
+    "On-site": "حضوري",
+    "Hybrid": "ګډ"
+  },
+  "detail": {
+    "requirements": "اړین شرطونه",
+    "deadline": "پای نیټه",
+    "expired": "پای ته رسیدلی",
+    "daysLeft": "{count} ورځې پاتې",
+    "apply": "غوښتنه وکړئ"
+  },
+  "saved": {
+    "title": "خوندي شوي فرصتونه",
+    "empty": "تاسو تر اوسه هیڅ فرصت خوندي نه دی کړی."
+  },
+  "dashboard": {
+    "title": "ډشبورډ",
+    "total": "ټول فرصتونه",
+    "jobs": "دندې",
+    "scholarships": "بورسیې",
+    "internships": "انترنشیپونه",
+    "remote": "لرې کار",
+    "expiringSoon": "ژر پای ته رسیږي",
+    "recent": "وروستي ثبت شوي"
+  },
+  "addOpportunity": {
+    "title": "نوی فرصت ثبت کړئ",
+    "titleLabel": "سرلیک",
+    "organization": "د اداري نوم",
+    "category": "ډول",
+    "location": "ځای",
+    "deadline": "پای نیټه",
+    "description": "تشریح",
+    "requirements": "اړین شرطونه (په کاما جلا کړئ)",
+    "applyLink": "د غوښتنې لینک",
+    "submit": "فرصت ثبت کړئ",
+    "submitting": "لیږل کیږي...",
+    "successTitle": "مننه!",
+    "successMessage": "ستاسو فرصت ثبت شو او ژر به وڅارل شي."
+  },
+  "about": {
+    "title": "د کارياب افغانستان په اړه",
+    "body": "کارياب د افغان ځوانانو لپاره د دندو، انترنشیپونو، بورسیو، آنلاین کورسونو او د لرې کار فرصتونه په یوه ځای کې راټولوي. زموږ موخه دا ده چې دې فرصتونو ته لاسرسی اسانه او روښانه کړو."
+  },
+  "contact": {
+    "title": "زموږ سره اړیکه",
+    "name": "ستاسو نوم",
+    "email": "بریښنالیک",
+    "message": "ستاسو پیغام",
+    "send": "پیغام ولیږئ",
+    "sent": "ستاسو پیغام ولیږل شو"
+  },
+  "footer": {
+    "note": "یو زده کړیز پروژه (Demo Data)"
+  },
+  "notFound": {
+    "title": "۴۰۴",
+    "message": "دا پاڼه یا فرصت ونه موندل شو.",
+    "back": "فرصتونو ته بېرته"
+  },
+  "expiringSoonBadge": "ژر پای ته رسیږي"
+}
