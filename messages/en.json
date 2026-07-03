@@ -1,0 +1,98 @@
+{
+  "nav": {
+    "home": "Home",
+    "opportunities": "Opportunities",
+    "saved": "Saved",
+    "dashboard": "Dashboard",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "home": {
+    "title": "KaarYab Afghanistan",
+    "subtitle": "Find jobs, internships, scholarships, and training opportunities in one place.",
+    "ctaBrowse": "Browse opportunities",
+    "ctaAdd": "Submit an opportunity",
+    "featured": "Featured opportunities"
+  },
+  "opportunities": {
+    "title": "All opportunities",
+    "searchPlaceholder": "Search by title...",
+    "allCategories": "All categories",
+    "allTypes": "All types",
+    "sortNewest": "Newest",
+    "sortDeadline": "Closest deadline",
+    "empty": "No opportunities match your filters.",
+    "details": "View details"
+  },
+  "categories": {
+    "Job": "Job",
+    "Internship": "Internship",
+    "Scholarship": "Scholarship",
+    "Online Course": "Online Course",
+    "Remote Work": "Remote Work",
+    "Training Program": "Training Program",
+    "Volunteer Work": "Volunteer Work"
+  },
+  "types": {
+    "Remote": "Remote",
+    "On-site": "On-site",
+    "Hybrid": "Hybrid"
+  },
+  "detail": {
+    "requirements": "Requirements",
+    "deadline": "Deadline",
+    "expired": "Expired",
+    "daysLeft": "{count} days left",
+    "apply": "Apply now"
+  },
+  "saved": {
+    "title": "Saved opportunities",
+    "empty": "You haven't saved any opportunities yet."
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "total": "Total opportunities",
+    "jobs": "Jobs",
+    "scholarships": "Scholarships",
+    "internships": "Internships",
+    "remote": "Remote",
+    "expiringSoon": "Expiring soon",
+    "recent": "Recent submissions"
+  },
+  "addOpportunity": {
+    "title": "Submit a new opportunity",
+    "titleLabel": "Title",
+    "organization": "Organization",
+    "category": "Category",
+    "location": "Location",
+    "deadline": "Deadline",
+    "description": "Description",
+    "requirements": "Requirements (comma separated)",
+    "applyLink": "Apply link",
+    "submit": "Submit opportunity",
+    "submitting": "Submitting...",
+    "successTitle": "Thank you!",
+    "successMessage": "Your opportunity was submitted and will be reviewed soon."
+  },
+  "about": {
+    "title": "About KaarYab Afghanistan",
+    "body": "KaarYab brings together jobs, internships, scholarships, online courses, and remote work opportunities for Afghan youth in one place. Our goal is to make access to these opportunities simpler and more transparent."
+  },
+  "contact": {
+    "title": "Contact us",
+    "name": "Your name",
+    "email": "Email",
+    "message": "Your message",
+    "send": "Send message",
+    "sent": "Your message has been sent"
+  },
+  "footer": {
+    "note": "An educational project (Demo Data)"
+  },
+  "notFound": {
+    "title": "404",
+    "message": "This page or opportunity could not be found.",
+    "back": "Back to opportunities"
+  },
+  "expiringSoonBadge": "Expiring soon"
+}
