@@ -1,0 +1,36 @@
+{
+  "nav": {
+    "home": "خانه",
+    "opportunities": "فرصت‌ها",
+    "saved": "ذخیره‌شده‌ها",
+    "dashboard": "داشبورد",
+    "about": "درباره ما",
+    "contact": "تماس"
+  },
+  "home": {
+    "title": "کاریاب افغانستان",
+    "subtitle": "کار، انترنشیپ، بورسیه و فرصت‌های آموزشی را در یک‌جا پیدا کنید.",
+    "ctaBrowse": "جستجوی فرصت‌ها",
+    "ctaAdd": "ثبت فرصت جدید",
+    "featured": "فرصت‌های ویژه"
+  },
+  "opportunities": {
+    "title": "همه فرصت‌ها",
+    "searchPlaceholder": "جستجو بر اساس عنوان...",
+    "allCategories": "همه دسته‌ها",
+    "allTypes": "همه نوع‌ها",
+    "sortNewest": "جدیدترین",
+    "sortDeadline": "نزدیک‌ترین ضرب‌الاجل",
+    "empty": "فرصتی با این فیلتر پیدا نشد.",
+    "details": "جزئیات بیشتر"
+  },
+  "categories": {
+    "Job": "کار",
+    "Internship": "انترنشیپ",
+    "Scholarship": "بورسیه",
+    "Online Course": "دوره آنلاین",
+    "Remote Work": "کار از راه دور",
+    "Training Program": "برنامه آموزشی",
+    "Volunteer Work": "کار داوطلبانه"
+  }
+}
