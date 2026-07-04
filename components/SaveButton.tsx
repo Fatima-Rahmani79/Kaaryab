@@ -8,6 +8,16 @@ export default function SaveButton({ id }: { id: string }) {
   const saved = isSaved(id);
 
   return (
-    
+    <button
+      onClick={() => toggleSave(id)}
+      aria-label={saved ? "حذف از ذخیره‌شده‌ها" : "ذخیره کردن"}
+      className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"
+    >
+      {saved ? (
+        <BookmarkCheck size={18} className="text-primary-600" />
+      ) : (
+        <Bookmark size={18} />
+      )}
+    </button>
   );
 }
