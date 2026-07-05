@@ -1,5 +1,6 @@
 import { useLocale, useTranslations } from "next-intl";
 import { opportunities } from "@/data/opportunities";
+import OpportunityCard from "@/components/OpportunityCard";
 import { Link } from "lucide-react";
 
 export default function HomePage() {
@@ -30,6 +31,15 @@ export default function HomePage() {
           >
             {t("ctaAdd")}
           </Link>
+        </div>
+      </section>
+
+      <section className="max-w-6xl mx-auto px-4 py-16">
+        <h2 className="text-2xl font-bold mb-6">{t("featured")}</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {featured.map((opp) => (
+            <OpportunityCard key={opp.id} opportunity={opp} />
+          ))}
         </div>
       </section>
     </div>
