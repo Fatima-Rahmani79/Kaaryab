@@ -9,7 +9,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "KaarYab",
+  title: "KaarYab Afghanistan",
   description:
     "Find jobs, internships, scholarships, and training opportunities for Afghan youth.",
 };
@@ -27,18 +27,18 @@ export default async function LocaleLayout({
 }) {
   if (!locales.includes(locale as Locale)) notFound();
 
-  const message = await getMessages();
+  const messages = await getMessages();
   const dir = rtlLocales.includes(locale as Locale) ? "rtl" : "ltr";
 
   return (
     <html lang={locale} dir={dir} suppressHydrationWarning>
       <body>
         <NextIntlClientProvider messages={messages}>
-          <SaveProviders>
+          <SavedProvider>
             <Navbar />
             <main className="min-h-screen">{children}</main>
             <Footer />
-          </SaveProviders>
+          </SavedProvider>
         </NextIntlClientProvider>
       </body>
     </html>
