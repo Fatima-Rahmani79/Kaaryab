@@ -1,4 +1,4 @@
-import Link from "next-link";
+import Link from "next/link";
 import { getTranslations, getLocale } from "next-intl/server";
 
 export default async function NotFound() {
