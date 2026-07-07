@@ -27,6 +27,20 @@ export default async function LocaleLayout({
 }) {
   if (!locales.includes(locale as Locale)) notFound();
 
-  const message = await getMessegaes();
+  const message = await getMessages();
   const dir = rtlLocales.includes(locale as Locale) ? "rtl" : "ltr";
+
+  return (
+    <html lang={locale} dir={dir} suppressHydrationWarning>
+      <body>
+        <NextIntlClientProvider messages={messages}>
+          <SaveProviders>
+            <Navbar />
+            <main className="min-h-screen">{children}</main>
+            <Footer />
+          </SaveProviders>
+        </NextIntlClientProvider>
+      </body>
+    </html>
+  );
 }
