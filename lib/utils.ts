@@ -1,3 +1,5 @@
+import { Opportunity, OpportunityFilters, DashboardStats } from "@/types";
+
 export function cn(...classes: (string | boolean | undefined)[]) {
   return classes.filter(Boolean).join(" ");
 }
@@ -38,4 +40,21 @@ export function filterOppotunities(
       }
       return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
     });
+}
+
+export function calculateStats(items: Opportunity[]): DashboardStats {
+  return {
+    total: items.length,
+    jobs: items.filter((o) => o.category === "Job").length,
+    scholarships: items.filter((o) => o.category === "Scholarship").length,
+    internships: items.filter((o) => o.category === "Internship").length,
+    remote: items.filter((o) => o.type === "Remote").length,
+    expiringSoon: items.filter((o) => isExpiringSoon(o.deadline)).length,
+    recent: [...items]
+      .sort(
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+      )
+      .slice(0, 5),
+  };
 }
