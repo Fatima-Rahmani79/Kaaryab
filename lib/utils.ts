@@ -4,22 +4,23 @@ export function cn(...classes: (string | boolean | undefined)[]) {
   return classes.filter(Boolean).join(" ");
 }
 
+// returns the number of days until the deadline, or a negative number if the deadline has passed
 export function daysUntilDeadline(deadline: string): number {
   const diff = new Date(deadline).getTime() - new Date().getTime();
   return Math.ceil(diff / (1000 * 60 * 60 * 24));
 }
 
-export function isExpriringSoon(deadline: string): boolean {
+export function isExpiringSoon(deadline: string): boolean {
   const days = daysUntilDeadline(deadline);
   return days >= 0 && days <= 7;
 }
 
 export function isExpired(deadline: string): boolean {
-  const days = daysUntilDeadline(deadline);
-  return days < 0;
+  return daysUntilDeadline(deadline) < 0;
 }
 
-export function filterOppotunities(
+// filter based on search, category, location, type, and sortBy
+export function filterOpportunities(
   items: Opportunity[],
   filters: OpportunityFilters,
 ): Opportunity[] {
@@ -35,13 +36,14 @@ export function filterOppotunities(
     .filter((o) => (filters.location ? o.location === filters.location : true))
     .filter((o) => (filters.type !== "All" ? o.type === filters.type : true))
     .sort((a, b) => {
-      if (filters.sortBy === "Deadline") {
+      if (filters.sortBy === "deadline") {
         return new Date(a.deadline).getTime() - new Date(b.deadline).getTime();
       }
       return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
     });
 }
 
+// calculate dashboard statistics based on the same array of data — without a separate backend
 export function calculateStats(items: Opportunity[]): DashboardStats {
   return {
     total: items.length,
