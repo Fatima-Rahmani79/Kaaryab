@@ -53,6 +53,38 @@ export default function SearchFilter({ filters, onChange }: Props) {
           </option>
         ))}
       </select>
+
+      <select
+        value={filters.type}
+        onChange={(e) =>
+          onChange({
+            ...filters,
+            type: e.target.value as OpportunityFilters["type"],
+          })
+        }
+        className="border rounded-lg px-4 py-2 dark:bg-gray-900 dark:border-gray-700"
+      >
+        <option value="All">{t("opportunities.allTypes")}</option>
+        {types.map((ty) => (
+          <option key={ty} value={ty}>
+            {t(`types.${ty}`)}
+          </option>
+        ))}
+      </select>
+
+      <select
+        value={filters.sortBy}
+        onChange={(e) =>
+          onChange({
+            ...filters,
+            sortBy: e.target.value as OpportunityFilters["sortBy"],
+          })
+        }
+        className="border rounded-lg px-4 py-2 dark:bg-gray-900 dark:border-gray-700"
+      >
+        <option value="newest">{t("opportunities.sortNewest")}</option>
+        <option value="deadline">{t("opportunities.sortDeadline")}</option>
+      </select>
     </div>
   );
 }
