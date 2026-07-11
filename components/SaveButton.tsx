@@ -10,7 +10,7 @@ export default function SaveButton({ id }: { id: string }) {
   return (
     <button
       onClick={() => toggleSave(id)}
-      aria-label={saved ? "حذف از ذخیره‌شده‌ها" : "ذخیره کردن"}
+      aria-label={saved ? "Remove from saved" : "Save"}
       className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"
     >
       {saved ? (
