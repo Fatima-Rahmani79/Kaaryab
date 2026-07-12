@@ -1,14 +1,12 @@
-import { useLocale, useTranslations } from "next-intl";
+import Link from "next/link";
+import { useTranslations, useLocale } from "next-intl";
 import { opportunities } from "@/data/opportunities";
 import OpportunityCard from "@/components/OpportunityCard";
-import { Link } from "lucide-react";
 
 export default function HomePage() {
   const t = useTranslations("home");
   const locale = useLocale();
-  const featured = opportunities
-    .filter((opportunity) => opportunity.featured)
-    .slice(0, 3);
+  const featured = opportunities.filter((o) => o.featured).slice(0, 3);
 
   return (
     <div>
@@ -17,7 +15,6 @@ export default function HomePage() {
         <p className="text-lg text-gray-600 dark:text-gray-300 max-w-xl mx-auto mb-8">
           {t("subtitle")}
         </p>
-
         <div className="flex gap-4 justify-center flex-wrap">
           <Link
             href={`/${locale}/opportunities`}
