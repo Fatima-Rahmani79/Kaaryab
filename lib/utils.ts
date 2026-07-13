@@ -1,4 +1,5 @@
 import { Opportunity, OpportunityFilters, DashboardStats } from "@/types";
+import { OpportunityCategory } from "@/types";
 
 export function cn(...classes: (string | boolean | undefined)[]) {
   return classes.filter(Boolean).join(" ");
@@ -59,4 +60,17 @@ export function calculateStats(items: Opportunity[]): DashboardStats {
       )
       .slice(0, 5),
   };
+}
+
+export function categoryBreakdown(
+  items: Opportunity[],
+): { category: OpportunityCategory; count: number }[] {
+  const counts: Record<string, number> = {};
+  items.forEach((o) => {
+    counts[o.category] = (counts[o.category] || 0) + 1;
+  });
+  return Object.entries(counts).map(([category, count]) => ({
+    category: category as OpportunityCategory,
+    count,
+  }));
 }

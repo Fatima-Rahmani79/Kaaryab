@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { opportunities } from "@/data/opportunities";
 import { calculateStats } from "@/lib/utils";
 import DashboardCard from "@/components/DashboardCard";
+import CategoryChart from "@/components/CategoryChart";
 
 export default async function DashboardPage() {
   const t = await getTranslations("dashboard");
@@ -36,6 +37,9 @@ export default async function DashboardPage() {
           </div>
         ))}
       </div>
+
+      <h2 className="text-xl font-bold mb-4 mt-10">Categories</h2>
+      <CategoryChart opportunities={opportunities} />
     </div>
   );
 }
