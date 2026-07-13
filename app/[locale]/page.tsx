@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
-import { opportunities } from "@/data/opportunities";
+import { getAllOpportunities } from "@/lib/mockDb";
 import OpportunityCard from "@/components/OpportunityCard";
 
 export default function HomePage() {
   const t = useTranslations("home");
   const locale = useLocale();
-  const featured = opportunities.filter((o) => o.featured).slice(0, 3);
+  const featured = getAllOpportunities()
+    .filter((o) => o.featured)
+    .slice(0, 3);
 
   return (
     <div>
