@@ -1,11 +1,12 @@
 import { getTranslations } from "next-intl/server";
-import { opportunities } from "@/data/opportunities";
+import { getAllOpportunities } from "@/lib/mockDb";
 import { calculateStats } from "@/lib/utils";
 import DashboardCard from "@/components/DashboardCard";
 import CategoryChart from "@/components/CategoryChart";
 
 export default async function DashboardPage() {
   const t = await getTranslations("dashboard");
+  const opportunities = getAllOpportunities();
   const stats = calculateStats(opportunities);
 
   return (
@@ -26,7 +27,7 @@ export default async function DashboardPage() {
       </div>
 
       <h2 className="text-xl font-bold mb-4">{t("recent")}</h2>
-      <div className="space-y-2">
+      <div className="space-y-2 mb-10">
         {stats.recent.map((o) => (
           <div
             key={o.id}
@@ -38,7 +39,7 @@ export default async function DashboardPage() {
         ))}
       </div>
 
-      <h2 className="text-xl font-bold mb-4 mt-10">Categories</h2>
+      <h2 className="text-xl font-bold mb-4">Categories</h2>
       <CategoryChart opportunities={opportunities} />
     </div>
   );
