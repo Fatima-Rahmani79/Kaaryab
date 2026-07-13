@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useTranslations } from "next-intl";
-import { opportunities } from "@/data/opportunities";
-import { OpportunityFilters } from "@/types";
+import { OpportunityFilters, Opportunity } from "@/types";
 import { filterOpportunities } from "@/lib/utils";
 import OpportunityCard from "@/components/OpportunityCard";
 import SearchFilter from "@/components/SearchFilter";
@@ -20,10 +19,19 @@ const initialFilters: OpportunityFilters = {
 export default function OpportunitiesPage() {
   const t = useTranslations("opportunities");
   const [filters, setFilters] = useState<OpportunityFilters>(initialFilters);
+  const [opportunities, setOpportunities] = useState<Opportunity[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/opportunities")
+      .then((res) => res.json())
+      .then((data) => setOpportunities(data))
+      .finally(() => setLoading(false));
+  }, []);
 
   const filtered = useMemo(
     () => filterOpportunities(opportunities, filters),
-    [filters],
+    [opportunities, filters],
   );
 
   return (
@@ -32,7 +40,9 @@ export default function OpportunitiesPage() {
 
       <SearchFilter filters={filters} onChange={setFilters} />
 
-      {filtered.length === 0 ? (
+      {loading ? (
+        <p className="text-gray-400 py-16 text-center">Loading...</p>
+      ) : filtered.length === 0 ? (
         <EmptyState message={t("empty")} />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
