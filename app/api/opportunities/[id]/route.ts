@@ -28,3 +28,12 @@ export async function PUT(
   db[index] = { ...db[index], ...updates };
   return NextResponse.json(db[index]);
 }
+
+export async function DELETE(
+  _req: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
+  const { id } = await params;
+  db = db.filter((o) => o.id !== id);
+  return NextResponse.json({ success: true });
+}
