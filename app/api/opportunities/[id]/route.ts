@@ -1,15 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
-import { opportunities } from "@/data/opportunities";
-import { Opportunity } from "@/types";
-
-let db: Opportunity[] = [...opportunities];
+import {
+  getOpportunityById,
+  updateOpportunity,
+  deleteOpportunity,
+} from "@/lib/mockDb";
 
 export async function GET(
   _req: NextRequest,
   { params }: { params: Promise<{ id: string }> },
 ) {
   const { id } = await params;
-  const item = db.find((o) => o.id === id);
+  const item = getOpportunityById(id);
   if (!item) return NextResponse.json({ error: "Not found" }, { status: 404 });
   return NextResponse.json(item);
 }
@@ -20,12 +21,10 @@ export async function PUT(
 ) {
   const { id } = await params;
   const updates = await req.json();
-  const index = db.findIndex((o) => o.id === id);
-  if (index === -1)
+  const updated = updateOpportunity(id, updates);
+  if (!updated)
     return NextResponse.json({ error: "Not found" }, { status: 404 });
-
-  db[index] = { ...db[index], ...updates };
-  return NextResponse.json(db[index]);
+  return NextResponse.json(updated);
 }
 
 export async function DELETE(
@@ -33,6 +32,8 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> },
 ) {
   const { id } = await params;
-  db = db.filter((o) => o.id !== id);
+  const deleted = deleteOpportunity(id);
+  if (!deleted)
+    return NextResponse.json({ error: "Not found" }, { status: 404 });
   return NextResponse.json({ success: true });
 }
