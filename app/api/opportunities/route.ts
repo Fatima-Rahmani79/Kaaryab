@@ -1,6 +1,6 @@
+import { NextRequest, NextResponse } from "next/server";
 import { opportunities } from "@/data/opportunities";
 import { Opportunity, OpportunityFormData } from "@/types";
-import { NextRequest, NextResponse } from "next/server";
 
 let db: Opportunity[] = [...opportunities];
 
