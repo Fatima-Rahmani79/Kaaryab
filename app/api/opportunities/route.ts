@@ -1,22 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import { opportunities } from "@/data/opportunities";
-import { Opportunity, OpportunityFormData } from "@/types";
-
-let db: Opportunity[] = [...opportunities];
+import { OpportunityFormData } from "@/types";
+import { getAllOpportunities, createOpportunity } from "@/lib/mockDb";
 
 export async function GET() {
-  return NextResponse.json(db);
+  return NextResponse.json(getAllOpportunities());
 }
 
 export async function POST(req: NextRequest) {
   const body: OpportunityFormData = await req.json();
-
-  const newOpportunity: Opportunity = {
-    ...body,
-    id: crypto.randomUUID(),
-    createdAt: new Date().toISOString(),
-  };
-
-  db = [newOpportunity, ...db];
+  const newOpportunity = createOpportunity(body);
   return NextResponse.json(newOpportunity, { status: 201 });
 }
