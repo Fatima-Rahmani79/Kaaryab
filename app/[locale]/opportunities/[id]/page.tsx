@@ -1,11 +1,11 @@
-import SaveButton from "@/components/SaveButton";
-import { opportunities } from "@/data/opportunities";
-import { daysUntilDeadline, isExpired } from "@/lib/utils";
-import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
+import { getAllOpportunities, getOpportunityById } from "@/lib/mockDb";
+import { daysUntilDeadline, isExpired } from "@/lib/utils";
+import SaveButton from "@/components/SaveButton";
 
 export function generateStaticParams() {
-  return opportunities.map((o) => ({ id: o.id }));
+  return getAllOpportunities().map((o) => ({ id: o.id }));
 }
 
 export default async function OpportunityDetailsPage({
@@ -14,7 +14,7 @@ export default async function OpportunityDetailsPage({
   params: Promise<{ locale: string; id: string }>;
 }) {
   const { id } = await params;
-  const opportunity = opportunities.find((o) => o.id === id);
+  const opportunity = getOpportunityById(id);
   if (!opportunity) notFound();
 
   const t = await getTranslations();
