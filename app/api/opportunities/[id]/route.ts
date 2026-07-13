@@ -1,6 +1,6 @@
+import { NextRequest, NextResponse } from "next/server";
 import { opportunities } from "@/data/opportunities";
 import { Opportunity } from "@/types";
-import { NextRequest, NextResponse } from "next/server";
 
 let db: Opportunity[] = [...opportunities];
 
@@ -21,7 +21,6 @@ export async function PUT(
   const { id } = await params;
   const updates = await req.json();
   const index = db.findIndex((o) => o.id === id);
-
   if (index === -1)
     return NextResponse.json({ error: "Not found" }, { status: 404 });
 
