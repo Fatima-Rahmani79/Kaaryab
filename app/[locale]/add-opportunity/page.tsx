@@ -18,6 +18,7 @@ const schema = z.object({
     "Training Program",
     "Volunteer Work",
   ]),
+  type: z.enum(["Remote", "On-site", "Hybrid"]),
   location: z.string().min(2),
   deadline: z.string().min(1),
   description: z.string().min(10),
@@ -27,10 +28,24 @@ const schema = z.object({
 
 type FormValues = z.infer<typeof schema>;
 
+const categories = [
+  "Job",
+  "Internship",
+  "Scholarship",
+  "Online Course",
+  "Remote Work",
+  "Training Program",
+  "Volunteer Work",
+] as const;
+
+const types = ["Remote", "On-site", "Hybrid"] as const;
+
 export default function AddOpportunityPage() {
   const t = useTranslations("addOpportunity");
   const tCat = useTranslations("categories");
+  const tType = useTranslations("types");
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const {
     register,
     handleSubmit,
@@ -38,8 +53,26 @@ export default function AddOpportunityPage() {
   } = useForm<FormValues>({ resolver: zodResolver(schema) });
 
   async function onSubmit(data: FormValues) {
-    console.log(data);
-    setSubmitted(true);
+    setSubmitError(null);
+    try {
+      const res = await fetch("/api/opportunities", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...data,
+          requirements: data.requirements
+            .split(",")
+            .map((r) => r.trim())
+            .filter(Boolean),
+          tags: [data.category, data.type],
+        }),
+      });
+
+      if (!res.ok) throw new Error("Server error");
+      setSubmitted(true);
+    } catch {
+      setSubmitError("مشکلی در ارسال پیش آمد. دوباره تلاش کنید.");
+    }
   }
 
   if (submitted) {
@@ -50,16 +83,6 @@ export default function AddOpportunityPage() {
       </div>
     );
   }
-
-  const categories = [
-    "Job",
-    "Internship",
-    "Scholarship",
-    "Online Course",
-    "Remote Work",
-    "Training Program",
-    "Volunteer Work",
-  ] as const;
 
   return (
     <div className="max-w-xl mx-auto px-4 py-10">
@@ -84,6 +107,17 @@ export default function AddOpportunityPage() {
           {categories.map((c) => (
             <option key={c} value={c}>
               {tCat(c)}
+            </option>
+          ))}
+        </select>
+
+        <select
+          {...register("type")}
+          className="w-full border rounded-lg px-4 py-2 dark:bg-gray-900 dark:border-gray-700"
+        >
+          {types.map((ty) => (
+            <option key={ty} value={ty}>
+              {tType(ty)}
             </option>
           ))}
         </select>
@@ -114,6 +148,8 @@ export default function AddOpportunityPage() {
           placeholder={t("applyLink")}
           className="w-full border rounded-lg px-4 py-2 dark:bg-gray-900 dark:border-gray-700"
         />
+
+        {submitError && <p className="text-red-500 text-sm">{submitError}</p>}
 
         <button
           type="submit"
