@@ -27,7 +27,6 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
 
-  // show 404 if locale does not valuable
   if (!locales.includes(locale as Locale)) notFound();
 
   const messages = await getMessages();

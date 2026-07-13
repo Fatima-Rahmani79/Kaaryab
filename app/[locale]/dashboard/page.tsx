@@ -1,7 +1,7 @@
-import DashboardCard from "@/components/DashboardCard";
+import { getTranslations } from "next-intl/server";
 import { opportunities } from "@/data/opportunities";
 import { calculateStats } from "@/lib/utils";
-import { getTranslations } from "next-intl/server";
+import DashboardCard from "@/components/DashboardCard";
 
 export default async function DashboardPage() {
   const t = await getTranslations("dashboard");
@@ -25,7 +25,7 @@ export default async function DashboardPage() {
       </div>
 
       <h2 className="text-xl font-bold mb-4">{t("recent")}</h2>
-      <div className="apace-y-2">
+      <div className="space-y-2">
         {stats.recent.map((o) => (
           <div
             key={o.id}

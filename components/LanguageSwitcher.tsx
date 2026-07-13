@@ -1,9 +1,8 @@
 "use client";
 
-import { locales } from "@/i18n";
+import { usePathname, useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
-import { usePathname } from "next/navigation";
-import { useRouter } from "next/router";
+import { locales } from "@/i18n";
 
 const labels: Record<string, string> = {
   en: "EN",
@@ -17,7 +16,6 @@ export default function LanguageSwitcher() {
   const router = useRouter();
 
   function switchTo(next: string) {
-    // We need to replace the current locale in the pathname with the next locale
     const segments = pathname.split("/");
     segments[1] = next;
     router.push(segments.join("/"));
@@ -28,10 +26,10 @@ export default function LanguageSwitcher() {
       value={locale}
       onChange={(e) => switchTo(e.target.value)}
       aria-label="Change language"
-      className="text-sm border rouded-lg px-2 py-1 bg-transparent dark:border-gray-700"
+      className="text-sm border rounded-lg px-2 py-1 bg-transparent dark:border-gray-700"
     >
       {locales.map((l) => (
-        <option key={1} value={l}>
+        <option key={l} value={l}>
           {labels[l]}
         </option>
       ))}
