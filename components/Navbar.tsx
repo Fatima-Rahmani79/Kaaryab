@@ -3,13 +3,14 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, Menu, X } from "lucide-react";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Navbar() {
   const t = useTranslations("nav");
   const locale = useLocale();
   const [dark, setDark] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", dark);
@@ -31,6 +32,7 @@ export default function Navbar() {
           KaarYab
         </Link>
 
+        {/* Desktop */}
         <div className="hidden md:flex gap-6 flex-1">
           {links.map((l) => (
             <Link key={l.href} href={l.href} className="hover:text-primary-600">
@@ -48,8 +50,33 @@ export default function Navbar() {
           >
             {dark ? <Sun size={18} /> : <Moon size={18} />}
           </button>
+
+          {/* Hamburger menu*/}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+            className="md:hidden p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"
+          >
+            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
       </nav>
+
+      {/* Mobile menu */}
+      {mobileOpen && (
+        <div className="md:hidden border-t border-gray-200 dark:border-gray-800 px-4 py-3 flex flex-col gap-3">
+          {links.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              onClick={() => setMobileOpen(false)}
+              className="hover:text-primary-600"
+            >
+              {l.label}
+            </Link>
+          ))}
+        </div>
+      )}
     </header>
   );
 }

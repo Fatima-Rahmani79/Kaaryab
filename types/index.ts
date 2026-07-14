@@ -32,6 +32,7 @@ export interface OpportunityFilters {
   category: OpportunityCategory | "All";
   location: string;
   type: OpportunityType | "All";
+  deadlineRange: "all" | "week" | "month";
   sortBy: "newest" | "deadline";
 }
 

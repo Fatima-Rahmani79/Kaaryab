@@ -36,6 +36,14 @@ export function filterOpportunities(
     )
     .filter((o) => (filters.location ? o.location === filters.location : true))
     .filter((o) => (filters.type !== "All" ? o.type === filters.type : true))
+    .filter((o) => {
+      if (filters.deadlineRange === "all") return true;
+      const days = daysUntilDeadline(o.deadline);
+      if (days < 0) return false;
+      if (filters.deadlineRange === "week") return days <= 7;
+      if (filters.deadlineRange === "month") return days <= 30;
+      return true;
+    })
     .sort((a, b) => {
       if (filters.sortBy === "deadline") {
         return new Date(a.deadline).getTime() - new Date(b.deadline).getTime();
