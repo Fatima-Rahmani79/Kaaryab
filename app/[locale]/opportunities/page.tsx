@@ -13,6 +13,7 @@ const initialFilters: OpportunityFilters = {
   category: "All",
   location: "",
   type: "All",
+  deadlineRange: "all",
   sortBy: "newest",
 };
 
@@ -38,7 +39,11 @@ export default function OpportunitiesPage() {
     <div className="max-w-6xl mx-auto px-4 py-10">
       <h1 className="text-3xl font-bold mb-6">{t("title")}</h1>
 
-      <SearchFilter filters={filters} onChange={setFilters} />
+      <SearchFilter
+        filters={filters}
+        onChange={setFilters}
+        opportunities={opportunities}
+      />
 
       {loading ? (
         <p className="text-gray-400 py-16 text-center">Loading...</p>
