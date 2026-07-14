@@ -22,7 +22,10 @@
     "sortNewest": "Newest",
     "sortDeadline": "Closest deadline",
     "empty": "No opportunities match your filters.",
-    "details": "View details"
+    "details": "View details",
+    "deadlineAll": "Any deadline",
+    "deadlineWeek": "Expiring within 7 days",
+    "deadlineMonth": "Expiring within 30 days"
   },
   "categories": {
     "Job": "Job",
@@ -94,5 +97,23 @@
     "message": "This page or opportunity could not be found.",
     "back": "Back to opportunities"
   },
-  "expiringSoonBadge": "Expiring soon"
+  "expiringSoonBadge": "Expiring soon",
+
+  "common": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "manage": "Manage opportunities",
+    "confirmDeleteTitle": "Delete this opportunity?",
+    "confirmDeleteMessage": "This action cannot be undone.",
+    "allLocations": "All locations"
+  },
+  "editOpportunity": {
+    "title": "Edit opportunity",
+    "submit": "Update opportunity",
+    "submitting": "Updating...",
+    "successTitle": "Updated!",
+    "successMessage": "The opportunity was updated successfully."
+  }
 }
