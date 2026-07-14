@@ -22,7 +22,10 @@
     "sortNewest": "جدیدترین",
     "sortDeadline": "نزدیک‌ترین ضرب‌الاجل",
     "empty": "فرصتی با این فیلتر پیدا نشد.",
-    "details": "جزئیات بیشتر"
+    "details": "جزئیات بیشتر",
+    "deadlineAll": "همه ضرب‌الاجل‌ها",
+    "deadlineWeek": "منقضی تا ۷ روز دیگر",
+    "deadlineMonth": "منقضی تا ۳۰ روز دیگر"
   },
   "categories": {
     "Job": "کار",
@@ -94,5 +97,23 @@
     "message": "این صفحه یا فرصت پیدا نشد.",
     "back": "بازگشت به فرصت‌ها"
   },
-  "expiringSoonBadge": "به‌زودی منقضی می‌شود"
+  "expiringSoonBadge": "به‌زودی منقضی می‌شود",
+
+  "common": {
+    "edit": "ویرایش",
+    "delete": "حذف",
+    "cancel": "انصراف",
+    "confirm": "تأیید",
+    "manage": "مدیریت فرصت‌ها",
+    "confirmDeleteTitle": "این فرصت حذف شود؟",
+    "confirmDeleteMessage": "این عمل قابل بازگشت نیست.",
+    "allLocations": "همه موقعیت‌ها"
+  },
+  "editOpportunity": {
+    "title": "ویرایش فرصت",
+    "submit": "به‌روزرسانی فرصت",
+    "submitting": "در حال به‌روزرسانی...",
+    "successTitle": "به‌روزرسانی شد!",
+    "successMessage": "فرصت با موفقیت به‌روزرسانی شد."
+  }
 }
