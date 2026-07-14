@@ -3,6 +3,7 @@ import { getAllOpportunities } from "@/lib/mockDb";
 import { calculateStats } from "@/lib/utils";
 import DashboardCard from "@/components/DashboardCard";
 import CategoryChart from "@/components/CategoryChart";
+import OpportunityManageTable from "@/components/OpportunityManageTable";
 
 export default async function DashboardPage() {
   const t = await getTranslations("dashboard");
@@ -41,6 +42,8 @@ export default async function DashboardPage() {
 
       <h2 className="text-xl font-bold mb-4">Categories</h2>
       <CategoryChart opportunities={opportunities} />
+
+      <OpportunityManageTable initialOpportunities={opportunities} />
     </div>
   );
 }
