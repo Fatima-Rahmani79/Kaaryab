@@ -22,7 +22,10 @@
     "sortNewest": "تازه ترین",
     "sortDeadline": "نږدې نیټه",
     "empty": "له دې فلټر سره سم هیڅ فرصت ونه موندل شو.",
-    "details": "نور توضیحات"
+    "details": "نور توضیحات",
+    "deadlineAll": "ټولې نیټې",
+    "deadlineWeek": "تر ۷ ورځو کې پای ته رسیږي",
+    "deadlineMonth": "تر ۳۰ ورځو کې پای ته رسیږي"
   },
   "categories": {
     "Job": "دنده",
@@ -94,5 +97,23 @@
     "message": "دا پاڼه یا فرصت ونه موندل شو.",
     "back": "فرصتونو ته بېرته"
   },
-  "expiringSoonBadge": "ژر پای ته رسیږي"
+  "expiringSoonBadge": "ژر پای ته رسیږي",
+
+  "common": {
+    "edit": "سمول",
+    "delete": "ړنګول",
+    "cancel": "لغوه کول",
+    "confirm": "تایید",
+    "manage": "د فرصتونو اداره",
+    "confirmDeleteTitle": "دا فرصت ړنګ شي؟",
+    "confirmDeleteMessage": "دا کار بیرته نه ګرځي.",
+    "allLocations": "ټول ځایونه"
+  },
+  "editOpportunity": {
+    "title": "فرصت سمول",
+    "submit": "فرصت تازه کړئ",
+    "submitting": "تازه کیږي...",
+    "successTitle": "تازه شو!",
+    "successMessage": "فرصت په بریالیتوب سره تازه شو."
+  }
 }
