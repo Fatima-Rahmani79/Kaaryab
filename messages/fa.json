@@ -64,6 +64,12 @@
   },
   "addOpportunity": {
     "title": "ثبت فرصت جدید",
+    "submit": "ثبت فرصت",
+    "submitting": "در حال ارسال...",
+    "successTitle": "با تشکر!",
+    "successMessage": "فرصت شما ثبت شد و به‌زودی بررسی می‌شود."
+  },
+  "opportunityFields": {
     "titleLabel": "عنوان",
     "organization": "نام سازمان",
     "category": "دسته",
@@ -71,11 +77,7 @@
     "deadline": "ضرب‌الاجل",
     "description": "توضیحات",
     "requirements": "پیش‌نیازها (با کاما جدا کنید)",
-    "applyLink": "لینک درخواست",
-    "submit": "ثبت فرصت",
-    "submitting": "در حال ارسال...",
-    "successTitle": "با تشکر!",
-    "successMessage": "فرصت شما ثبت شد و به‌زودی بررسی می‌شود."
+    "applyLink": "لینک درخواست"
   },
   "about": {
     "title": "درباره کاریاب افغانستان",

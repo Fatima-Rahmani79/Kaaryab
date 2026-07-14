@@ -64,6 +64,12 @@
   },
   "addOpportunity": {
     "title": "نوی فرصت ثبت کړئ",
+    "submit": "فرصت ثبت کړئ",
+    "submitting": "لیږل کیږي...",
+    "successTitle": "مننه!",
+    "successMessage": "ستاسو فرصت ثبت شو او ژر به وڅارل شي."
+  },
+  "opportunityFields": {
     "titleLabel": "سرلیک",
     "organization": "د اداري نوم",
     "category": "ډول",
@@ -71,11 +77,7 @@
     "deadline": "پای نیټه",
     "description": "تشریح",
     "requirements": "اړین شرطونه (په کاما جلا کړئ)",
-    "applyLink": "د غوښتنې لینک",
-    "submit": "فرصت ثبت کړئ",
-    "submitting": "لیږل کیږي...",
-    "successTitle": "مننه!",
-    "successMessage": "ستاسو فرصت ثبت شو او ژر به وڅارل شي."
+    "applyLink": "د غوښتنې لینک"
   },
   "about": {
     "title": "د کارياب افغانستان په اړه",

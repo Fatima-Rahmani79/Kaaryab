@@ -64,6 +64,12 @@
   },
   "addOpportunity": {
     "title": "Submit a new opportunity",
+    "submit": "Submit opportunity",
+    "submitting": "Submitting...",
+    "successTitle": "Thank you!",
+    "successMessage": "Your opportunity was submitted and will be reviewed soon."
+  },
+  "opportunityFields": {
     "titleLabel": "Title",
     "organization": "Organization",
     "category": "Category",
@@ -71,11 +77,7 @@
     "deadline": "Deadline",
     "description": "Description",
     "requirements": "Requirements (comma separated)",
-    "applyLink": "Apply link",
-    "submit": "Submit opportunity",
-    "submitting": "Submitting...",
-    "successTitle": "Thank you!",
-    "successMessage": "Your opportunity was submitted and will be reviewed soon."
+    "applyLink": "Apply link"
   },
   "about": {
     "title": "About KaarYab Afghanistan",
