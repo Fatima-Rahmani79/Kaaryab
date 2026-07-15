@@ -1,7 +1,4 @@
-import { Opportunity } from "@/types";
-
-// ⚠️ Demo Data
-export const opportunities: Opportunity[] = [
+[
   {
     id: "1",
     title: "Frontend Developer Intern",

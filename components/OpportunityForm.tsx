@@ -43,7 +43,7 @@ const types = ["Remote", "On-site", "Hybrid"] as const;
 
 interface Props {
   mode: "add" | "edit";
-  opportunity?: Opportunity; // فقط برای mode="edit" — برای پر کردن اولیهٔ فرم
+  opportunity?: Opportunity;
   onSuccess: () => void;
 }
 
@@ -55,6 +55,7 @@ export default function OpportunityForm({
   const t = useTranslations(
     mode === "edit" ? "editOpportunity" : "addOpportunity",
   );
+  const tFields = useTranslations("opportunityFields");
   const tCat = useTranslations("categories");
   const tType = useTranslations("types");
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -115,12 +116,12 @@ export default function OpportunityForm({
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <input
         {...register("title")}
-        placeholder={t("titleLabel")}
+        placeholder={tFields("titleLabel")}
         className="w-full border rounded-lg px-4 py-2 dark:bg-gray-900 dark:border-gray-700"
       />
       <input
         {...register("organization")}
-        placeholder={t("organization")}
+        placeholder={tFields("organization")}
         className="w-full border rounded-lg px-4 py-2 dark:bg-gray-900 dark:border-gray-700"
       />
 
@@ -148,7 +149,7 @@ export default function OpportunityForm({
 
       <input
         {...register("location")}
-        placeholder={t("location")}
+        placeholder={tFields("location")}
         className="w-full border rounded-lg px-4 py-2 dark:bg-gray-900 dark:border-gray-700"
       />
       <input
@@ -158,18 +159,18 @@ export default function OpportunityForm({
       />
       <textarea
         {...register("description")}
-        placeholder={t("description")}
+        placeholder={tFields("description")}
         rows={4}
         className="w-full border rounded-lg px-4 py-2 dark:bg-gray-900 dark:border-gray-700"
       />
       <input
         {...register("requirements")}
-        placeholder={t("requirements")}
+        placeholder={tFields("requirements")}
         className="w-full border rounded-lg px-4 py-2 dark:bg-gray-900 dark:border-gray-700"
       />
       <input
         {...register("applyLink")}
-        placeholder={t("applyLink")}
+        placeholder={tFields("applyLink")}
         className="w-full border rounded-lg px-4 py-2 dark:bg-gray-900 dark:border-gray-700"
       />
 
