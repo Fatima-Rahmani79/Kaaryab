@@ -1,35 +1,36 @@
-import { opportunities as seedData } from "@/data/opportunities";
+import fs from "fs";
+import path from "path";
 import { Opportunity } from "@/types";
 
-declare global {
-  // eslint-disable-next-line no-var
-  var __kaaryab_db: Opportunity[] | undefined;
+const DB_PATH = path.join(process.cwd(), "data", "opportunities.json");
+
+function readDb(): Opportunity[] {
+  const raw = fs.readFileSync(DB_PATH, "utf-8");
+  return JSON.parse(raw);
 }
 
-function getDb(): Opportunity[] {
-  if (!global.__kaaryab_db) {
-    global.__kaaryab_db = [...seedData];
-  }
-  return global.__kaaryab_db;
+function writeDb(data: Opportunity[]) {
+  fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2), "utf-8");
 }
 
 export function getAllOpportunities(): Opportunity[] {
-  return getDb();
+  return readDb();
 }
 
 export function getOpportunityById(id: string): Opportunity | undefined {
-  return getDb().find((o) => o.id === id);
+  return readDb().find((o) => o.id === id);
 }
 
 export function createOpportunity(
   data: Omit<Opportunity, "id" | "createdAt">,
 ): Opportunity {
+  const db = readDb();
   const newOpportunity: Opportunity = {
     ...data,
     id: crypto.randomUUID(),
     createdAt: new Date().toISOString(),
   };
-  global.__kaaryab_db = [newOpportunity, ...getDb()];
+  writeDb([newOpportunity, ...db]);
   return newOpportunity;
 }
 
@@ -37,16 +38,17 @@ export function updateOpportunity(
   id: string,
   updates: Partial<Opportunity>,
 ): Opportunity | null {
-  const db = getDb();
+  const db = readDb();
   const index = db.findIndex((o) => o.id === id);
   if (index === -1) return null;
   db[index] = { ...db[index], ...updates };
+  writeDb(db);
   return db[index];
 }
 
 export function deleteOpportunity(id: string): boolean {
-  const db = getDb();
+  const db = readDb();
   const exists = db.some((o) => o.id === id);
-  global.__kaaryab_db = db.filter((o) => o.id !== id);
+  writeDb(db.filter((o) => o.id !== id));
   return exists;
 }
