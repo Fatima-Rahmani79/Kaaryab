@@ -5,3 +5,8 @@ export const cardClass =
   "bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300";
 
 export const sectionClass = "max-w-6xl mx-auto px-4 py-20";
+
+export const labelClass =
+  "block text-sm font-medium text-ink dark:text-gray-200 mb-1.5";
+
+export const selectClass = inputClass + " appearance-none cursor-pointer";
