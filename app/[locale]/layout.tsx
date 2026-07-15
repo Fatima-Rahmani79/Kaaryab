@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Space_Grotesk, Inter, Vazirmatn } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -7,6 +8,24 @@ import { locales, rtlLocales, Locale } from "@/i18n";
 import { SavedProvider } from "@/context/SavedContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+});
+
+const vazirmatn = Vazirmatn({
+  subsets: ["arabic"],
+  variable: "--font-rtl",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "KaarYab Afghanistan",
@@ -33,7 +52,12 @@ export default async function LocaleLayout({
   const dir = rtlLocales.includes(locale as Locale) ? "rtl" : "ltr";
 
   return (
-    <html lang={locale} dir={dir} suppressHydrationWarning>
+    <html
+      lang={locale}
+      dir={dir}
+      className={`${spaceGrotesk.variable} ${inter.variable} ${vazirmatn.variable}`}
+      suppressHydrationWarning
+    >
       <body>
         <NextIntlClientProvider messages={messages}>
           <SavedProvider>
