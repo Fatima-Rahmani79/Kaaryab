@@ -92,7 +92,8 @@
     "sent": "Your message has been sent"
   },
   "footer": {
-    "note": "An educational project (Demo Data)"
+    "note": "An educational project (Demo Data)",
+    "tagline": "Connecting Afghan youth with real opportunities."
   },
   "notFound": {
     "title": "404",
