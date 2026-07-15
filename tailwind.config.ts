@@ -16,6 +16,17 @@ const config: Config = {
           600: "#2563eb",
           700: "#1d4ed8",
         },
+        lapis: {
+          DEFAULT: "#2E5AAC",
+          deep: "#16305C",
+        },
+        saffron: "#E8A33D",
+        pomegranate: "#C1443C",
+      },
+      fontFamily: {
+        display: ["var(--font-display)", "sans-serif"],
+        body: ["var(--font-body)", "sans-serif"],
+        rtl: ["var(--font-rtl)", "sans-serif"],
       },
     },
   },
