@@ -4,12 +4,16 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Opportunity } from "@/types";
+import { inputClass, selectClass } from "@/lib/ui";
+import FormField from "./ui/FormField";
+import Button from "./ui/Button";
 
 const schema = z.object({
-  title: z.string().min(3),
-  organization: z.string().min(2),
+  title: z.string().min(3, "At least 3 characters"),
+  organization: z.string().min(2, "Required"),
   category: z.enum([
     "Job",
     "Internship",
@@ -20,11 +24,11 @@ const schema = z.object({
     "Volunteer Work",
   ]),
   type: z.enum(["Remote", "On-site", "Hybrid"]),
-  location: z.string().min(2),
-  deadline: z.string().min(1),
-  description: z.string().min(10),
-  requirements: z.string().min(1),
-  applyLink: z.string().url(),
+  location: z.string().min(2, "Required"),
+  deadline: z.string().min(1, "Required"),
+  description: z.string().min(10, "At least 10 characters"),
+  requirements: z.string().min(1, "Required"),
+  applyLink: z.string().url("Enter a valid URL"),
 });
 
 type FormValues = z.infer<typeof schema>;
@@ -63,7 +67,7 @@ export default function OpportunityForm({
   const {
     register,
     handleSubmit,
-    formState: { isSubmitting },
+    formState: { errors, isSubmitting },
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: opportunity
@@ -112,77 +116,116 @@ export default function OpportunityForm({
     }
   }
 
+  const container = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.05 } },
+  };
+  const item = {
+    hidden: { opacity: 0, y: 10 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+  };
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-      <input
-        {...register("title")}
-        placeholder={tFields("titleLabel")}
-        className="w-full border rounded-lg px-4 py-2 dark:bg-gray-900 dark:border-gray-700"
-      />
-      <input
-        {...register("organization")}
-        placeholder={tFields("organization")}
-        className="w-full border rounded-lg px-4 py-2 dark:bg-gray-900 dark:border-gray-700"
-      />
+    <motion.form
+      variants={container}
+      initial="hidden"
+      animate="show"
+      onSubmit={handleSubmit(onSubmit)}
+      className="space-y-5"
+    >
+      <motion.div variants={item}>
+        <FormField label={tFields("titleLabel")} error={errors.title?.message}>
+          <input {...register("title")} className={inputClass} />
+        </FormField>
+      </motion.div>
 
-      <select
-        {...register("category")}
-        className="w-full border rounded-lg px-4 py-2 dark:bg-gray-900 dark:border-gray-700"
-      >
-        {categories.map((c) => (
-          <option key={c} value={c}>
-            {tCat(c)}
-          </option>
-        ))}
-      </select>
+      <motion.div variants={item}>
+        <FormField
+          label={tFields("organization")}
+          error={errors.organization?.message}
+        >
+          <input {...register("organization")} className={inputClass} />
+        </FormField>
+      </motion.div>
 
-      <select
-        {...register("type")}
-        className="w-full border rounded-lg px-4 py-2 dark:bg-gray-900 dark:border-gray-700"
-      >
-        {types.map((ty) => (
-          <option key={ty} value={ty}>
-            {tType(ty)}
-          </option>
-        ))}
-      </select>
+      <motion.div variants={item} className="grid grid-cols-2 gap-4">
+        <FormField label={tFields("category")}>
+          <select {...register("category")} className={selectClass}>
+            {categories.map((c) => (
+              <option key={c} value={c}>
+                {tCat(c)}
+              </option>
+            ))}
+          </select>
+        </FormField>
 
-      <input
-        {...register("location")}
-        placeholder={tFields("location")}
-        className="w-full border rounded-lg px-4 py-2 dark:bg-gray-900 dark:border-gray-700"
-      />
-      <input
-        type="date"
-        {...register("deadline")}
-        className="w-full border rounded-lg px-4 py-2 dark:bg-gray-900 dark:border-gray-700"
-      />
-      <textarea
-        {...register("description")}
-        placeholder={tFields("description")}
-        rows={4}
-        className="w-full border rounded-lg px-4 py-2 dark:bg-gray-900 dark:border-gray-700"
-      />
-      <input
-        {...register("requirements")}
-        placeholder={tFields("requirements")}
-        className="w-full border rounded-lg px-4 py-2 dark:bg-gray-900 dark:border-gray-700"
-      />
-      <input
-        {...register("applyLink")}
-        placeholder={tFields("applyLink")}
-        className="w-full border rounded-lg px-4 py-2 dark:bg-gray-900 dark:border-gray-700"
-      />
+        <FormField label="Type">
+          <select {...register("type")} className={selectClass}>
+            {types.map((ty) => (
+              <option key={ty} value={ty}>
+                {tType(ty)}
+              </option>
+            ))}
+          </select>
+        </FormField>
+      </motion.div>
 
-      {submitError && <p className="text-red-500 text-sm">{submitError}</p>}
+      <motion.div variants={item} className="grid grid-cols-2 gap-4">
+        <FormField label={tFields("location")} error={errors.location?.message}>
+          <input {...register("location")} className={inputClass} />
+        </FormField>
 
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="bg-primary-600 text-white px-6 py-3 rounded-lg w-full"
-      >
-        {isSubmitting ? t("submitting") : t("submit")}
-      </button>
-    </form>
+        <FormField label={tFields("deadline")} error={errors.deadline?.message}>
+          <input type="date" {...register("deadline")} className={inputClass} />
+        </FormField>
+      </motion.div>
+
+      <motion.div variants={item}>
+        <FormField
+          label={tFields("description")}
+          error={errors.description?.message}
+        >
+          <textarea
+            {...register("description")}
+            rows={4}
+            className={inputClass}
+          />
+        </FormField>
+      </motion.div>
+
+      <motion.div variants={item}>
+        <FormField
+          label={tFields("requirements")}
+          error={errors.requirements?.message}
+        >
+          <input {...register("requirements")} className={inputClass} />
+        </FormField>
+      </motion.div>
+
+      <motion.div variants={item}>
+        <FormField
+          label={tFields("applyLink")}
+          error={errors.applyLink?.message}
+        >
+          <input {...register("applyLink")} className={inputClass} />
+        </FormField>
+      </motion.div>
+
+      {submitError && (
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-pomegranate text-sm"
+        >
+          {submitError}
+        </motion.p>
+      )}
+
+      <motion.div variants={item}>
+        <Button type="submit" disabled={isSubmitting} className="w-full">
+          {isSubmitting ? t("submitting") : t("submit")}
+        </Button>
+      </motion.div>
+    </motion.form>
   );
 }
