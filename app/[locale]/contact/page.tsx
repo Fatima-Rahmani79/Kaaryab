@@ -1,8 +1,12 @@
 "use client";
 
-import { ContactFormData } from "@/types";
-import { useTranslations } from "next-intl";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useTranslations } from "next-intl";
+import { Mail, CheckCircle2 } from "lucide-react";
+import { ContactFormData } from "@/types";
+import { inputClass, labelClass } from "@/lib/ui";
+import Button from "@/components/ui/Button";
 
 export default function ContactPage() {
   const t = useTranslations("contact");
@@ -12,51 +16,88 @@ export default function ContactPage() {
     message: "",
   });
   const [sent, setSent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setSent(true);
-  }
-
-  if (sent) {
-    return (
-      <div className="max-w-xl mx-auto px-4 py-16 text-center">
-        <h2 className="text-2xl font-bold">{t("sent")}</h2>
-      </div>
-    );
+    setSubmitting(true);
+    try {
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      setSent(true);
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
-    <div className="max-w-xl mx-auto px-4 py-10">
-      <h1 className="text-3xl font-bold mb-6">{t("title")}</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input
-          required
-          placeholder={t("name")}
-          value={form.name}
-          onChange={(e) => setForm({ ...form, name: e.target.value })}
-          className="w-full border rounded-lg px-4 py-2 dark:bg-gray-900 dark:border-gray-700"
-        />
-        <input
-          required
-          type="email"
-          placeholder={t("email")}
-          value={form.email}
-          onChange={(e) => setForm({ ...form, email: e.target.value })}
-          className="w-full border rounded-lg px-4 py-2 dark:bg-gray-900 dark:border-gray-700"
-        />
-        <textarea
-          required
-          rows={5}
-          placeholder={t("message")}
-          value={form.message}
-          onChange={(e) => setForm({ ...form, message: e.target.value })}
-          className="w-full border rounded-lg px-4 py-2 dark:bg-gray-900 dark:border-gray-700"
-        />
-        <button className="bg-primary-600 text-white px-6 py-3 rounded-lg w-full">
-          {t("send")}
-        </button>
-      </form>
+    <div className="max-w-xl mx-auto px-4 py-16">
+      <AnimatePresence mode="wait">
+        {sent ? (
+          <motion.div
+            key="success"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="text-center py-12"
+          >
+            <CheckCircle2 size={40} className="text-lapis mx-auto mb-4" />
+            <h2 className="text-2xl font-display font-bold">{t("sent")}</h2>
+          </motion.div>
+        ) : (
+          <motion.div
+            key="form"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-11 h-11 rounded-xl bg-lapis/10 flex items-center justify-center">
+                <Mail size={20} className="text-lapis" />
+              </div>
+              <h1 className="text-2xl font-display font-bold">{t("title")}</h1>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div>
+                <label className={labelClass}>{t("name")}</label>
+                <input
+                  required
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  className={inputClass}
+                />
+              </div>
+              <div>
+                <label className={labelClass}>{t("email")}</label>
+                <input
+                  required
+                  type="email"
+                  value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  className={inputClass}
+                />
+              </div>
+              <div>
+                <label className={labelClass}>{t("message")}</label>
+                <textarea
+                  required
+                  rows={5}
+                  value={form.message}
+                  onChange={(e) =>
+                    setForm({ ...form, message: e.target.value })
+                  }
+                  className={inputClass}
+                />
+              </div>
+              <Button type="submit" disabled={submitting} className="w-full">
+                {submitting ? "..." : t("send")}
+              </Button>
+            </form>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
