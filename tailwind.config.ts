@@ -22,6 +22,7 @@ const config: Config = {
         },
         saffron: "#E8A33D",
         pomegranate: "#C1443C",
+        ink: "#1A1F2B",
       },
       fontFamily: {
         display: ["var(--font-display)", "sans-serif"],
