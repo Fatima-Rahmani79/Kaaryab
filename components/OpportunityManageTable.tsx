@@ -3,9 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
-import { Pencil, Trash2 } from "lucide-react";
+import { Pencil, Trash2, ClipboardList } from "lucide-react";
 import { Opportunity } from "@/types";
 import Modal from "./Modal";
+import Button from "./ui/Button";
+import EmptyState from "./EmptyState";
 
 export default function OpportunityManageTable({
   initialOpportunities,
@@ -31,34 +33,43 @@ export default function OpportunityManageTable({
   }
 
   return (
-    <div>
-      <h2 className="text-xl font-bold mb-4 mt-10">{t("manage")}</h2>
-      <div className="space-y-2">
-        {opportunities.map((o) => (
-          <div
-            key={o.id}
-            className="flex justify-between items-center border-b border-gray-200 dark:border-gray-800 py-2"
-          >
-            <span>{o.title}</span>
-            <div className="flex gap-1">
-              <Link
-                href={`/${locale}/opportunities/${o.id}/edit`}
-                aria-label={t("edit")}
-                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"
-              >
-                <Pencil size={16} />
-              </Link>
-              <button
-                onClick={() => setToDelete(o)}
-                aria-label={t("delete")}
-                className="p-2 rounded-full hover:bg-red-50 dark:hover:bg-red-950/30 text-red-600"
-              >
-                <Trash2 size={16} />
-              </button>
+    <div className="mt-14">
+      <h2 className="text-xl font-display font-bold mb-4">{t("manage")}</h2>
+
+      {opportunities.length === 0 ? (
+        <EmptyState message="No opportunities yet." icon={ClipboardList} />
+      ) : (
+        <div className="rounded-2xl border border-gray-100 dark:border-gray-800 overflow-hidden bg-white dark:bg-gray-900">
+          {opportunities.map((o, i) => (
+            <div
+              key={o.id}
+              className={`flex justify-between items-center px-5 py-3.5 ${
+                i !== 0 ? "border-t border-gray-100 dark:border-gray-800" : ""
+              }`}
+            >
+              <span className="text-sm font-medium truncate pe-4">
+                {o.title}
+              </span>
+              <div className="flex gap-1 shrink-0">
+                <Link
+                  href={`/${locale}/opportunities/${o.id}/edit`}
+                  aria-label={t("edit")}
+                  className="p-2 rounded-lg hover:bg-lapis/10 text-gray-400 hover:text-lapis transition-colors"
+                >
+                  <Pencil size={15} />
+                </Link>
+                <button
+                  onClick={() => setToDelete(o)}
+                  aria-label={t("delete")}
+                  className="p-2 rounded-lg hover:bg-pomegranate/10 text-gray-400 hover:text-pomegranate transition-colors"
+                >
+                  <Trash2 size={15} />
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
 
       <Modal
         open={!!toDelete}
@@ -71,17 +82,13 @@ export default function OpportunityManageTable({
         <div className="flex gap-3 justify-end">
           <button
             onClick={() => setToDelete(null)}
-            className="px-4 py-2 rounded-lg border dark:border-gray-700"
+            className="px-4 py-2 rounded-xl border border-gray-200 dark:border-gray-700 text-sm font-medium"
           >
             {t("cancel")}
           </button>
-          <button
-            onClick={confirmDelete}
-            disabled={deleting}
-            className="px-4 py-2 rounded-lg bg-red-600 text-white"
-          >
+          <Button variant="danger" onClick={confirmDelete} disabled={deleting}>
             {t("confirm")}
-          </button>
+          </Button>
         </div>
       </Modal>
     </div>
