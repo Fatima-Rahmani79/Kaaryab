@@ -10,6 +10,7 @@ import { staggerContainer, fadeUp } from "@/lib/ui";
 import OpportunityCard from "@/components/OpportunityCard";
 import SearchFilter from "@/components/SearchFilter";
 import EmptyState from "@/components/EmptyState";
+import SkeletonCard from "@/components/SkeletonCard";
 
 const initialFilters: OpportunityFilters = {
   search: "",
@@ -55,10 +56,7 @@ export default function OpportunitiesPage() {
       {loading ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-2">
           {[1, 2, 3, 4, 5, 6].map((i) => (
-            <div
-              key={i}
-              className="h-48 rounded-2xl bg-gray-100 dark:bg-gray-800 animate-pulse"
-            />
+            <SkeletonCard key={i} />
           ))}
         </div>
       ) : filtered.length === 0 ? (

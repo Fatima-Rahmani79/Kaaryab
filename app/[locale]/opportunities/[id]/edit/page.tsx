@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { setRequestLocale } from "next-intl/server";
 import { getOpportunityById } from "@/lib/mockDb";
 import EditOpportunityClient from "./EditOpportunityClient";
 
@@ -7,7 +8,8 @@ export default async function EditOpportunityPage({
 }: {
   params: Promise<{ locale: string; id: string }>;
 }) {
-  const { id } = await params;
+  const { locale, id } = await params;
+  setRequestLocale(locale);
   const opportunity = getOpportunityById(id);
   if (!opportunity) notFound();
 

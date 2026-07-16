@@ -1,26 +1,25 @@
 "use client";
 
-import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 import OpportunityForm from "@/components/OpportunityForm";
+import { useToast } from "@/components/ui/Toast";
 
 export default function AddOpportunityPage() {
   const t = useTranslations("addOpportunity");
-  const [submitted, setSubmitted] = useState(false);
-
-  if (submitted) {
-    return (
-      <div className="max-w-xl mx-auto px-4 py-16 text-center">
-        <h2 className="text-2xl font-bold mb-2">{t("successTitle")}</h2>
-        <p className="text-gray-500">{t("successMessage")}</p>
-      </div>
-    );
-  }
+  const router = useRouter();
+  const { toast } = useToast();
 
   return (
     <div className="max-w-xl mx-auto px-4 py-10">
       <h1 className="text-3xl font-bold mb-6">{t("title")}</h1>
-      <OpportunityForm mode="add" onSuccess={() => setSubmitted(true)} />
+      <OpportunityForm
+        mode="add"
+        onSuccess={() => {
+          toast(t("successMessage"), "success");
+          router.push("/opportunities");
+        }}
+      />
     </div>
   );
 }

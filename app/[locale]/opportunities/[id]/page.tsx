@@ -1,19 +1,16 @@
 import { notFound } from "next/navigation";
-import { getTranslations } from "next-intl/server";
-import { getAllOpportunities, getOpportunityById } from "@/lib/mockDb";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getOpportunityById } from "@/lib/mockDb";
 import { daysUntilDeadline, isExpired } from "@/lib/utils";
 import SaveButton from "@/components/SaveButton";
-
-export function generateStaticParams() {
-  return getAllOpportunities().map((o) => ({ id: o.id }));
-}
 
 export default async function OpportunityDetailsPage({
   params,
 }: {
   params: Promise<{ locale: string; id: string }>;
 }) {
-  const { id } = await params;
+  const { locale, id } = await params;
+  setRequestLocale(locale);
   const opportunity = getOpportunityById(id);
   if (!opportunity) notFound();
 

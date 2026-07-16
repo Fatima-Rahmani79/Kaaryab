@@ -1,5 +1,6 @@
 import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
+import { Linkedin, Twitter, Github, Mail } from "lucide-react";
 import Logo from "./Logo";
 
 export default function Footer() {
@@ -11,6 +12,13 @@ export default function Footer() {
     { href: `/${locale}/dashboard`, label: t("nav.dashboard") },
     { href: `/${locale}/about`, label: t("nav.about") },
     { href: `/${locale}/contact`, label: t("nav.contact") },
+  ];
+
+  const socials = [
+    { href: "https://linkedin.com", icon: Linkedin, label: "LinkedIn" },
+    { href: "https://twitter.com", icon: Twitter, label: "Twitter" },
+    { href: "https://github.com", icon: Github, label: "GitHub" },
+    { href: "mailto:hello@kaaryab.af", icon: Mail, label: "Email" },
   ];
 
   return (
@@ -40,12 +48,26 @@ export default function Footer() {
         <rect width="100%" height="10" fill="url(#footer-lattice)" />
       </svg>
 
-      <div className="max-w-6xl mx-auto px-4 py-14 grid grid-cols-1 md:grid-cols-3 gap-10">
-        <div>
+      <div className="max-w-6xl mx-auto px-4 py-14 grid grid-cols-1 md:grid-cols-4 gap-10">
+        <div className="md:col-span-1">
           <Logo />
           <p className="mt-4 text-sm text-blue-200 max-w-xs">
             {t("footer.tagline")}
           </p>
+          <div className="flex gap-3 mt-5">
+            {socials.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={s.label}
+                className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center hover:bg-saffron/20 hover:text-saffron transition-colors"
+              >
+                <s.icon size={16} />
+              </a>
+            ))}
+          </div>
         </div>
 
         <div>
@@ -67,10 +89,36 @@ export default function Footer() {
         </div>
 
         <div>
+          <h3 className="text-sm font-semibold text-white mb-4">
+            {t("categories.Job")}
+          </h3>
+          <ul className="space-y-2">
+            {(
+              [
+                "Internship",
+                "Scholarship",
+                "Online Course",
+                "Training Program",
+              ] as const
+            ).map((c) => (
+              <li key={c}>
+                <Link
+                  href={`/${locale}/opportunities?category=${c}`}
+                  className="text-sm text-blue-200 hover:text-saffron transition-colors"
+                >
+                  {t(`categories.${c}`)}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
           <h3 className="text-sm font-semibold text-white mb-4">KaarYab</h3>
           <p className="text-sm text-blue-200">
             © {new Date().getFullYear()} KaarYab Afghanistan
           </p>
+          <p className="text-xs text-blue-300 mt-3">{t("footer.note")}</p>
         </div>
       </div>
 
@@ -82,76 +130,3 @@ export default function Footer() {
     </footer>
   );
 }
-
-// import Link from "next/link";
-// import { useTranslations, useLocale } from "next-intl";
-// import Logo from "./Logo";
-
-// export default function Footer() {
-//   const t = useTranslations();
-//   const locale = useLocale();
-
-//   const quickLinks = [
-//     { href: `/${locale}/opportunities`, label: t("nav.opportunities") },
-//     { href: `/${locale}/dashboard`, label: t("nav.dashboard") },
-//     { href: `/${locale}/about`, label: t("nav.about") },
-//     { href: `/${locale}/contact`, label: t("nav.contact") },
-//   ];
-
-//   return (
-//     <footer className="relative overflow-hidden border-t border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-950 mt-24">
-//       <svg
-//         className="absolute -bottom-10 -left-10 opacity-[0.04] dark:opacity-[0.06] pointer-events-none"
-//         width="260"
-//         height="260"
-//         aria-hidden="true"
-//       >
-//         <defs>
-//           <pattern id="footer-lattice" width="26" height="26" patternUnits="userSpaceOnUse">
-//             <path
-//               d="M13 0 L26 13 L13 26 L0 13 Z M13 7 L19 13 L13 19 L7 13 Z"
-//               fill="none"
-//               stroke="currentColor"
-//               strokeWidth="1"
-//               className="text-lapis-deep dark:text-white"
-//             />
-//           </pattern>
-//         </defs>
-//         <rect width="100%" height="100%" fill="url(#footer-lattice)" />
-//       </svg>
-
-//       <div className="relative max-w-6xl mx-auto px-4 py-14 grid grid-cols-1 md:grid-cols-3 gap-10">
-//         <div>
-//           <Logo />
-//           <p className="text-sm text-gray-500 dark:text-gray-400 mt-4 max-w-xs leading-relaxed">
-//             {t("footer.tagline")}
-//           </p>
-//         </div>
-
-//         <div>
-//           <h4 className="text-sm font-semibold text-ink dark:text-white mb-4">
-//             {t("nav.opportunities")}
-//           </h4>
-//           <ul className="space-y-2.5">
-//             {quickLinks.map((l) => (
-//               <li key={l.href}>
-//                 <Link
-//                   href={l.href}
-//                   className="text-sm text-gray-500 dark:text-gray-400 hover:text-lapis dark:hover:text-saffron transition-colors"
-//                 >
-//                   {l.label}
-//                 </Link>
-//               </li>
-//             ))}
-//           </ul>
-//         </div>
-
-//         <div className="flex items-end md:justify-end">
-//           <p className="text-xs text-gray-400 dark:text-gray-500">
-//             © {new Date().getFullYear()} KaarYab Afghanistan — {t("footer.note")}
-//           </p>
-//         </div>
-//       </div>
-//     </footer>
-//   );
-// }

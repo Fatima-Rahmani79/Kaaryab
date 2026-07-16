@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter, Vazirmatn } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
+import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import "../globals.css";
 import { locales, rtlLocales, Locale } from "@/i18n";
 import { SavedProvider } from "@/context/SavedContext";
+import { ToastProvider } from "@/components/ui/Toast";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -33,10 +34,6 @@ export const metadata: Metadata = {
     "Find jobs, internships, scholarships, and training opportunities for Afghan youth.",
 };
 
-export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
-}
-
 export default async function LocaleLayout({
   children,
   params,
@@ -47,6 +44,7 @@ export default async function LocaleLayout({
   const { locale } = await params;
 
   if (!locales.includes(locale as Locale)) notFound();
+  setRequestLocale(locale);
 
   const messages = await getMessages();
   const dir = rtlLocales.includes(locale as Locale) ? "rtl" : "ltr";
@@ -61,9 +59,11 @@ export default async function LocaleLayout({
       <body>
         <NextIntlClientProvider messages={messages}>
           <SavedProvider>
-            <Navbar />
-            <main className="min-h-screen">{children}</main>
-            <Footer />
+            <ToastProvider>
+              <Navbar />
+              <main className="min-h-screen">{children}</main>
+              <Footer />
+            </ToastProvider>
           </SavedProvider>
         </NextIntlClientProvider>
       </body>

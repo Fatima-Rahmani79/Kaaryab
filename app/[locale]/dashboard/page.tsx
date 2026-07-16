@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { getAllOpportunities } from "@/lib/mockDb";
 import { calculateStats } from "@/lib/utils";
 import {
@@ -13,7 +13,13 @@ import DashboardCard from "@/components/DashboardCard";
 import CategoryChart from "@/components/CategoryChart";
 import OpportunityManageTable from "@/components/OpportunityManageTable";
 
-export default async function DashboardPage() {
+export default async function DashboardPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations("dashboard");
   const opportunities = getAllOpportunities();
   const stats = calculateStats(opportunities);

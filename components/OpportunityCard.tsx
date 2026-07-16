@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
-import { MapPin, Clock } from "lucide-react";
+import { MapPin, Clock, AlertTriangle } from "lucide-react";
 import { Opportunity } from "@/types";
-import { isExpiringSoon } from "@/lib/utils";
+import { isExpiringSoon, isExpired, daysUntilDeadline } from "@/lib/utils";
 import { cardClass } from "@/lib/ui";
 import SaveButton from "./SaveButton";
 
@@ -14,11 +14,15 @@ export default function OpportunityCard({ opportunity }: Props) {
   const t = useTranslations();
   const locale = useLocale();
   const soon = isExpiringSoon(opportunity.deadline);
+  const expired = isExpired(opportunity.deadline);
+  const daysLeft = daysUntilDeadline(opportunity.deadline);
 
   return (
     <Link
       href={`/${locale}/opportunities/${opportunity.id}`}
-      className={`group block relative overflow-hidden p-6 ${cardClass}`}
+      className={`group block relative overflow-hidden p-6 ${cardClass} ${
+        expired ? "opacity-60 hover:opacity-80" : ""
+      }`}
     >
       <svg
         className="absolute -top-4 -end-4 opacity-[0.05] dark:opacity-[0.08] pointer-events-none"
@@ -50,7 +54,12 @@ export default function OpportunityCard({ opportunity }: Props) {
         <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-lapis/10 text-lapis dark:bg-lapis/20 dark:text-blue-200">
           {t(`categories.${opportunity.category}`)}
         </span>
-        {soon && (
+        {expired && (
+          <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 flex items-center gap-1">
+            <AlertTriangle size={12} /> {t("detail.expired")}
+          </span>
+        )}
+        {!expired && soon && (
           <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-pomegranate/10 text-pomegranate dark:bg-pomegranate/20">
             {t("expiringSoonBadge")}
           </span>
@@ -64,6 +73,20 @@ export default function OpportunityCard({ opportunity }: Props) {
         <span className="flex items-center gap-1">
           <Clock size={13} /> {t(`types.${opportunity.type}`)}
         </span>
+        {!expired && daysLeft > 0 && (
+          <span
+            className={`flex items-center gap-1 ms-auto ${
+              soon ? "text-pomegranate font-medium" : ""
+            }`}
+          >
+            {t("detail.daysLeft", { count: daysLeft })}
+          </span>
+        )}
+        {expired && (
+          <span className="flex items-center gap-1 ms-auto text-gray-400">
+            {t("detail.expired")}
+          </span>
+        )}
       </div>
     </Link>
   );

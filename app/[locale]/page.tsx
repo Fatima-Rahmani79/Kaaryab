@@ -1,9 +1,15 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { getAllOpportunities } from "@/lib/mockDb";
 import Hero from "@/components/Hero";
 import FeaturedSection from "@/components/FeaturedSection";
 
-export default async function HomePage() {
+export default async function HomePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations("home");
   const featured = getAllOpportunities()
     .filter((o) => o.featured)

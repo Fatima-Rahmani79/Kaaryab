@@ -1,9 +1,14 @@
 import Link from "next/link";
-import { getTranslations, getLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
-export default async function NotFound() {
+export default async function NotFound({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations("notFound");
-  const locale = await getLocale();
 
   return (
     <div className="flex flex-col items-center justify-center py-32 text-center px-4">
