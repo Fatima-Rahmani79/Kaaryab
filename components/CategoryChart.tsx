@@ -35,7 +35,7 @@ export default function CategoryChart({
           <XAxis dataKey="name" tick={{ fontSize: 12 }} />
           <YAxis allowDecimals={false} />
           <Tooltip />
-          <Bar dataKey="count" fill="#2563eb" radius={[6, 6, 0, 0]} />
+          <Bar dataKey="count" fill="#2E5AAC" radius={[6, 6, 0, 0]} />
         </BarChart>
       </ResponsiveContainer>
     </div>
