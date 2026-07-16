@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { LucideIcon } from "lucide-react";
 
 interface Props {
@@ -15,9 +14,7 @@ export default function DashboardCard({
   highlight,
 }: Props) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
+    <div
       className={`rounded-2xl p-5 border transition-colors ${
         highlight
           ? "border-pomegranate/20 bg-pomegranate/5 dark:bg-pomegranate/10"
@@ -33,10 +30,10 @@ export default function DashboardCard({
       >
         <Icon size={17} />
       </div>
-      <p className="text-2xl font-display font-bold text-ink dark:text-white">
+      <p className="text-3xl font-display font-bold text-ink dark:text-white">
         {value}
       </p>
-      <p className="text-gray-500 dark:text-gray-400 text-sm mt-0.5">{label}</p>
-    </motion.div>
+      <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">{label}</p>
+    </div>
   );
 }
