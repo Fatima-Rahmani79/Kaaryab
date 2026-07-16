@@ -10,3 +10,17 @@ export const labelClass =
   "block text-sm font-medium text-ink dark:text-gray-200 mb-1.5";
 
 export const selectClass = inputClass + " appearance-none cursor-pointer";
+
+export const staggerContainer = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08 } },
+};
+
+export const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" as const },
+  },
+};
