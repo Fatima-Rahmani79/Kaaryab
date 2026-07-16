@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { useLocale } from "next-intl";
-import LatticeDoors from "./LatticeDoors";
 
 interface Props {
   title: string;
@@ -38,8 +37,6 @@ export default function Hero({
 
   return (
     <section className="relative overflow-hidden py-28 px-4 text-center bg-lapis-deep">
-      <LatticeDoors />
-
       <motion.div
         variants={container}
         initial="hidden"
