@@ -3,10 +3,8 @@
 import { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { SearchX } from "lucide-react";
 import { OpportunityFilters, Opportunity } from "@/types";
 import { filterOpportunities } from "@/lib/utils";
-import { staggerContainer, fadeUp } from "@/lib/ui";
 import OpportunityCard from "@/components/OpportunityCard";
 import SearchFilter from "@/components/SearchFilter";
 import EmptyState from "@/components/EmptyState";
@@ -39,7 +37,7 @@ export default function OpportunitiesPage() {
   );
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-16">
+    <div className="max-w-6xl mx-auto px-4 py-14">
       <h1 className="text-3xl font-display font-bold mb-8">{t("title")}</h1>
 
       <SearchFilter
@@ -48,13 +46,9 @@ export default function OpportunitiesPage() {
         opportunities={opportunities}
       />
 
-      <p className="text-sm text-gray-400 mt-6 mb-2">
-        {loading ? "" : `${filtered.length} results`}
-      </p>
-
       {loading ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-2">
-          {[1, 2, 3, 4, 5, 6].map((i) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+          {[...Array(6)].map((_, i) => (
             <div
               key={i}
               className="h-48 rounded-2xl bg-gray-100 dark:bg-gray-800 animate-pulse"
@@ -62,16 +56,19 @@ export default function OpportunitiesPage() {
           ))}
         </div>
       ) : filtered.length === 0 ? (
-        <EmptyState message={t("empty")} icon={SearchX} />
+        <EmptyState message={t("empty")} />
       ) : (
         <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          animate="show"
+          layout
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8"
         >
           {filtered.map((opp) => (
-            <motion.div key={opp.id} variants={fadeUp}>
+            <motion.div
+              key={opp.id}
+              layout
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
               <OpportunityCard opportunity={opp} />
             </motion.div>
           ))}
