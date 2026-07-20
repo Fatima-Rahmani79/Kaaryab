@@ -8,8 +8,8 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Opportunity } from "@/types";
 import { inputClass, selectClass } from "@/lib/ui";
-import FormField from "./ui/FormField";
-import Button from "./ui/Button";
+import FormField from "../ui/FormField";
+import Button from "../ui/Button";
 
 const schema = z.object({
   title: z.string().min(3, "At least 3 characters"),
