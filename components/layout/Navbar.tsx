@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import { Moon, Sun, Menu, X } from "lucide-react";
+import { useTheme } from "@/context/ThemeContext";
 import Logo from "./Logo";
 import LanguageSwitcher from "./LanguageSwitcher";
 
@@ -13,12 +14,9 @@ export default function Navbar() {
   const t = useTranslations("nav");
   const locale = useLocale();
   const pathname = usePathname();
-  const [dark, setDark] = useState(false);
+  const { resolvedTheme, toggleTheme } = useTheme();
+  const dark = resolvedTheme === "dark";
   const [mobileOpen, setMobileOpen] = useState(false);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", dark);
-  }, [dark]);
 
   const links = [
     { href: `/${locale}`, label: t("home") },
@@ -65,7 +63,7 @@ export default function Navbar() {
         <div className="flex items-center gap-1">
           <LanguageSwitcher />
           <button
-            onClick={() => setDark(!dark)}
+            onClick={toggleTheme}
             aria-label="Toggle dark mode"
             className="p-2 rounded-full text-gray-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-white/10 transition-colors"
           >
