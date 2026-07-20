@@ -6,8 +6,8 @@ import { motion } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import { Pencil, Trash2 } from "lucide-react";
 import { Opportunity } from "@/types";
-import Modal from "./Modal";
-import Button from "./ui/Button";
+import Modal from "../ui/Modal";
+import Button from "../ui/Button";
 
 export default function OpportunityManageTable({
   initialOpportunities,
