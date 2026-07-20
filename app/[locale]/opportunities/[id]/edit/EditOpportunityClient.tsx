@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { Opportunity } from "@/types";
-import OpportunityForm from "@/components/OpportunityForm";
+import OpportunityForm from "@/components/forms/OpportunityForm";
 
 export default function EditOpportunityClient({
   opportunity,

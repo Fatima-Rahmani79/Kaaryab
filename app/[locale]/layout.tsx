@@ -6,9 +6,11 @@ import { notFound } from "next/navigation";
 import "../globals.css";
 import { locales, rtlLocales, Locale } from "@/i18n";
 import { SavedProvider } from "@/context/SavedContext";
+import { ThemeProvider } from "@/context/ThemeContext";
 import { ToastProvider } from "@/components/ui/Toast";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import ThemeScript from "@/components/layout/ThemeScript";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -57,15 +59,18 @@ export default async function LocaleLayout({
       suppressHydrationWarning
     >
       <body>
-        <NextIntlClientProvider messages={messages}>
-          <SavedProvider>
-            <ToastProvider>
-              <Navbar />
-              <main className="min-h-screen">{children}</main>
-              <Footer />
-            </ToastProvider>
-          </SavedProvider>
-        </NextIntlClientProvider>
+        <ThemeScript />
+        <ThemeProvider>
+          <NextIntlClientProvider messages={messages}>
+            <SavedProvider>
+              <ToastProvider>
+                <Navbar />
+                <main className="min-h-screen">{children}</main>
+                <Footer />
+              </ToastProvider>
+            </SavedProvider>
+          </NextIntlClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

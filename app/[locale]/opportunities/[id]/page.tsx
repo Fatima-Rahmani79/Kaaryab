@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { getOpportunityById } from "@/lib/mockDb";
 import { daysUntilDeadline, isExpired } from "@/lib/utils";
-import SaveButton from "@/components/SaveButton";
+import SaveButton from "@/components/cards/SaveButton";
 
 export default async function OpportunityDetailsPage({
   params,

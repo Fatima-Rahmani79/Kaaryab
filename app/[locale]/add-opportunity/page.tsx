@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import OpportunityForm from "@/components/OpportunityForm";
+import OpportunityForm from "@/components/forms/OpportunityForm";
 import { useToast } from "@/components/ui/Toast";
 
 export default function AddOpportunityPage() {

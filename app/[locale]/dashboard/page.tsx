@@ -9,9 +9,9 @@ import {
   Globe2,
   AlarmClock,
 } from "lucide-react";
-import DashboardCard from "@/components/DashboardCard";
-import CategoryChart from "@/components/CategoryChart";
-import OpportunityManageTable from "@/components/OpportunityManageTable";
+import DashboardCard from "@/components/cards/DashboardCard";
+import CategoryChart from "@/components/dashboard/CategoryChart";
+import OpportunityManageTable from "@/components/dashboard/OpportunityManageTable";
 
 export default async function DashboardPage({
   params,

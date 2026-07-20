@@ -1,16 +1,17 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { SearchX } from "lucide-react";
-import { OpportunityFilters, Opportunity } from "@/types";
+import { OpportunityFilters, Opportunity, OpportunityCategory } from "@/types";
 import { filterOpportunities } from "@/lib/utils";
 import { staggerContainer, fadeUp } from "@/lib/ui";
-import OpportunityCard from "@/components/OpportunityCard";
-import SearchFilter from "@/components/SearchFilter";
-import EmptyState from "@/components/EmptyState";
-import SkeletonCard from "@/components/SkeletonCard";
+import OpportunityCard from "@/components/cards/OpportunityCard";
+import SearchFilter from "@/components/forms/SearchFilter";
+import EmptyState from "@/components/ui/EmptyState";
+import SkeletonCard from "@/components/ui/SkeletonCard";
 
 const initialFilters: OpportunityFilters = {
   search: "",
@@ -23,7 +24,15 @@ const initialFilters: OpportunityFilters = {
 
 export default function OpportunitiesPage() {
   const t = useTranslations("opportunities");
-  const [filters, setFilters] = useState<OpportunityFilters>(initialFilters);
+  const searchParams = useSearchParams();
+  const categoryParam = searchParams.get(
+    "category",
+  ) as OpportunityCategory | null;
+
+  const [filters, setFilters] = useState<OpportunityFilters>({
+    ...initialFilters,
+    category: categoryParam ?? "All",
+  });
   const [opportunities, setOpportunities] = useState<Opportunity[]>([]);
   const [loading, setLoading] = useState(true);
 

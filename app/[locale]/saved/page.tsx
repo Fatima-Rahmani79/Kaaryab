@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Opportunity } from "@/types";
 import { useSaved } from "@/context/SavedContext";
-import OpportunityCard from "@/components/OpportunityCard";
-import EmptyState from "@/components/EmptyState";
+import OpportunityCard from "@/components/cards/OpportunityCard";
+import EmptyState from "@/components/ui/EmptyState";
 
 export default function SavedPage() {
   const t = useTranslations("saved");
