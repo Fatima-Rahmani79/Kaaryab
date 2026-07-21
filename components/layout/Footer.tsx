@@ -50,7 +50,7 @@ export default function Footer() {
 
       <div className="max-w-6xl mx-auto px-4 py-14 grid grid-cols-1 md:grid-cols-4 gap-10">
         <div className="md:col-span-1">
-          <Logo />
+          <Logo inverted />
           <p className="mt-4 text-sm text-blue-200 max-w-xs">
             {t("footer.tagline")}
           </p>
