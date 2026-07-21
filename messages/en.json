@@ -12,7 +12,22 @@
     "subtitle": "Find jobs, internships, scholarships, and training opportunities in one place.",
     "ctaBrowse": "Browse opportunities",
     "ctaAdd": "Submit an opportunity",
-    "featured": "Featured opportunities"
+    "featured": "Featured opportunities",
+    "statsOpportunities": "Open opportunities",
+    "statsLocations": "Locations covered",
+    "statsOrganizations": "Partner organizations",
+    "statsExpiringSoon": "Closing this week",
+    "categoriesHeading": "Explore by category",
+    "howItWorksHeading": "How KaarYab works",
+    "step1Title": "Search",
+    "step1Desc": "Filter thousands of listings by category, location, and deadline to find what fits you.",
+    "step2Title": "Prepare",
+    "step2Desc": "Review requirements and save opportunities to compare before you apply.",
+    "step3Title": "Apply",
+    "step3Desc": "Follow the apply link directly to the organization and take the next step.",
+    "ctaTitle": "Have an opportunity to share?",
+    "ctaSubtitle": "Organizations and individuals can submit jobs, scholarships, and courses in minutes.",
+    "ctaButton": "Submit an opportunity"
   },
   "opportunities": {
     "title": "All opportunities",
@@ -46,7 +61,9 @@
     "deadline": "Deadline",
     "expired": "Expired",
     "daysLeft": "{count} days left",
-    "apply": "Apply now"
+    "apply": "Apply now",
+    "expiredNotice": "This opportunity's deadline has passed. It's kept here for reference, but is no longer accepting applications.",
+    "applyClosed": "Applications closed"
   },
   "saved": {
     "title": "Saved opportunities",
@@ -81,7 +98,10 @@
   },
   "about": {
     "title": "About KaarYab Afghanistan",
-    "body": "KaarYab brings together jobs, internships, scholarships, online courses, and remote work opportunities for Afghan youth in one place. Our goal is to make access to these opportunities simpler and more transparent."
+    "body": "KaarYab brings together jobs, internships, scholarships, online courses, and remote work opportunities for Afghan youth in one place. Our goal is to make access to these opportunities simpler and more transparent.",
+    "valueOnePlace": "One place",
+    "valueYouth": "Built for youth",
+    "valueGrowing": "Always growing"
   },
   "contact": {
     "title": "Contact us",
@@ -101,7 +121,6 @@
     "back": "Back to opportunities"
   },
   "expiringSoonBadge": "Expiring soon",
-
   "common": {
     "edit": "Edit",
     "delete": "Delete",
