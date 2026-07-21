@@ -1,7 +1,7 @@
 export default function LatticePattern({
   className = "",
   opacity = 0.06,
-  patternId = "lattice-Pattern",
+  patternId = "lattice-pattern",
 }: {
   className?: string;
   opacity?: number;

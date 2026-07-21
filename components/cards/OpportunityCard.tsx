@@ -20,7 +20,7 @@ export default function OpportunityCard({ opportunity }: Props) {
   return (
     <Link
       href={`/${locale}/opportunities/${opportunity.id}`}
-      className={`group block relative overflow-hidden p-6 ${cardClass} ${
+      className={`group flex h-full flex-col relative overflow-hidden p-6 ${cardClass} ${
         expired ? "opacity-60 hover:opacity-80" : ""
       }`}
     >
@@ -40,17 +40,17 @@ export default function OpportunityCard({ opportunity }: Props) {
       </svg>
 
       <div className="relative flex justify-between items-start gap-2 mb-3">
-        <h3 className="font-display font-bold text-lg text-ink dark:text-white leading-snug group-hover:text-lapis dark:group-hover:text-saffron transition-colors">
+        <h3 className="font-display font-bold text-lg text-ink dark:text-white leading-snug line-clamp-2 group-hover:text-lapis dark:group-hover:text-saffron transition-colors">
           {opportunity.title}
         </h3>
         <SaveButton id={opportunity.id} />
       </div>
 
-      <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+      <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 line-clamp-1">
         {opportunity.organization}
       </p>
 
-      <div className="flex gap-2 flex-wrap mb-4">
+      <div className="flex gap-2 flex-wrap mb-4 min-h-[26px]">
         <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-lapis/10 text-lapis dark:bg-lapis/20 dark:text-blue-200">
           {t(`categories.${opportunity.category}`)}
         </span>
@@ -66,7 +66,7 @@ export default function OpportunityCard({ opportunity }: Props) {
         )}
       </div>
 
-      <div className="flex items-center gap-4 text-xs text-gray-400 dark:text-gray-500 pt-4 border-t border-gray-100 dark:border-gray-800">
+      <div className="flex items-center gap-4 text-xs text-gray-400 dark:text-gray-500 pt-4 mt-auto border-t border-gray-100 dark:border-gray-800">
         <span className="flex items-center gap-1">
           <MapPin size={13} /> {opportunity.location}
         </span>

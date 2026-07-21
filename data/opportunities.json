@@ -1,24 +1,5 @@
 [
   {
-    "title": "Trainer",
-    "organization": "unesco",
-    "category": "Training Program",
-    "type": "On-site",
-    "location": "Balkh",
-    "deadline": "2026-07-31",
-    "description": "training English",
-    "requirements": [
-      "something"
-    ],
-    "applyLink": "http://localhost:3000/en/add-opportunity",
-    "tags": [
-      "Training Program",
-      "On-site"
-    ],
-    "id": "95e55ed7-0cc8-4307-b1c0-0feec7b1fbb9",
-    "createdAt": "2026-07-16T13:17:44.663Z"
-  },
-  {
     "id": "1",
     "title": "Frontend Developer Intern",
     "organization": "Kabul Tech Community",
@@ -26,19 +7,11 @@
     "location": "Kabul",
     "type": "Remote",
     "deadline": "2026-08-20",
-    "description": "A beginner-friendly internship for students who know React and Next.js.",
-    "requirements": [
-      "Basic React",
-      "HTML/CSS",
-      "GitHub"
-    ],
-    "applyLink": "https://example.com/apply",
-    "tags": [
-      "React",
-      "Next.js",
-      "Internship"
-    ],
-    "createdAt": "2026-06-01",
+    "description": "A beginner-friendly internship for students who know React and Next.js. Work alongside senior engineers on real community projects.",
+    "requirements": ["Basic React", "HTML/CSS", "GitHub"],
+    "applyLink": "https://example.com/apply/1",
+    "tags": ["React", "Next.js", "Internship"],
+    "createdAt": "2026-06-01T09:00:00.000Z",
     "featured": true
   },
   {
@@ -49,19 +22,11 @@
     "location": "Online",
     "type": "Remote",
     "deadline": "2026-09-10",
-    "description": "A scholarship opportunity for women who want to study technology online.",
-    "requirements": [
-      "Basic English",
-      "Motivation letter",
-      "Internet access"
-    ],
-    "applyLink": "https://example.com/scholarship",
-    "tags": [
-      "Scholarship",
-      "Women",
-      "Online"
-    ],
-    "createdAt": "2026-06-05",
+    "description": "A full scholarship for women who want to study technology and computer science online through accredited partner universities.",
+    "requirements": ["Basic English", "Motivation letter", "Internet access"],
+    "applyLink": "https://example.com/apply/2",
+    "tags": ["Scholarship", "Women", "Online"],
+    "createdAt": "2026-06-05T09:00:00.000Z",
     "featured": true
   },
   {
@@ -71,18 +36,260 @@
     "category": "Remote Work",
     "location": "Online",
     "type": "Remote",
-    "deadline": "2026-07-15",
-    "description": "Handle customer inquiries via chat and email for an international company.",
+    "deadline": "2026-07-25",
+    "description": "Handle customer inquiries via chat and email for an international e-commerce company. Flexible evening shifts available.",
+    "requirements": ["Fluent English", "Good internet connection", "Laptop"],
+    "applyLink": "https://example.com/apply/3",
+    "tags": ["Remote", "Customer Support"],
+    "createdAt": "2026-06-10T09:00:00.000Z"
+  },
+  {
+    "id": "4",
+    "title": "Civil Engineer",
+    "organization": "Herat Construction Group",
+    "category": "Job",
+    "location": "Herat",
+    "type": "On-site",
+    "deadline": "2026-08-05",
+    "description": "Supervise ongoing road and bridge construction projects across Herat province. Full-time position with benefits.",
     "requirements": [
-      "Fluent English",
-      "Good internet",
-      "Laptop"
+      "Bachelor's in Civil Engineering",
+      "3+ years experience",
+      "AutoCAD"
     ],
-    "applyLink": "https://example.com/support-job",
-    "tags": [
-      "Remote",
-      "Customer Support"
+    "applyLink": "https://example.com/apply/4",
+    "tags": ["Engineering", "Construction", "Herat"],
+    "createdAt": "2026-06-12T09:00:00.000Z",
+    "featured": true
+  },
+  {
+    "id": "5",
+    "title": "Free Digital Marketing Course",
+    "organization": "Code to Inspire",
+    "category": "Online Course",
+    "location": "Online",
+    "type": "Remote",
+    "deadline": "2026-08-01",
+    "description": "A 6-week self-paced course covering SEO, social media marketing, and analytics, designed for beginners.",
+    "requirements": ["Smartphone or computer", "Basic English reading"],
+    "applyLink": "https://example.com/apply/5",
+    "tags": ["Marketing", "Free", "Beginner"],
+    "createdAt": "2026-06-14T09:00:00.000Z"
+  },
+  {
+    "id": "6",
+    "title": "Graphic Design Trainee",
+    "organization": "Mazar Creative Studio",
+    "category": "Training Program",
+    "location": "Mazar-i-Sharif",
+    "type": "On-site",
+    "deadline": "2026-07-30",
+    "description": "Hands-on training in Photoshop, Illustrator, and brand identity design over 8 weeks with a paid final project.",
+    "requirements": ["Interest in design", "Own laptop preferred"],
+    "applyLink": "https://example.com/apply/6",
+    "tags": ["Design", "Training", "Creative"],
+    "createdAt": "2026-06-15T09:00:00.000Z"
+  },
+  {
+    "id": "7",
+    "title": "Community Health Volunteer",
+    "organization": "Afghan Red Crescent",
+    "category": "Volunteer Work",
+    "location": "Kandahar",
+    "type": "On-site",
+    "deadline": "2026-08-15",
+    "description": "Support local health awareness campaigns and vaccination drives in rural districts around Kandahar.",
+    "requirements": ["Willingness to travel locally", "Basic Pashto or Dari"],
+    "applyLink": "https://example.com/apply/7",
+    "tags": ["Health", "Volunteer", "Community"],
+    "createdAt": "2026-06-16T09:00:00.000Z"
+  },
+  {
+    "id": "8",
+    "title": "Junior Backend Developer",
+    "organization": "Paywast Fintech",
+    "category": "Job",
+    "location": "Kabul",
+    "type": "Hybrid",
+    "deadline": "2026-09-01",
+    "description": "Join a growing fintech startup building mobile payment infrastructure for underbanked communities.",
+    "requirements": ["Node.js or Python", "REST APIs", "SQL basics"],
+    "applyLink": "https://example.com/apply/8",
+    "tags": ["Backend", "Fintech", "Startup"],
+    "createdAt": "2026-06-18T09:00:00.000Z",
+    "featured": true
+  },
+  {
+    "id": "9",
+    "title": "Fulbright Foreign Student Program",
+    "organization": "U.S. Department of State",
+    "category": "Scholarship",
+    "location": "Online",
+    "type": "Remote",
+    "deadline": "2026-10-01",
+    "description": "Fully funded master's degree scholarship for outstanding Afghan students to study in the United States.",
+    "requirements": [
+      "Bachelor's degree",
+      "TOEFL/IELTS",
+      "Two recommendation letters"
     ],
-    "createdAt": "2026-06-10"
+    "applyLink": "https://example.com/apply/9",
+    "tags": ["Scholarship", "USA", "Masters"],
+    "createdAt": "2026-06-20T09:00:00.000Z"
+  },
+  {
+    "id": "10",
+    "title": "Remote Data Entry Specialist",
+    "organization": "ClearRecord Ltd",
+    "category": "Remote Work",
+    "location": "Online",
+    "type": "Remote",
+    "deadline": "2026-07-22",
+    "description": "Part-time flexible data entry work, ideal for students. Pay is per completed task batch.",
+    "requirements": ["Attention to detail", "Basic Excel", "Reliable internet"],
+    "applyLink": "https://example.com/apply/10",
+    "tags": ["Data Entry", "Part-time", "Flexible"],
+    "createdAt": "2026-06-21T09:00:00.000Z"
+  },
+  {
+    "id": "11",
+    "title": "Agriculture Extension Officer",
+    "organization": "Ministry of Agriculture",
+    "category": "Job",
+    "location": "Nangarhar",
+    "type": "On-site",
+    "deadline": "2026-08-12",
+    "description": "Advise local farmers on modern irrigation and crop rotation techniques to improve yields in Nangarhar province.",
+    "requirements": ["Diploma in Agriculture", "Fieldwork experience"],
+    "applyLink": "https://example.com/apply/11",
+    "tags": ["Agriculture", "Government", "Fieldwork"],
+    "createdAt": "2026-06-22T09:00:00.000Z"
+  },
+  {
+    "id": "12",
+    "title": "UI/UX Design Internship",
+    "organization": "Kabul Tech Community",
+    "category": "Internship",
+    "location": "Kabul",
+    "type": "Hybrid",
+    "deadline": "2026-08-28",
+    "description": "Design real interfaces for local startups under the mentorship of senior product designers.",
+    "requirements": ["Figma basics", "Portfolio or sample work"],
+    "applyLink": "https://example.com/apply/12",
+    "tags": ["Design", "UI/UX", "Internship"],
+    "createdAt": "2026-06-24T09:00:00.000Z"
+  },
+  {
+    "id": "13",
+    "title": "English Language Teaching Assistant",
+    "organization": "American University of Afghanistan",
+    "category": "Volunteer Work",
+    "location": "Kabul",
+    "type": "On-site",
+    "deadline": "2026-08-18",
+    "description": "Assist instructors with conversation practice sessions for adult English learners, two evenings per week.",
+    "requirements": ["Fluent English", "Patience with beginners"],
+    "applyLink": "https://example.com/apply/13",
+    "tags": ["Education", "English", "Volunteer"],
+    "createdAt": "2026-06-25T09:00:00.000Z"
+  },
+  {
+    "id": "14",
+    "title": "Introduction to Data Analysis",
+    "organization": "Code to Inspire",
+    "category": "Online Course",
+    "location": "Online",
+    "type": "Remote",
+    "deadline": "2026-08-05",
+    "description": "Learn Excel, basic statistics, and data visualization over 4 weeks with weekly live Q&A sessions.",
+    "requirements": ["Computer with internet", "No prior experience needed"],
+    "applyLink": "https://example.com/apply/14",
+    "tags": ["Data", "Free", "Beginner"],
+    "createdAt": "2026-06-26T09:00:00.000Z"
+  },
+  {
+    "id": "15",
+    "title": "Solar Technician Training",
+    "organization": "Green Energy Afghanistan",
+    "category": "Training Program",
+    "location": "Kandahar",
+    "type": "On-site",
+    "deadline": "2026-09-05",
+    "description": "Learn to install and maintain solar panel systems for homes and small businesses. Tools provided during training.",
+    "requirements": ["Basic electrical knowledge helpful", "Physical stamina"],
+    "applyLink": "https://example.com/apply/15",
+    "tags": ["Renewable Energy", "Technical", "Training"],
+    "createdAt": "2026-06-28T09:00:00.000Z"
+  },
+  {
+    "id": "16",
+    "title": "Mobile App Developer (Flutter)",
+    "organization": "Paywast Fintech",
+    "category": "Job",
+    "location": "Kabul",
+    "type": "Remote",
+    "deadline": "2026-08-22",
+    "description": "Build and maintain our cross-platform mobile banking app used by over 50,000 customers.",
+    "requirements": ["Flutter/Dart", "REST API integration", "Git"],
+    "applyLink": "https://example.com/apply/16",
+    "tags": ["Mobile", "Flutter", "Fintech"],
+    "createdAt": "2026-06-29T09:00:00.000Z"
+  },
+  {
+    "id": "17",
+    "title": "STEM Scholarship for Girls",
+    "organization": "Ministry of Higher Education",
+    "category": "Scholarship",
+    "location": "Balkh",
+    "type": "On-site",
+    "deadline": "2026-09-15",
+    "description": "Covers full tuition and a monthly stipend for girls pursuing science, technology, engineering, or math degrees.",
+    "requirements": ["High school diploma", "Entrance exam"],
+    "applyLink": "https://example.com/apply/17",
+    "tags": ["Scholarship", "STEM", "Women"],
+    "createdAt": "2026-06-30T09:00:00.000Z",
+    "featured": true
+  },
+  {
+    "id": "18",
+    "title": "Social Media Coordinator",
+    "organization": "AsiaConnect BPO",
+    "category": "Remote Work",
+    "location": "Online",
+    "type": "Remote",
+    "deadline": "2026-07-28",
+    "description": "Manage content calendars and community engagement across Instagram, Facebook, and TikTok for client brands.",
+    "requirements": ["Social media experience", "Basic Canva skills"],
+    "applyLink": "https://example.com/apply/18",
+    "tags": ["Marketing", "Social Media", "Remote"],
+    "createdAt": "2026-07-01T09:00:00.000Z"
+  },
+  {
+    "id": "19",
+    "title": "Tree Planting Campaign Volunteer",
+    "organization": "Green Kabul Initiative",
+    "category": "Volunteer Work",
+    "location": "Kabul",
+    "type": "On-site",
+    "deadline": "2026-08-08",
+    "description": "Join weekend tree-planting events across Kabul city parks as part of a citywide reforestation campaign.",
+    "requirements": ["Available on weekends", "No experience needed"],
+    "applyLink": "https://example.com/apply/19",
+    "tags": ["Environment", "Volunteer", "Community"],
+    "createdAt": "2026-07-02T09:00:00.000Z"
+  },
+  {
+    "id": "20",
+    "title": "Bookkeeping Fundamentals Course",
+    "organization": "Herat Business Institute",
+    "category": "Online Course",
+    "location": "Online",
+    "type": "Remote",
+    "deadline": "2026-08-14",
+    "description": "A practical 3-week course covering basic bookkeeping and small business finance, taught in Dari and English.",
+    "requirements": ["Basic arithmetic", "Smartphone or computer"],
+    "applyLink": "https://example.com/apply/20",
+    "tags": ["Finance", "Business", "Beginner"],
+    "createdAt": "2026-07-03T09:00:00.000Z"
   }
 ]
