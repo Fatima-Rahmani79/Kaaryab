@@ -78,7 +78,7 @@ export default function OpportunitiesPage() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8"
         >
           {filtered.map((opp) => (
-            <motion.div key={opp.id} variants={fadeUp}>
+            <motion.div key={opp.id} variants={fadeUp} className="h-full">
               <OpportunityCard opportunity={opp} />
             </motion.div>
           ))}
