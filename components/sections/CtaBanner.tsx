@@ -8,11 +8,11 @@ import LatticePattern from "../illustrations/LatticePattern";
 
 export default function CtaBanner({
   title,
-  subTitle,
+  subtitle,
   ctaLabel,
 }: {
   title: string;
-  subTitle: string;
+  subtitle: string;
   ctaLabel: string;
 }) {
   const locale = useLocale();
@@ -35,7 +35,7 @@ export default function CtaBanner({
           <h2 className="text-2xl md:text-3xl font-display font-bold mb-3">
             {title}
           </h2>
-          <p className="text-blue-100 mb-8 max-w-lg mx-auto">{subTitle}</p>
+          <p className="text-blue-100 mb-8 max-w-lg mx-auto">{subtitle}</p>
           <Link
             href={`/${locale}/add-opportunity`}
             className="inline-flex items-center gap-2 px-7 py-3 rounded-lg font-medium text-lapis-deep bg-saffron hover:brightness-95 transition hover:scale-[1.03] active:scale-[0.97]"
