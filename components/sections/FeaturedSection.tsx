@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Opportunity } from "@/types";
-import OpportunityCard from "./OpportunityCard";
+import OpportunityCard from "../cards/OpportunityCard";
 
 export default function FeaturedSection({
   title,
