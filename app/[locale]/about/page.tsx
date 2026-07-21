@@ -11,9 +11,9 @@ export default async function AboutPage({
   const t = await getTranslations("about");
 
   const values = [
-    { icon: Compass, key: "One place" },
-    { icon: Users, key: "Built for youth" },
-    { icon: Sparkles, key: "Always growing" },
+    { icon: Compass, key: "valueOnePlace" as const },
+    { icon: Users, key: "valueYouth" as const },
+    { icon: Sparkles, key: "valueGrowing" as const },
   ];
 
   return (
@@ -52,7 +52,7 @@ export default async function AboutPage({
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {values.map(({ icon: Icon }, i) => (
+          {values.map(({ icon: Icon, key }, i) => (
             <div
               key={i}
               className="p-5 rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900"
@@ -61,7 +61,7 @@ export default async function AboutPage({
                 <Icon size={18} className="text-lapis" />
               </div>
               <p className="text-sm font-medium text-ink dark:text-white">
-                {values[i].key}
+                {t(key)}
               </p>
             </div>
           ))}
