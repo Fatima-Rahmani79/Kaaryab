@@ -1,8 +1,8 @@
 "use client";
 
-import { useLocale } from "next-intl";
-import { motion } from "framer-motion";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { useLocale } from "next-intl";
 import { ArrowRight } from "lucide-react";
 import LatticePattern from "../illustrations/LatticePattern";
 
@@ -26,15 +26,9 @@ export default function CtaBanner({
         transition={{ duration: 0.5 }}
         className="relative overflow-hidden rounded-3xl bg-lapis-deep px-8 py-16 text-center text-white"
       >
-        <LatticePattern
-          className="text-saffron"
-          opacity={0.07}
-          patternId="cta-lattice"
-        />
+        <LatticePattern className="text-saffron" opacity={0.07} patternId="cta-lattice" />
         <div className="relative">
-          <h2 className="text-2xl md:text-3xl font-display font-bold mb-3">
-            {title}
-          </h2>
+          <h2 className="text-2xl md:text-3xl font-display font-bold mb-3">{title}</h2>
           <p className="text-blue-100 mb-8 max-w-lg mx-auto">{subtitle}</p>
           <Link
             href={`/${locale}/add-opportunity`}

@@ -2,6 +2,8 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 
+// یک ایلوستریشن انتزاعی: مسیری که از میان نقاط پراکنده (فرصت‌های پنهان)
+// به یک نقطهٔ روشن (فرصت پیدا شده) می‌رسد — استعارهٔ بصری خودِ KaarYab.
 export default function HeroIllustration() {
   const reduceMotion = useReducedMotion();
 
@@ -46,11 +48,7 @@ export default function HeroIllustration() {
         strokeDasharray="6 8"
         initial={{ pathLength: 0, opacity: 0 }}
         animate={{ pathLength: 1, opacity: 1 }}
-        transition={{
-          duration: reduceMotion ? 0 : 1.6,
-          delay: reduceMotion ? 0 : 0.8,
-          ease: "easeInOut",
-        }}
+        transition={{ duration: reduceMotion ? 0 : 1.6, delay: reduceMotion ? 0 : 0.8, ease: "easeInOut" }}
       />
 
       <motion.g
@@ -77,26 +75,8 @@ export default function HeroIllustration() {
       </motion.g>
 
       <g opacity="0.5">
-        <rect
-          x="90"
-          y="40"
-          width="26"
-          height="26"
-          rx="7"
-          fill="none"
-          stroke="#F5F6FA"
-          strokeWidth="1.4"
-        />
-        <rect
-          x="250"
-          y="300"
-          width="22"
-          height="22"
-          rx="6"
-          fill="none"
-          stroke="#F5F6FA"
-          strokeWidth="1.4"
-        />
+        <rect x="90" y="40" width="26" height="26" rx="7" fill="none" stroke="#F5F6FA" strokeWidth="1.4" />
+        <rect x="250" y="300" width="22" height="22" rx="6" fill="none" stroke="#F5F6FA" strokeWidth="1.4" />
       </g>
     </svg>
   );

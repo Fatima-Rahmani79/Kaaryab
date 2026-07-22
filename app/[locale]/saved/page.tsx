@@ -1,25 +1,39 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { WifiOff } from "lucide-react";
 import { Opportunity } from "@/types";
 import { useSaved } from "@/context/SavedContext";
 import OpportunityCard from "@/components/cards/OpportunityCard";
 import EmptyState from "@/components/ui/EmptyState";
+import Button from "@/components/ui/Button";
 
 export default function SavedPage() {
   const t = useTranslations("saved");
+  const tOpp = useTranslations("opportunities");
   const { savedIds } = useSaved();
   const [opportunities, setOpportunities] = useState<Opportunity[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-  useEffect(() => {
+  const load = useCallback(() => {
+    setLoading(true);
+    setError(false);
     fetch("/api/opportunities")
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error("Request failed");
+        return res.json();
+      })
       .then((data) => setOpportunities(data))
+      .catch(() => setError(true))
       .finally(() => setLoading(false));
   }, []);
+
+  useEffect(() => {
+    load();
+  }, [load]);
 
   const saved = opportunities.filter((o) => savedIds.includes(o.id));
 
@@ -36,6 +50,16 @@ export default function SavedPage() {
             />
           ))}
         </div>
+      ) : error ? (
+        <EmptyState
+          message={tOpp("loadError")}
+          icon={WifiOff}
+          action={
+            <Button variant="secondary" onClick={load}>
+              {tOpp("retry")}
+            </Button>
+          }
+        />
       ) : saved.length === 0 ? (
         <EmptyState message={t("empty")} />
       ) : (

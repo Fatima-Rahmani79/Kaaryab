@@ -69,11 +69,7 @@ export default function ContactPage() {
           </FormField>
 
           <FormField label={t("message")} error={errors.message?.message}>
-            <textarea
-              rows={5}
-              {...register("message")}
-              className={inputClass}
-            />
+            <textarea rows={5} {...register("message")} className={inputClass} />
           </FormField>
 
           <Button type="submit" disabled={submitting} className="w-full">

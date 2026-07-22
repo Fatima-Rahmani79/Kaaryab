@@ -1,5 +1,4 @@
 "use client";
-"use client";
 
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -69,15 +68,10 @@ export default function PopularCategories({
                 className="group flex flex-col items-center text-center gap-3 p-5 rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 hover:border-lapis/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
               >
                 <div className="w-12 h-12 rounded-xl bg-lapis/10 flex items-center justify-center group-hover:bg-saffron/15 transition-colors">
-                  <Icon
-                    size={22}
-                    className="text-lapis group-hover:text-saffron transition-colors"
-                  />
+                  <Icon size={22} className="text-lapis group-hover:text-saffron transition-colors" />
                 </div>
                 <span className="text-sm font-medium">{labels[cat]}</span>
-                <span className="text-xs text-gray-400">
-                  {counts[cat] ?? 0}
-                </span>
+                <span className="text-xs text-gray-400">{counts[cat] ?? 0}</span>
               </Link>
             </motion.div>
           );

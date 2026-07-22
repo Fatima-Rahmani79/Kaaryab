@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FileEdit, Search, Send } from "lucide-react";
+import { Search, FileEdit, Send } from "lucide-react";
 
 interface Step {
   title: string;
@@ -43,9 +43,7 @@ export default function HowItWorks({
               <div className="w-16 h-16 rounded-2xl bg-lapis-deep flex items-center justify-center mb-5 relative z-10">
                 <Icon size={26} className="text-saffron" />
               </div>
-              <h3 className="font-display font-bold text-lg mb-2">
-                {step.title}
-              </h3>
+              <h3 className="font-display font-bold text-lg mb-2">{step.title}</h3>
               <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed max-w-xs">
                 {step.description}
               </p>

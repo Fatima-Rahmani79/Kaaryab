@@ -40,7 +40,9 @@
     "details": "جزئیات بیشتر",
     "deadlineAll": "همه ضرب‌الاجل‌ها",
     "deadlineWeek": "منقضی تا ۷ روز دیگر",
-    "deadlineMonth": "منقضی تا ۳۰ روز دیگر"
+    "deadlineMonth": "منقضی تا ۳۰ روز دیگر",
+    "loadError": "در بارگذاری فرصت‌ها مشکلی پیش آمد.",
+    "retry": "تلاش مجدد"
   },
   "categories": {
     "Job": "کار",

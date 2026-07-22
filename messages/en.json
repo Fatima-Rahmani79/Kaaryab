@@ -40,7 +40,9 @@
     "details": "View details",
     "deadlineAll": "Any deadline",
     "deadlineWeek": "Expiring within 7 days",
-    "deadlineMonth": "Expiring within 30 days"
+    "deadlineMonth": "Expiring within 30 days",
+    "loadError": "Something went wrong loading opportunities.",
+    "retry": "Try again"
   },
   "categories": {
     "Job": "Job",

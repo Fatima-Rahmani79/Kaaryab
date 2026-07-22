@@ -35,7 +35,7 @@ export default function FeaturedSection({
         className="grid grid-cols-1 md:grid-cols-3 gap-6"
       >
         {opportunities.map((opp) => (
-          <motion.div key={opp.id} variants={item}>
+          <motion.div key={opp.id} variants={item} className="h-full">
             <OpportunityCard opportunity={opp} />
           </motion.div>
         ))}

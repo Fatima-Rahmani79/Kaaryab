@@ -52,11 +52,7 @@
     "type": "On-site",
     "deadline": "2026-08-05",
     "description": "Supervise ongoing road and bridge construction projects across Herat province. Full-time position with benefits.",
-    "requirements": [
-      "Bachelor's in Civil Engineering",
-      "3+ years experience",
-      "AutoCAD"
-    ],
+    "requirements": ["Bachelor's in Civil Engineering", "3+ years experience", "AutoCAD"],
     "applyLink": "https://example.com/apply/4",
     "tags": ["Engineering", "Construction", "Herat"],
     "createdAt": "2026-06-12T09:00:00.000Z",
@@ -128,11 +124,7 @@
     "type": "Remote",
     "deadline": "2026-10-01",
     "description": "Fully funded master's degree scholarship for outstanding Afghan students to study in the United States.",
-    "requirements": [
-      "Bachelor's degree",
-      "TOEFL/IELTS",
-      "Two recommendation letters"
-    ],
+    "requirements": ["Bachelor's degree", "TOEFL/IELTS", "Two recommendation letters"],
     "applyLink": "https://example.com/apply/9",
     "tags": ["Scholarship", "USA", "Masters"],
     "createdAt": "2026-06-20T09:00:00.000Z"

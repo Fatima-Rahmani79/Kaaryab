@@ -10,6 +10,8 @@ export default function Logo({ inverted = false }: { inverted?: boolean }) {
       className="flex items-center gap-2 shrink-0 group"
     >
       <svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true">
+        {/* رنگ باکس همیشه زعفرانیه، مستقل از تم و پس‌زمینه — تا هیچ‌وقت با نوبار روشن،
+            نوبار تاریک (لاجوردی)، یا فوتر (همیشه لاجوردی) هم‌رنگ نشه و محو نشود */}
         <rect width="32" height="32" rx="9" fill="#E8A33D" />
         <path
           d="M16 6 L24 16 L16 26 L8 16 Z M16 12 L20 16 L16 20 L12 16 Z"
