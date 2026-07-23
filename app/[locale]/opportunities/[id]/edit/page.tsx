@@ -10,7 +10,7 @@ export default async function EditOpportunityPage({
 }) {
   const { locale, id } = await params;
   setRequestLocale(locale);
-  const opportunity = getOpportunityById(id);
+  const opportunity = await getOpportunityById(id);
   if (!opportunity) notFound();
 
   return <EditOpportunityClient opportunity={opportunity} />;

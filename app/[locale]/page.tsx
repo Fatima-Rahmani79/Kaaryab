@@ -21,15 +21,19 @@ export default async function HomePage({
   const t = await getTranslations("home");
   const tCategories = await getTranslations("categories");
 
-  const opportunities = getAllOpportunities();
+  const opportunities = await getAllOpportunities();
   const featured = opportunities.filter((o) => o.featured).slice(0, 3);
 
   const locations = new Set(opportunities.map((o) => o.location));
   const organizations = new Set(opportunities.map((o) => o.organization));
-  const expiringSoon = opportunities.filter((o) => isExpiringSoon(o.deadline)).length;
+  const expiringSoon = opportunities.filter((o) =>
+    isExpiringSoon(o.deadline),
+  ).length;
 
   const breakdown = categoryBreakdown(opportunities);
-  const counts = Object.fromEntries(breakdown.map((b) => [b.category, b.count]));
+  const counts = Object.fromEntries(
+    breakdown.map((b) => [b.category, b.count]),
+  );
 
   const categoryLabels = Object.fromEntries(
     (

@@ -21,7 +21,7 @@ export default async function DashboardPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("dashboard");
-  const opportunities = getAllOpportunities();
+  const opportunities = await getAllOpportunities();
   const stats = calculateStats(opportunities);
 
   return (

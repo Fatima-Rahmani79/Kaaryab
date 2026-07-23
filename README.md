@@ -18,7 +18,6 @@ this by bringing everything into one clean, searchable, filterable platform wher
 people can browse, save, and submit opportunities.
 
 Features:
-
 - Full opportunity listings with title, organization, category, location, type,
   deadline, description, requirements, apply link, and tags
 - Search by title, plus filters for category, location, remote/on-site type, and
@@ -40,7 +39,6 @@ Features:
   Recharts dashboard chart, featured opportunities, expiring-soon badges
 
 Technologies Used:
-
 - Next.js 15 (App Router), React, TypeScript
 - Tailwind CSS (custom design system, see `lib/ui.ts`)
 - next-intl (English / Dari / Pashto)
@@ -50,22 +48,49 @@ Technologies Used:
 - Next.js API Routes with a file-backed mock database (`lib/mockDb.ts`)
 
 How to Run Locally:
-
 ```bash
 npm install
 npm run dev
 ```
-
 Then open http://localhost:3000 — it redirects automatically to `/en` (default
 locale). Dari and Pashto are available at `/fa` and `/ps`.
 
-Note on the mock API: `lib/mockDb.ts` reads and writes `data/opportunities.json`
-directly, so changes survive page reloads and dev-server restarts locally. This
-does **not** work on serverless hosts like Vercel, where the filesystem is
-read-only in production — a real database (e.g. Postgres, Supabase) is required
-before deploying anywhere beyond local development or a persistent server.
+Database setup (Supabase):
+This project stores opportunities in a real Postgres database via Supabase, so it
+works correctly both locally and when deployed.
+
+1. Create a free project at https://supabase.com
+2. In the Supabase SQL Editor, run the schema in `supabase/schema.sql`
+3. Copy `.env.local.example` to `.env.local` and fill in your project's URL and
+   anon key (Project Settings → API in the Supabase dashboard)
+4. Run the one-time seed migration:
+   ```bash
+   node --env-file=.env.local scripts/migrate-to-supabase.mjs
+   ```
+5. When deploying to Vercel, add `NEXT_PUBLIC_SUPABASE_URL` and
+   `NEXT_PUBLIC_SUPABASE_ANON_KEY` under Project Settings → Environment
+   Variables with the same values
+
+Note: Supabase's free tier automatically pauses a project after 7 days with no
+API requests. If the live demo looks broken after a period of inactivity, open
+the Supabase dashboard and click "Resume" — this does not affect your data.
 
 Screenshots:
+_Add screenshots of the Home, Opportunities, Dashboard, and Add Opportunity pages
+here before submission (light and dark mode)._
+
+Live Demo Link:
+_Add your Vercel deployment link here after deploying._
+
+GitHub Link:
+_Add your GitHub repository link here after pushing._
+
+Future Improvements:
+- Replace the file-backed mock API with a real database for production deployment
+- Authentication (so organizations can manage their own submitted listings)
+- Admin approval workflow for newly submitted opportunities
+- PDF CV builder
+- Real email delivery for the contact form (currently logs to the server console)
 
 ---
 
@@ -108,3 +133,9 @@ lib/utils.ts              Filtering, stats, date helpers
 lib/ui.ts                 Shared Tailwind class tokens and motion variants
 types/index.ts            All TypeScript types — the single source of truth
 ```
+
+## Adding a translation key
+
+Add the same key, in the same place, to all three files under `messages/`. A key
+present in `en.json` but missing from `fa.json` or `ps.json` will throw at runtime
+when that locale is viewed.
