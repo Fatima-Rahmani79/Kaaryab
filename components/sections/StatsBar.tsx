@@ -29,7 +29,9 @@ export default function StatsBar({ stats }: { stats: Stat[] }) {
               <p className="text-2xl font-display font-bold text-ink dark:text-white leading-none">
                 {s.value}
               </p>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{s.label}</p>
+              <p className="text-xs text-gray-700 dark:text-gray-300 mt-1">
+                {s.label}
+              </p>
             </div>
           </motion.div>
         ))}
