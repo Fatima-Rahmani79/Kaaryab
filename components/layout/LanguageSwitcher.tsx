@@ -26,10 +26,10 @@ export default function LanguageSwitcher() {
       value={locale}
       onChange={(e) => switchTo(e.target.value)}
       aria-label="Change language"
-      className="text-sm border rounded-lg px-2 py-1 bg-transparent dark:border-gray-700"
+      className="text-sm border rounded-lg px-2 py-1 bg-transparent dark:border-gray-700 cursor-pointer"
     >
       {locales.map((l) => (
-        <option key={l} value={l}>
+        <option key={l} value={l} className="dark:bg-lapis-deep">
           {labels[l]}
         </option>
       ))}
