@@ -60,11 +60,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     supabase.auth.getUser().then(({ data }) => loadProfile(data.user));
 
-    const { data: listener } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        loadProfile(session?.user ?? null);
-      },
-    );
+    // هر تغییر نشست (login، logout، تازه‌شدن توکن) این تابع را دوباره صدا می‌زند
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      loadProfile(session?.user ?? null);
+    });
 
     return () => {
       active = false;

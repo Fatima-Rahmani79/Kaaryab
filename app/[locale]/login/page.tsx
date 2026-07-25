@@ -65,10 +65,7 @@ export default function LoginPage() {
 
   return (
     <div className="max-w-md mx-auto px-4 py-20">
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-      >
+      <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
         <div className="flex items-center gap-3 mb-8">
           <div className="w-11 h-11 rounded-xl bg-lapis/10 flex items-center justify-center">
             {mode === "signin" ? (
@@ -120,9 +117,7 @@ export default function LoginPage() {
               type="password"
               {...register("password")}
               className={inputClass}
-              autoComplete={
-                mode === "signin" ? "current-password" : "new-password"
-              }
+              autoComplete={mode === "signin" ? "current-password" : "new-password"}
             />
           </FormField>
 

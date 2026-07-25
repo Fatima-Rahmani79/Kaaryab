@@ -5,16 +5,19 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { Moon, Sun, Menu, X, LogIn, LogOut, ShieldCheck } from "lucide-react";
 import { useTheme } from "@/context/ThemeContext";
+import { useAuth } from "@/context/AuthContext";
 import Logo from "./Logo";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Navbar() {
   const t = useTranslations("nav");
+  const tAuth = useTranslations("auth");
   const locale = useLocale();
   const pathname = usePathname();
   const { resolvedTheme, toggleTheme } = useTheme();
+  const { user, isAdmin, loading: authLoading, signOut } = useAuth();
   const dark = resolvedTheme === "dark";
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -69,6 +72,36 @@ export default function Navbar() {
           >
             {dark ? <Sun size={18} /> : <Moon size={18} />}
           </button>
+
+          {!authLoading && (
+            <>
+              {user ? (
+                <button
+                  onClick={signOut}
+                  aria-label={tAuth("signout")}
+                  title={isAdmin ? `${user.email} · ${tAuth("adminBadge")}` : user.email ?? ""}
+                  className="p-2 rounded-full text-gray-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-white/10 transition-colors relative"
+                >
+                  <LogOut size={18} />
+                  {isAdmin && (
+                    <ShieldCheck
+                      size={11}
+                      className="absolute -top-0.5 -end-0.5 text-saffron"
+                    />
+                  )}
+                </button>
+              ) : (
+                <Link
+                  href={`/${locale}/login`}
+                  aria-label={tAuth("signin")}
+                  className="p-2 rounded-full text-gray-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-white/10 transition-colors"
+                >
+                  <LogIn size={18} />
+                </Link>
+              )}
+            </>
+          )}
+
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"

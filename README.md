@@ -18,7 +18,6 @@ this by bringing everything into one clean, searchable, filterable platform wher
 people can browse, save, and submit opportunities.
 
 Features:
-
 - Full opportunity listings with title, organization, category, location, type,
   deadline, description, requirements, apply link, and tags
 - Search by title, plus filters for category, location, remote/on-site type, and
@@ -40,7 +39,6 @@ Features:
   Recharts dashboard chart, featured opportunities, expiring-soon badges
 
 Technologies Used:
-
 - Next.js 15 (App Router), React, TypeScript
 - Tailwind CSS (custom design system, see `lib/ui.ts`)
 - next-intl (English / Dari / Pashto)
@@ -50,12 +48,10 @@ Technologies Used:
 - Next.js API Routes with a file-backed mock database (`lib/mockDb.ts`)
 
 How to Run Locally:
-
 ```bash
 npm install
 npm run dev
 ```
-
 Then open http://localhost:3000 — it redirects automatically to `/en` (default
 locale). Dari and Pashto are available at `/fa` and `/ps`.
 
@@ -97,7 +93,6 @@ GitHub Link:
 _Add your GitHub repository link here after pushing._
 
 Future Improvements:
-
 - ✅ Authentication (Supabase Auth with email/password) — implemented
 - ✅ Admin role via a `profiles.is_admin` flag — implemented
 - Protect the Dashboard route so only signed-in admins can reach it (currently

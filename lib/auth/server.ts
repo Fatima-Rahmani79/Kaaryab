@@ -1,6 +1,8 @@
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
+// برای استفاده در Server Component ها — نشست کاربر را از کوکی‌های
+// درخواست می‌خواند (چیزی که middleware.ts تازه نگه‌اش می‌دارد).
 export async function createClient() {
   const cookieStore = await cookies();
 
@@ -13,17 +15,17 @@ export async function createClient() {
           return cookieStore.getAll();
         },
         setAll(
-          cookiesToSet: {
-            name: string;
-            value: string;
-            options: CookieOptions;
-          }[],
+          cookiesToSet: { name: string; value: string; options: CookieOptions }[],
         ) {
           try {
             cookiesToSet.forEach(({ name, value, options }) =>
               cookieStore.set(name, value, options),
             );
-          } catch {}
+          } catch {
+            // اگر این تابع از داخل یک Server Component (نه Route Handler یا
+            // Server Action) صدا زده شود، نوشتن کوکی مجاز نیست — بی‌خطر است
+            // چون middleware.ts مسئول تازه‌نگه‌داشتن نشست است، نه اینجا.
+          }
         },
       },
     },

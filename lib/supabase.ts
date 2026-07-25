@@ -10,4 +10,5 @@ if (!supabaseUrl || !supabaseKey) {
   );
 }
 
+// یک کلاینت واحد که همه‌جای پروژه (mockDb.ts و اسکریپت migration) از همینش استفاده می‌کنن
 export const supabase = createClient(supabaseUrl, supabaseKey);
