@@ -1,6 +1,9 @@
+import { redirect } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { ShieldOff } from "lucide-react";
 import { getAllOpportunities } from "@/lib/mockDb";
 import { calculateStats } from "@/lib/utils";
+import { getCurrentProfile } from "@/lib/auth/server";
 import {
   Layers,
   Briefcase,
@@ -21,6 +24,29 @@ export default async function DashboardPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("dashboard");
+  const tAuth = await getTranslations("auth");
+
+  const { user, profile } = await getCurrentProfile();
+  if (!user) {
+    redirect(`/${locale}/login`);
+  }
+
+  if (!profile?.is_admin) {
+    return (
+      <div className="max-w-md mx-auto px-4 py-24 text-center">
+        <div className="w-16 h-16 rounded-2xl bg-pomegranate/10 flex items-center justify-center mx-auto mb-5">
+          <ShieldOff size={26} className="text-pomegranate" />
+        </div>
+        <h1 className="text-xl font-display font-bold mb-2">
+          {tAuth("accessDeniedTitle")}
+        </h1>
+        <p className="text-gray-500 dark:text-gray-400">
+          {tAuth("accessDeniedMessage")}
+        </p>
+      </div>
+    );
+  }
+
   const opportunities = await getAllOpportunities();
   const stats = calculateStats(opportunities);
 
