@@ -29,9 +29,9 @@ export default function SaveButton({ id }: { id: string }) {
           className="block"
         >
           {saved ? (
-            <BookmarkCheck size={18} className="text-saffron" />
+            <BookmarkCheck size={26} className="text-saffron" />
           ) : (
-            <Bookmark size={18} className="text-gray-400" />
+            <Bookmark size={26} className="text-gray-400" />
           )}
         </motion.span>
       </AnimatePresence>
