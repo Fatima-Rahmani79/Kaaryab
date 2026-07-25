@@ -7,6 +7,7 @@ import "../globals.css";
 import { locales, rtlLocales, Locale } from "@/i18n";
 import { SavedProvider } from "@/context/SavedContext";
 import { ThemeProvider } from "@/context/ThemeContext";
+import { AuthProvider } from "@/context/AuthContext";
 import { ToastProvider } from "@/components/ui/Toast";
 import ThemeScript from "@/components/layout/ThemeScript";
 import Navbar from "@/components/layout/Navbar";
@@ -63,11 +64,13 @@ export default async function LocaleLayout({
         <ThemeProvider>
           <NextIntlClientProvider messages={messages}>
             <SavedProvider>
-              <ToastProvider>
-                <Navbar />
-                <main className="min-h-screen">{children}</main>
-                <Footer />
-              </ToastProvider>
+              <AuthProvider>
+                <ToastProvider>
+                  <Navbar />
+                  <main className="min-h-screen">{children}</main>
+                  <Footer />
+                </ToastProvider>
+              </AuthProvider>
             </SavedProvider>
           </NextIntlClientProvider>
         </ThemeProvider>
