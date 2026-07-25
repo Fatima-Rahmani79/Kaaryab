@@ -18,6 +18,7 @@ this by bringing everything into one clean, searchable, filterable platform wher
 people can browse, save, and submit opportunities.
 
 Features:
+
 - Full opportunity listings with title, organization, category, location, type,
   deadline, description, requirements, apply link, and tags
 - Search by title, plus filters for category, location, remote/on-site type, and
@@ -39,6 +40,7 @@ Features:
   Recharts dashboard chart, featured opportunities, expiring-soon badges
 
 Technologies Used:
+
 - Next.js 15 (App Router), React, TypeScript
 - Tailwind CSS (custom design system, see `lib/ui.ts`)
 - next-intl (English / Dari / Pashto)
@@ -48,10 +50,12 @@ Technologies Used:
 - Next.js API Routes with a file-backed mock database (`lib/mockDb.ts`)
 
 How to Run Locally:
+
 ```bash
 npm install
 npm run dev
 ```
+
 Then open http://localhost:3000 — it redirects automatically to `/en` (default
 locale). Dari and Pashto are available at `/fa` and `/ps`.
 
@@ -60,14 +64,21 @@ This project stores opportunities in a real Postgres database via Supabase, so i
 works correctly both locally and when deployed.
 
 1. Create a free project at https://supabase.com
-2. In the Supabase SQL Editor, run the schema in `supabase/schema.sql`
+2. In the Supabase SQL Editor, run the schema in `supabase/schema.sql`, then run
+   `supabase/auth.sql` (adds the `profiles` table used for admin access)
 3. Copy `.env.local.example` to `.env.local` and fill in your project's URL and
    anon key (Project Settings → API in the Supabase dashboard)
 4. Run the one-time seed migration:
    ```bash
    node --env-file=.env.local scripts/migrate-to-supabase.mjs
    ```
-5. When deploying to Vercel, add `NEXT_PUBLIC_SUPABASE_URL` and
+5. Sign up for an account at `/login` on your running app, then in the Supabase
+   Table Editor (or SQL Editor), run:
+   ```sql
+   update profiles set is_admin = true where email = 'your-email@example.com';
+   ```
+   to make that account an admin
+6. When deploying to Vercel, add `NEXT_PUBLIC_SUPABASE_URL` and
    `NEXT_PUBLIC_SUPABASE_ANON_KEY` under Project Settings → Environment
    Variables with the same values
 
@@ -86,9 +97,15 @@ GitHub Link:
 _Add your GitHub repository link here after pushing._
 
 Future Improvements:
-- Replace the file-backed mock API with a real database for production deployment
-- Authentication (so organizations can manage their own submitted listings)
-- Admin approval workflow for newly submitted opportunities
+
+- ✅ Authentication (Supabase Auth with email/password) — implemented
+- ✅ Admin role via a `profiles.is_admin` flag — implemented
+- Protect the Dashboard route so only signed-in admins can reach it (currently
+  anyone can still open the URL directly — this is the next step)
+- Admin approval workflow: new submissions start as `pending` and only appear
+  publicly once an admin approves them
+- Tighten Row Level Security policies on `opportunities` to require
+  `auth.uid()` + `is_admin`, instead of the current fully public policies
 - PDF CV builder
 - Real email delivery for the contact form (currently logs to the server console)
 
