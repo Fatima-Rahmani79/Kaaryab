@@ -10,7 +10,6 @@ import {
 } from "react";
 import type { User } from "@supabase/supabase-js";
 import { createClient } from "@/lib/auth/client";
-import { Session } from "inspector";
 
 interface Profile {
   id: string;
@@ -62,8 +61,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     supabase.auth.getUser().then(({ data }) => loadProfile(data.user));
 
     const { data: listener } = supabase.auth.onAuthStateChange(
-      (_event, Session) => {
-        loadProfile(Session?.user ?? null);
+      (_event, session) => {
+        loadProfile(session?.user ?? null);
       },
     );
 
