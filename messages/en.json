@@ -139,5 +139,19 @@
     "submitting": "Updating...",
     "successTitle": "Updated!",
     "successMessage": "The opportunity was updated successfully."
+  },
+  "auth": {
+    "signinTitle": "Welcome back",
+    "signupTitle": "Create an account",
+    "signin": "Sign in",
+    "signup": "Sign up",
+    "email": "Email",
+    "password": "Password",
+    "signinSuccess": "Signed in successfully.",
+    "signupSuccess": "Account created. You can now sign in.",
+    "genericError": "Something went wrong. Please try again.",
+    "signupNote": "New accounts are not admins by default — an existing admin has to grant that separately.",
+    "signout": "Sign out",
+    "adminBadge": "Admin"
   }
 }
