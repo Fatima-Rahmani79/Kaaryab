@@ -12,7 +12,7 @@ const intlMiddleware = createMiddleware({
 export default async function middleware(request: NextRequest) {
   const response = intlMiddleware(request);
 
-  const supbase = createServerClient(
+  const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
@@ -38,7 +38,8 @@ export default async function middleware(request: NextRequest) {
     },
   );
 
-  await supbase.auth.getUser();
+  await supabase.auth.getUser();
+
   return response;
 }
 
