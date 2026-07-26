@@ -77,7 +77,7 @@ export default async function DashboardPage({
       </div>
 
       <h2 className="text-xl font-display font-bold mb-4">{t("recent")}</h2>
-      <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl divide-y divide-gray-100 dark:divide-gray-800 mb-10 overflow-hidden">
+      <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl divide-y divide-gray-100 dark:divide-gray-800 mb-10 overflow-hidden">
         {stats.recent.map((o) => (
           <div key={o.id} className="flex justify-between px-5 py-3.5 text-sm">
             <span>{o.title}</span>

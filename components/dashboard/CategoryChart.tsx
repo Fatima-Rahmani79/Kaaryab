@@ -25,7 +25,7 @@ export default function CategoryChart({
   }));
 
   return (
-    <div className="w-full h-72 bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-5">
+    <div className="w-full h-72 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data}>
           <CartesianGrid

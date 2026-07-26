@@ -55,7 +55,7 @@ export default async function AboutPage({
           {values.map(({ icon: Icon, key }, i) => (
             <div
               key={i}
-              className="p-5 rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900"
+              className="p-5 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900"
             >
               <div className="w-10 h-10 rounded-xl bg-lapis/10 flex items-center justify-center mb-3">
                 <Icon size={18} className="text-lapis" />

@@ -11,7 +11,7 @@ interface Stat {
 
 export default function StatsBar({ stats }: { stats: Stat[] }) {
   return (
-    <section className="border-y border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-950">
+    <section className="border-y border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950">
       <div className="max-w-6xl mx-auto px-4 py-10 grid grid-cols-2 md:grid-cols-4 gap-6">
         {stats.map((s, i) => (
           <motion.div
@@ -29,7 +29,9 @@ export default function StatsBar({ stats }: { stats: Stat[] }) {
               <p className="text-2xl font-display font-bold text-ink dark:text-white leading-none">
                 {s.value}
               </p>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{s.label}</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                {s.label}
+              </p>
             </div>
           </motion.div>
         ))}

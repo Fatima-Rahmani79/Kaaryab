@@ -25,9 +25,11 @@ export default function Navbar() {
     { href: `/${locale}`, label: t("home") },
     { href: `/${locale}/opportunities`, label: t("opportunities") },
     { href: `/${locale}/saved`, label: t("saved") },
-    ...(isAdmin ? [{ href: `/${locale}/dashboard`, label: t("dashboard") }] : []),
     { href: `/${locale}/about`, label: t("about") },
     { href: `/${locale}/contact`, label: t("contact") },
+    ...(isAdmin
+      ? [{ href: `/${locale}/dashboard`, label: t("dashboard") }]
+      : []),
   ];
 
   function isActive(href: string) {
@@ -36,7 +38,7 @@ export default function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-50 bg-white/80 dark:bg-lapis-deep/80 backdrop-blur-md border-b border-gray-100 dark:border-white/10">
+    <header className="sticky top-0 z-50 bg-white/80 dark:bg-lapis-deep/80 backdrop-blur-md border-b border-gray-200 dark:border-white/10">
       <nav className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3 gap-4">
         <Logo />
 
@@ -79,13 +81,17 @@ export default function Navbar() {
                 <button
                   onClick={signOut}
                   aria-label={tAuth("signout")}
-                  title={isAdmin ? `${user.email} · ${tAuth("adminBadge")}` : user.email ?? ""}
+                  title={
+                    isAdmin
+                      ? `${user.email} · ${tAuth("adminBadge")}`
+                      : (user.email ?? "")
+                  }
                   className="p-2 rounded-full text-gray-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-white/10 transition-colors relative"
                 >
                   <LogOut size={18} />
                   {isAdmin && (
                     <ShieldCheck
-                      size={11}
+                      size={15}
                       className="absolute -top-0.5 -end-0.5 text-saffron"
                     />
                   )}
@@ -119,7 +125,7 @@ export default function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="md:hidden overflow-hidden border-t border-gray-100 dark:border-white/10"
+            className="md:hidden overflow-hidden border-t border-gray-200 dark:border-white/10"
           >
             <div className="px-4 py-3 flex flex-col gap-1">
               {links.map((l, i) => (

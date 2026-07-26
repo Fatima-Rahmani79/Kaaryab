@@ -18,7 +18,7 @@ export default function DashboardCard({
       className={`rounded-2xl p-5 border transition-colors ${
         highlight
           ? "border-pomegranate/20 bg-pomegranate/5 dark:bg-pomegranate/10"
-          : "border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900"
+          : "border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900"
       }`}
     >
       <div

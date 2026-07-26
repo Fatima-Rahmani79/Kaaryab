@@ -66,7 +66,7 @@ export default function OpportunityCard({ opportunity }: Props) {
         )}
       </div>
 
-      <div className="flex items-center gap-4 text-xs text-gray-400 dark:text-gray-500 pt-4 mt-auto border-t border-gray-100 dark:border-gray-800">
+      <div className="flex items-center gap-4 text-xs text-gray-400 dark:text-gray-500 pt-4 mt-auto border-t border-gray-200 dark:border-gray-800">
         <span className="flex items-center gap-1">
           <MapPin size={13} /> {opportunity.location}
         </span>

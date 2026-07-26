@@ -48,7 +48,7 @@ export default function OpportunityManageTable({
   return (
     <div className="mt-10">
       <h2 className="text-xl font-display font-bold mb-4">{t("manage")}</h2>
-      <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl divide-y divide-gray-100 dark:divide-gray-800 overflow-hidden">
+      <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl divide-y divide-gray-100 dark:divide-gray-800 overflow-hidden">
         {opportunities.map((o) => (
           <motion.div
             key={o.id}
