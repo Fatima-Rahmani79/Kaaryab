@@ -50,16 +50,16 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="max-w-xl mx-auto px-4 py-16">
+    <div className="max-w-xl mx-auto px-4 py-20">
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-        <div className="flex items-center gap-3 mb-8">
+        <div className="flex items-center gap-4 mb-8">
           <div className="w-11 h-11 rounded-xl bg-lapis/10 flex items-center justify-center">
             <Mail size={20} className="text-lapis" />
           </div>
           <h1 className="text-2xl font-display font-bold">{t("title")}</h1>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <FormField label={t("name")} error={errors.name?.message}>
             <input {...register("name")} className={inputClass} />
           </FormField>
@@ -69,7 +69,11 @@ export default function ContactPage() {
           </FormField>
 
           <FormField label={t("message")} error={errors.message?.message}>
-            <textarea rows={5} {...register("message")} className={inputClass} />
+            <textarea
+              rows={5}
+              {...register("message")}
+              className={inputClass}
+            />
           </FormField>
 
           <Button type="submit" disabled={submitting} className="w-full">
