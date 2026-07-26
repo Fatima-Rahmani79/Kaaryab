@@ -25,7 +25,7 @@ export default function Navbar() {
     { href: `/${locale}`, label: t("home") },
     { href: `/${locale}/opportunities`, label: t("opportunities") },
     { href: `/${locale}/saved`, label: t("saved") },
-    { href: `/${locale}/dashboard`, label: t("dashboard") },
+    ...(isAdmin ? [{ href: `/${locale}/dashboard`, label: t("dashboard") }] : []),
     { href: `/${locale}/about`, label: t("about") },
     { href: `/${locale}/contact`, label: t("contact") },
   ];

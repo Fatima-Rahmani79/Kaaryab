@@ -131,7 +131,9 @@
     "manage": "Manage opportunities",
     "confirmDeleteTitle": "Delete this opportunity?",
     "confirmDeleteMessage": "This action cannot be undone.",
-    "allLocations": "All locations"
+    "allLocations": "All locations",
+    "forbiddenError": "You don't have permission to do that.",
+    "deleteError": "Could not delete this opportunity. Please try again."
   },
   "editOpportunity": {
     "title": "Edit opportunity",
@@ -152,6 +154,8 @@
     "genericError": "Something went wrong. Please try again.",
     "signupNote": "New accounts are not admins by default — an existing admin has to grant that separately.",
     "signout": "Sign out",
-    "adminBadge": "Admin"
+    "adminBadge": "Admin",
+    "accessDeniedTitle": "Admins only",
+    "accessDeniedMessage": "You're signed in, but this account doesn't have admin access. Contact an existing admin if you believe this is a mistake."
   }
 }

@@ -26,9 +26,7 @@ const initialFilters: OpportunityFilters = {
 export default function OpportunitiesPage() {
   const t = useTranslations("opportunities");
   const searchParams = useSearchParams();
-  const categoryParam = searchParams.get(
-    "category",
-  ) as OpportunityCategory | null;
+  const categoryParam = searchParams.get("category") as OpportunityCategory | null;
 
   const [filters, setFilters] = useState<OpportunityFilters>({
     ...initialFilters,

@@ -8,6 +8,7 @@ import { Pencil, Trash2 } from "lucide-react";
 import { Opportunity } from "@/types";
 import Modal from "../ui/Modal";
 import Button from "../ui/Button";
+import { useToast } from "../ui/Toast";
 
 export default function OpportunityManageTable({
   initialOpportunities,
@@ -16,6 +17,7 @@ export default function OpportunityManageTable({
 }) {
   const t = useTranslations("common");
   const locale = useLocale();
+  const { toast } = useToast();
   const [opportunities, setOpportunities] = useState(initialOpportunities);
   const [toDelete, setToDelete] = useState<Opportunity | null>(null);
   const [deleting, setDeleting] = useState(false);
@@ -24,9 +26,20 @@ export default function OpportunityManageTable({
     if (!toDelete) return;
     setDeleting(true);
     try {
-      await fetch(`/api/opportunities/${toDelete.id}`, { method: "DELETE" });
+      const res = await fetch(`/api/opportunities/${toDelete.id}`, {
+        method: "DELETE",
+      });
+      if (!res.ok) {
+        toast(
+          res.status === 403 ? t("forbiddenError") : t("deleteError"),
+          "error",
+        );
+        return;
+      }
       setOpportunities((prev) => prev.filter((o) => o.id !== toDelete.id));
       setToDelete(null);
+    } catch {
+      toast(t("deleteError"), "error");
     } finally {
       setDeleting(false);
     }

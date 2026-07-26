@@ -131,7 +131,9 @@
     "manage": "د فرصتونو اداره",
     "confirmDeleteTitle": "دا فرصت ړنګ شي؟",
     "confirmDeleteMessage": "دا کار بیرته نه ګرځي.",
-    "allLocations": "ټول ځایونه"
+    "allLocations": "ټول ځایونه",
+    "forbiddenError": "تاسو د دې کار اجازه نه لرئ.",
+    "deleteError": "دا فرصت ونه شو ړنګ کړای. بیا هڅه وکړئ."
   },
   "editOpportunity": {
     "title": "فرصت سمول",
@@ -152,6 +154,8 @@
     "genericError": "ستونزه رامنځته شوه. بیا هڅه وکړئ.",
     "signupNote": "نوي حسابونه په اصلي ډول اډمین نه دي — یو موجود اډمین باید دا جلا ورکړي.",
     "signout": "وتل",
-    "adminBadge": "اډمین"
+    "adminBadge": "اډمین",
+    "accessDeniedTitle": "یوازې اډمینان",
+    "accessDeniedMessage": "تاسو ننوتلي یاست، خو دا حساب د اډمین لاسرسی نه لري. که فکر کوئ چې دا تېروتنه ده، له یو موجود اډمین سره اړیکه ونیسئ."
   }
 }

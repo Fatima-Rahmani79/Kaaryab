@@ -4,6 +4,7 @@ import {
   updateOpportunity,
   deleteOpportunity,
 } from "@/lib/mockDb";
+import { getCurrentProfile } from "@/lib/auth/server";
 
 export async function GET(
   _req: NextRequest,
@@ -19,6 +20,11 @@ export async function PUT(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> },
 ) {
+  const { profile } = await getCurrentProfile();
+  if (!profile?.is_admin) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
   const { id } = await params;
   const updates = await req.json();
   const updated = await updateOpportunity(id, updates);
@@ -31,6 +37,11 @@ export async function DELETE(
   _req: NextRequest,
   { params }: { params: Promise<{ id: string }> },
 ) {
+  const { profile } = await getCurrentProfile();
+  if (!profile?.is_admin) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
   const { id } = await params;
   const deleted = await deleteOpportunity(id);
   if (!deleted)

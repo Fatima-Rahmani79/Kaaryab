@@ -95,12 +95,17 @@ _Add your GitHub repository link here after pushing._
 Future Improvements:
 - ✅ Authentication (Supabase Auth with email/password) — implemented
 - ✅ Admin role via a `profiles.is_admin` flag — implemented
-- Protect the Dashboard route so only signed-in admins can reach it (currently
-  anyone can still open the URL directly — this is the next step)
+- ✅ Route protection: the Dashboard page and the Edit page (both the page
+  itself and the underlying PUT/DELETE API routes) now require an admin
+  session — implemented
 - Admin approval workflow: new submissions start as `pending` and only appear
   publicly once an admin approves them
 - Tighten Row Level Security policies on `opportunities` to require
-  `auth.uid()` + `is_admin`, instead of the current fully public policies
+  `auth.uid()` + `is_admin` at the database level too — right now the
+  `opportunities` table's own RLS policies are still fully public (see
+  `supabase/schema.sql`); application-level checks in the API routes are the
+  only thing stopping an unauthenticated direct database call, which is a
+  reasonable next hardening step
 - PDF CV builder
 - Real email delivery for the contact form (currently logs to the server console)
 

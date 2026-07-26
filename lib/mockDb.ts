@@ -41,22 +41,18 @@ export async function getAllOpportunities(): Promise<Opportunity[]> {
     .select("*")
     .order("created_at", { ascending: false });
 
-  if (error)
-    throw new Error(`Supabase error (getAllOpportunities): ${error.message}`);
+  if (error) throw new Error(`Supabase error (getAllOpportunities): ${error.message}`);
   return (data as OpportunityRow[]).map(rowToOpportunity);
 }
 
-export async function getOpportunityById(
-  id: string,
-): Promise<Opportunity | null> {
+export async function getOpportunityById(id: string): Promise<Opportunity | null> {
   const { data, error } = await supabase
     .from("opportunities")
     .select("*")
     .eq("id", id)
     .maybeSingle();
 
-  if (error)
-    throw new Error(`Supabase error (getOpportunityById): ${error.message}`);
+  if (error) throw new Error(`Supabase error (getOpportunityById): ${error.message}`);
   return data ? rowToOpportunity(data as OpportunityRow) : null;
 }
 
@@ -81,8 +77,7 @@ export async function createOpportunity(
     .select()
     .single();
 
-  if (error)
-    throw new Error(`Supabase error (createOpportunity): ${error.message}`);
+  if (error) throw new Error(`Supabase error (createOpportunity): ${error.message}`);
   return rowToOpportunity(data as OpportunityRow);
 }
 
@@ -92,16 +87,13 @@ export async function updateOpportunity(
 ): Promise<Opportunity | null> {
   const patch: Record<string, unknown> = {};
   if (updates.title !== undefined) patch.title = updates.title;
-  if (updates.organization !== undefined)
-    patch.organization = updates.organization;
+  if (updates.organization !== undefined) patch.organization = updates.organization;
   if (updates.category !== undefined) patch.category = updates.category;
   if (updates.location !== undefined) patch.location = updates.location;
   if (updates.type !== undefined) patch.type = updates.type;
   if (updates.deadline !== undefined) patch.deadline = updates.deadline;
-  if (updates.description !== undefined)
-    patch.description = updates.description;
-  if (updates.requirements !== undefined)
-    patch.requirements = updates.requirements;
+  if (updates.description !== undefined) patch.description = updates.description;
+  if (updates.requirements !== undefined) patch.requirements = updates.requirements;
   if (updates.applyLink !== undefined) patch.apply_link = updates.applyLink;
   if (updates.tags !== undefined) patch.tags = updates.tags;
   if (updates.featured !== undefined) patch.featured = updates.featured;
@@ -113,8 +105,7 @@ export async function updateOpportunity(
     .select()
     .maybeSingle();
 
-  if (error)
-    throw new Error(`Supabase error (updateOpportunity): ${error.message}`);
+  if (error) throw new Error(`Supabase error (updateOpportunity): ${error.message}`);
   return data ? rowToOpportunity(data as OpportunityRow) : null;
 }
 
@@ -124,7 +115,6 @@ export async function deleteOpportunity(id: string): Promise<boolean> {
     .delete({ count: "exact" })
     .eq("id", id);
 
-  if (error)
-    throw new Error(`Supabase error (deleteOpportunity): ${error.message}`);
+  if (error) throw new Error(`Supabase error (deleteOpportunity): ${error.message}`);
   return (count ?? 0) > 0;
 }
