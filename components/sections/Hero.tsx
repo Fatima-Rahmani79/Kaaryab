@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { useLocale } from "next-intl";
-import HeroIllustration from "../illustrations/HeroIllustration";
 import LatticePattern from "../illustrations/LatticePattern";
+import HeroCards from "../illustrations/HeroCards";
 
 interface Props {
   title: string;
@@ -34,12 +34,20 @@ export default function Hero({
   };
   const item = {
     hidden: { opacity: 0, y: 16 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" as const },
+    },
   };
 
   return (
     <section className="relative overflow-hidden py-24 md:py-28 px-4 bg-lapis-deep text-white">
-      <LatticePattern className="text-saffron" opacity={0.06} patternId="hero-lattice" />
+      <LatticePattern
+        className="text-saffron"
+        opacity={0.06}
+        patternId="hero-lattice"
+      />
 
       <div className="relative max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         <motion.div
@@ -56,7 +64,10 @@ export default function Hero({
           >
             {title}
           </motion.h1>
-          <motion.p variants={item} className="text-lg text-blue-100 mb-10 max-w-md mx-auto md:mx-0">
+          <motion.p
+            variants={item}
+            className="text-lg text-blue-100 mb-10 max-w-md mx-auto md:mx-0"
+          >
             {subtitle}
           </motion.p>
           <motion.div
@@ -84,7 +95,7 @@ export default function Hero({
           transition={{ duration: 0.7, delay: 0.2 }}
           className="hidden md:flex justify-center"
         >
-          <HeroIllustration />
+          <HeroCards />
         </motion.div>
       </div>
     </section>
