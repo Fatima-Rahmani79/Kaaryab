@@ -79,7 +79,18 @@
     "internships": "انترنشیپ‌ها",
     "remote": "از راه دور",
     "expiringSoon": "در حال انقضا",
-    "recent": "جدیدترین ثبت‌شده‌ها"
+    "recent": "جدیدترین ثبت‌شده‌ها",
+    "pendingReview": "در انتظار بررسی",
+    "pendingTitle": "در انتظار تأیید",
+    "pendingEmpty": "هیچ ثبتی منتظر بررسی نیست.",
+    "approve": "تأیید",
+    "reject": "رد کردن",
+    "approveSuccess": "فرصت تأیید شد و حالا به‌صورت عمومی قابل‌مشاهده است.",
+    "approveError": "تأیید این فرصت ممکن نشد. دوباره تلاش کنید.",
+    "rejectSuccess": "فرصت رد شد و حذف گردید.",
+    "rejectError": "رد کردن این فرصت ممکن نشد. دوباره تلاش کنید.",
+    "confirmRejectTitle": "این ثبت رد شود؟",
+    "confirmRejectMessage": "این ثبت برای همیشه حذف می‌شود. این عمل قابل بازگشت نیست."
   },
   "addOpportunity": {
     "title": "ثبت فرصت جدید",

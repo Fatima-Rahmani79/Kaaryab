@@ -79,7 +79,18 @@
     "internships": "انترنشیپونه",
     "remote": "لرې کار",
     "expiringSoon": "ژر پای ته رسیږي",
-    "recent": "وروستي ثبت شوي"
+    "recent": "وروستي ثبت شوي",
+    "pendingReview": "د بیاکتنې په تمه",
+    "pendingTitle": "د تایید په تمه",
+    "pendingEmpty": "هیڅ ثبت د بیاکتنې په تمه نه دی.",
+    "approve": "تایید",
+    "reject": "ردول",
+    "approveSuccess": "فرصت تایید شو او اوس په عمومي ډول لیدل کیږي.",
+    "approveError": "دا فرصت ونه شو تایید کړای. بیا هڅه وکړئ.",
+    "rejectSuccess": "فرصت رد شو او ړنګ شو.",
+    "rejectError": "دا فرصت ونه شو رد کړای. بیا هڅه وکړئ.",
+    "confirmRejectTitle": "دا ثبت رد شي؟",
+    "confirmRejectMessage": "دا ثبت به تل لپاره ړنګ شي. دا کار بیرته نه ګرځي."
   },
   "addOpportunity": {
     "title": "نوی فرصت ثبت کړئ",

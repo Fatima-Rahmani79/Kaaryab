@@ -61,6 +61,7 @@ export function calculateStats(items: Opportunity[]): DashboardStats {
     internships: items.filter((o) => o.category === "Internship").length,
     remote: items.filter((o) => o.type === "Remote").length,
     expiringSoon: items.filter((o) => isExpiringSoon(o.deadline)).length,
+    pending: items.filter((o) => o.status === "pending").length,
     recent: [...items]
       .sort(
         (a, b) =>

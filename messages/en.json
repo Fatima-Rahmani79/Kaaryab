@@ -79,7 +79,18 @@
     "internships": "Internships",
     "remote": "Remote",
     "expiringSoon": "Expiring soon",
-    "recent": "Recent submissions"
+    "recent": "Recent submissions",
+    "pendingReview": "Pending review",
+    "pendingTitle": "Pending approval",
+    "pendingEmpty": "No submissions waiting for review.",
+    "approve": "Approve",
+    "reject": "Reject",
+    "approveSuccess": "Opportunity approved and now visible publicly.",
+    "approveError": "Could not approve this opportunity. Please try again.",
+    "rejectSuccess": "Opportunity rejected and removed.",
+    "rejectError": "Could not reject this opportunity. Please try again.",
+    "confirmRejectTitle": "Reject this submission?",
+    "confirmRejectMessage": "The submission will be permanently deleted. This cannot be undone."
   },
   "addOpportunity": {
     "title": "Submit a new opportunity",
