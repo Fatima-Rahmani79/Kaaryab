@@ -1,10 +1,24 @@
 import { NextRequest, NextResponse } from "next/server";
 import { OpportunityFormData } from "@/types";
-import { getAllOpportunities, createOpportunity } from "@/lib/mockDb";
+import {
+  getApprovedOpportunities,
+  getPendingOpportunities,
+  createOpportunity,
+} from "@/lib/mockDb";
+import { getCurrentProfile } from "@/lib/auth/server";
 
-export async function GET() {
-  const opportunities = await getAllOpportunities();
-  return NextResponse.json(opportunities);
+export async function GET(req: NextRequest) {
+  const status = req.nextUrl.searchParams.get("status");
+
+  if (status === "pending") {
+    const { profile } = await getCurrentProfile();
+    if (!profile?.is_admin) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
+    return NextResponse.json(await getPendingOpportunities());
+  }
+
+  return NextResponse.json(await getApprovedOpportunities());
 }
 
 export async function POST(req: NextRequest) {

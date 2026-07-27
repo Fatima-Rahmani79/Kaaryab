@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ShieldOff } from "lucide-react";
-import { getAllOpportunities } from "@/lib/mockDb";
+import { getAllOpportunities, getPendingOpportunities } from "@/lib/mockDb";
 import { calculateStats } from "@/lib/utils";
 import { getCurrentProfile } from "@/lib/auth/server";
 import {
@@ -11,10 +11,12 @@ import {
   Rocket,
   Globe2,
   AlarmClock,
+  Clock,
 } from "lucide-react";
 import DashboardCard from "@/components/cards/DashboardCard";
 import CategoryChart from "@/components/dashboard/CategoryChart";
 import OpportunityManageTable from "@/components/dashboard/OpportunityManageTable";
+import PendingApprovalQueue from "@/components/dashboard/PendingApprovalQueue";
 
 export default async function DashboardPage({
   params,
@@ -48,6 +50,7 @@ export default async function DashboardPage({
   }
 
   const opportunities = await getAllOpportunities();
+  const pending = await getPendingOpportunities();
   const stats = calculateStats(opportunities);
 
   return (
@@ -69,12 +72,20 @@ export default async function DashboardPage({
         />
         <DashboardCard label={t("remote")} value={stats.remote} icon={Globe2} />
         <DashboardCard
+          label={t("pendingReview")}
+          value={pending.length}
+          icon={Clock}
+          highlight={pending.length > 0}
+        />
+        <DashboardCard
           label={t("expiringSoon")}
           value={stats.expiringSoon}
           icon={AlarmClock}
-          highlight
+          highlight={stats.expiringSoon > 0}
         />
       </div>
+
+      <PendingApprovalQueue initialPending={pending} />
 
       <h2 className="text-xl font-display font-bold mb-4">{t("recent")}</h2>
       <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl divide-y divide-gray-100 dark:divide-gray-800 mb-10 overflow-hidden">

@@ -1,7 +1,15 @@
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { MapPin, Clock, CalendarClock, AlertTriangle, ArrowUpRight } from "lucide-react";
+import {
+  MapPin,
+  Clock,
+  CalendarClock,
+  AlertTriangle,
+  ArrowUpRight,
+  Hourglass,
+} from "lucide-react";
 import { getOpportunityById } from "@/lib/mockDb";
+import { getCurrentProfile } from "@/lib/auth/server";
 import { daysUntilDeadline, isExpired } from "@/lib/utils";
 import SaveButton from "@/components/cards/SaveButton";
 
@@ -16,11 +24,24 @@ export default async function OpportunityDetailsPage({
   if (!opportunity) notFound();
 
   const t = await getTranslations();
+
+  if (opportunity.status === "pending") {
+    const { profile } = await getCurrentProfile();
+    if (!profile?.is_admin) notFound();
+  }
+
   const expired = isExpired(opportunity.deadline);
   const daysLeft = daysUntilDeadline(opportunity.deadline);
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-14">
+      {opportunity.status === "pending" && (
+        <div className="mb-6 flex items-center gap-2 rounded-xl bg-saffron/10 text-saffron px-4 py-3 text-sm">
+          <Hourglass size={16} className="shrink-0" />
+          {t("detail.pendingNotice")}
+        </div>
+      )}
+
       {expired && (
         <div className="mb-6 flex items-center gap-2 rounded-xl bg-pomegranate/10 text-pomegranate px-4 py-3 text-sm">
           <AlertTriangle size={16} className="shrink-0" />
@@ -33,7 +54,9 @@ export default async function OpportunityDetailsPage({
           <h1 className="text-3xl font-display font-bold text-ink dark:text-white">
             {opportunity.title}
           </h1>
-          <p className="text-gray-500 dark:text-gray-400 mt-1">{opportunity.organization}</p>
+          <p className="text-gray-500 dark:text-gray-400 mt-1">
+            {opportunity.organization}
+          </p>
         </div>
         <SaveButton id={opportunity.id} />
       </div>
@@ -54,10 +77,15 @@ export default async function OpportunityDetailsPage({
         {opportunity.description}
       </p>
 
-      <h3 className="font-display font-bold mt-8 mb-3">{t("detail.requirements")}</h3>
+      <h3 className="font-display font-bold mt-8 mb-3">
+        {t("detail.requirements")}
+      </h3>
       <ul className="space-y-2">
         {opportunity.requirements.map((r) => (
-          <li key={r} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-300">
+          <li
+            key={r}
+            className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-300"
+          >
             <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-saffron shrink-0" />
             {r}
           </li>
@@ -68,7 +96,9 @@ export default async function OpportunityDetailsPage({
         <CalendarClock size={15} />
         {t("detail.deadline")}: {opportunity.deadline}{" "}
         {expired ? (
-          <span className="text-pomegranate font-medium">({t("detail.expired")})</span>
+          <span className="text-pomegranate font-medium">
+            ({t("detail.expired")})
+          </span>
         ) : (
           <span className={daysLeft <= 7 ? "text-pomegranate font-medium" : ""}>
             ({t("detail.daysLeft", { count: daysLeft })})

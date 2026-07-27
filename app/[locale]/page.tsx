@@ -1,6 +1,6 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Layers, MapPin, Building2, AlarmClock } from "lucide-react";
-import { getAllOpportunities } from "@/lib/mockDb";
+import { getApprovedOpportunities } from "@/lib/mockDb";
 import { categoryBreakdown, isExpiringSoon } from "@/lib/utils";
 import { OpportunityCategory } from "@/types";
 import Hero from "@/components/sections/Hero";
@@ -21,7 +21,7 @@ export default async function HomePage({
   const t = await getTranslations("home");
   const tCategories = await getTranslations("categories");
 
-  const opportunities = await getAllOpportunities();
+  const opportunities = await getApprovedOpportunities();
   const featured = opportunities.filter((o) => o.featured).slice(0, 3);
 
   const locations = new Set(opportunities.map((o) => o.location));
