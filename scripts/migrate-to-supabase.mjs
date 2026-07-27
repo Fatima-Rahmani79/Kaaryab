@@ -1,11 +1,3 @@
-// اسکریپت یک‌باره برای انتقال دیتای seed از data/opportunities.json به جدول Supabase
-//
-// اجرا:
-//   node --env-file=.env.local scripts/migrate-to-supabase.mjs
-//
-// اگه نسخهٔ Node ات از --env-file پشتیبانی نکرد (نسخه‌های قدیمی‌تر از ۲۰.۶)،
-// می‌تونی به‌جاش متغیرها رو دستی export کنی یا از پکیج dotenv استفاده کنی.
-
 import { createClient } from "@supabase/supabase-js";
 import { readFile } from "node:fs/promises";
 
@@ -14,8 +6,8 @@ const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 if (!supabaseUrl || !supabaseKey) {
   console.error(
-    "❌ NEXT_PUBLIC_SUPABASE_URL یا NEXT_PUBLIC_SUPABASE_ANON_KEY تنظیم نشده.\n" +
-      "با این دستور اجرا کن: node --env-file=.env.local scripts/migrate-to-supabase.mjs",
+    "❌ NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY is not configured.\n" +
+      "Run the script using: node --env-file=.env.local scripts/migrate-to-supabase.mjs",
   );
   process.exit(1);
 }
@@ -29,22 +21,23 @@ async function main() {
   );
   const opportunities = JSON.parse(raw);
 
-  console.log(`در حال انتقال ${opportunities.length} فرصت به Supabase...`);
+  console.log(`Migrating ${opportunities.length} opportunities to Supabase...`);
 
-  // چک می‌کنیم جدول از قبل خالی نیست تا دوباره دیتا رو تکراری اضافه نکنیم
+  // Check whether the table already contains data
+  // to avoid inserting duplicate records.
   const { count, error: countError } = await supabase
     .from("opportunities")
     .select("*", { count: "exact", head: true });
 
   if (countError) {
-    console.error("❌ خطا در اتصال به جدول:", countError.message);
+    console.error("❌ Error connecting to the table:", countError.message);
     process.exit(1);
   }
 
   if (count && count > 0) {
     console.log(
-      `⚠️  جدول از قبل ${count} ردیف دارد. برای جلوگیری از داده تکراری، اسکریپت متوقف شد.\n` +
-        "اگر می‌خواهی دوباره از صفر انتقال بدهی، اول جدول را از پنل Supabase خالی کن.",
+      `⚠️ The table already contains ${count} rows. The migration has been stopped to prevent duplicate data.\n` +
+        "If you want to migrate from scratch, first clear the table from the Supabase dashboard.",
     );
     return;
   }
@@ -61,18 +54,21 @@ async function main() {
     apply_link: o.applyLink,
     tags: o.tags,
     featured: o.featured ?? false,
-    // نکته: id و created_at را عمداً نمی‌فرستیم — Supabase خودش
-    // یک uuid و timestamp تازه برایشان می‌سازد.
+    // Note: We intentionally do not send `id` or `created_at`.
+    // Supabase will automatically generate a new UUID and timestamp.
   }));
 
-  const { data, error } = await supabase.from("opportunities").insert(rows).select();
+  const { data, error } = await supabase
+    .from("opportunities")
+    .insert(rows)
+    .select();
 
   if (error) {
-    console.error("❌ خطا در انتقال دیتا:", error.message);
+    console.error("❌ Error migrating data:", error.message);
     process.exit(1);
   }
 
-  console.log(`✅ ${data.length} فرصت با موفقیت منتقل شد.`);
+  console.log(`✅ Successfully migrated ${data.length} opportunities.`);
 }
 
 main();
