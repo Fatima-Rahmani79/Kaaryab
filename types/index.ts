@@ -9,6 +9,8 @@ export type OpportunityCategory =
 
 export type OpportunityType = "Remote" | "On-site" | "Hybrid";
 
+export type OpportunityStatus = "pending" | "approved";
+
 export interface Opportunity {
   id: string;
   title: string;
@@ -23,9 +25,13 @@ export interface Opportunity {
   tags: string[];
   createdAt: string;
   featured?: boolean;
+  status: OpportunityStatus;
 }
 
-export type OpportunityFormData = Omit<Opportunity, "id" | "createdAt">;
+export type OpportunityFormData = Omit<
+  Opportunity,
+  "id" | "createdAt" | "status"
+>;
 
 export interface OpportunityFilters {
   search: string;
@@ -43,6 +49,7 @@ export interface DashboardStats {
   internships: number;
   remote: number;
   expiringSoon: number;
+  pending: number;
   recent: Opportunity[];
 }
 
