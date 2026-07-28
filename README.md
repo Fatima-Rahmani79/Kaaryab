@@ -117,10 +117,10 @@ _Add screenshots of the Home, Opportunities, Dashboard, and Add Opportunity page
 here before submission (light and dark mode)._
 
 Live Demo Link:
-_Add your Vercel deployment link here after deploying._
+[Live Demo](https://kaaryab-gules.vercel.app/)
 
 GitHub Link:
-_Add your GitHub repository link here after pushing._
+[GitHub Link](https://github.com/Fatima-Rahmani79/Kaaryab)
 
 Future Improvements:
 
