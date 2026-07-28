@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { motion } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
-import { LogIn, UserPlus } from "lucide-react";
+import { LogIn, UserPlus, Eye, EyeOff } from "lucide-react";
 import { inputClass } from "@/lib/ui";
 import { createClient } from "@/lib/auth/client";
 import { useToast } from "@/components/ui/Toast";
@@ -28,6 +28,7 @@ export default function LoginPage() {
   const { toast } = useToast();
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [submitting, setSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const supabase = createClient();
 
   const {
@@ -65,7 +66,10 @@ export default function LoginPage() {
 
   return (
     <div className="max-w-md mx-auto px-4 py-20">
-      <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
         <div className="flex items-center gap-3 mb-8">
           <div className="w-11 h-11 rounded-xl bg-lapis/10 flex items-center justify-center">
             {mode === "signin" ? (
@@ -113,12 +117,27 @@ export default function LoginPage() {
           </FormField>
 
           <FormField label={t("password")} error={errors.password?.message}>
-            <input
-              type="password"
-              {...register("password")}
-              className={inputClass}
-              autoComplete={mode === "signin" ? "current-password" : "new-password"}
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                {...register("password")}
+                className={`${inputClass} pr-12`}
+                autoComplete={
+                  mode === "signin" ? "current-password" : "new-password"
+                }
+                aria-describedby="toggle-password"
+              />
+
+              <button
+                type="button"
+                id="toggle-password"
+                onClick={() => setShowPassword((s) => !s)}
+                className="absolute inset-y-0 right-2 flex items-center px-2 text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white"
+                aria-label={showPassword ? t("hidePassword") ?? "Hide password" : t("showPassword") ?? "Show password"}
+              >
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
+            </div>
           </FormField>
 
           <Button type="submit" disabled={submitting} className="w-full">
