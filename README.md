@@ -4,8 +4,8 @@ KaarYab Afghanistan
 Project Description:
 KaarYab Afghanistan is a modern, trilingual opportunity-finder platform that helps
 Afghan youth discover jobs, internships, scholarships, online courses, remote work,
-and training programs — all in one place. Built with Next.js 15 (App Router) and
-TypeScript.
+and training programs — all in one place. Built with Next.js 15 (App Router),
+TypeScript, and Supabase.
 
 > Demo Data — all opportunity listings in this project are for demonstration
 > purposes only.
@@ -18,6 +18,7 @@ this by bringing everything into one clean, searchable, filterable platform wher
 people can browse, save, and submit opportunities.
 
 Features:
+
 - Full opportunity listings with title, organization, category, location, type,
   deadline, description, requirements, apply link, and tags
 - Search by title, plus filters for category, location, remote/on-site type, and
@@ -25,58 +26,87 @@ Features:
 - Dynamic opportunity details page (`/opportunities/[id]`)
 - Save opportunities to a personal list, persisted with LocalStorage via Context API
 - Add Opportunity form with full validation (React Hook Form + Zod)
-- Full CRUD: create, read, edit, and delete opportunities (file-backed mock API)
+- Full CRUD: create, read, edit, and delete opportunities, backed by a real
+  Postgres database via Supabase
+- User accounts (Supabase Auth) with an admin role
+- Admin approval workflow: every new submission starts as `pending` and is
+  hidden from the public site until an admin approves it from the Dashboard's
+  "Pending approval" queue (approve or reject)
+- Route protection: the Dashboard and Edit pages — and the underlying API
+  routes themselves — require a signed-in admin session
 - Dashboard with live stats (total, jobs, scholarships, internships, remote,
-  expiring soon), a category breakdown chart, and a management table
+  pending review, expiring soon), a category breakdown chart, a pending
+  approval queue, and a management table (edit/delete)
 - Fully responsive layout (mobile, tablet, desktop) with a mobile navigation menu
 - Light and dark mode, with system-preference detection and no flash on load
 - Complete English / Dari / Pashto translation, including automatic RTL layout
 - Professional UI: navbar, footer, cards, buttons, forms, confirmation modals,
-  badges (category, expiring soon, expired), empty states, loading skeletons,
-  and error states with retry
+  badges (category, expiring soon, expired, pending), empty states, loading
+  skeletons, and error states with retry
 - Framer Motion animations throughout, respecting `prefers-reduced-motion`
-- Bonus features implemented: multi-language support, deadline countdown,
-  Recharts dashboard chart, featured opportunities, expiring-soon badges
+- Bonus features implemented: multi-language support, authentication, admin
+  approval workflow, deadline countdown, Recharts dashboard chart, featured
+  opportunities, expiring-soon badges
 
 Technologies Used:
+
 - Next.js 15 (App Router), React, TypeScript
+- Supabase (Postgres database + Authentication)
 - Tailwind CSS (custom design system, see `lib/ui.ts`)
 - next-intl (English / Dari / Pashto)
 - React Hook Form + Zod
 - Framer Motion
 - Recharts
-- Next.js API Routes with a file-backed mock database (`lib/mockDb.ts`)
 
 How to Run Locally:
+
 ```bash
 npm install
-npm run dev
 ```
-Then open http://localhost:3000 — it redirects automatically to `/en` (default
-locale). Dari and Pashto are available at `/fa` and `/ps`.
 
-Database setup (Supabase):
-This project stores opportunities in a real Postgres database via Supabase, so it
-works correctly both locally and when deployed.
+Database & auth setup (Supabase) — required even for local development, since
+opportunities and accounts live in a real database, not a local file:
 
 1. Create a free project at https://supabase.com
-2. In the Supabase SQL Editor, run the schema in `supabase/schema.sql`, then run
-   `supabase/auth.sql` (adds the `profiles` table used for admin access)
-3. Copy `.env.local.example` to `.env.local` and fill in your project's URL and
+2. In the Supabase SQL Editor, run these three files **in order**:
+   `supabase/schema.sql`, then `supabase/auth.sql`, then
+   `supabase/status_column.sql`
+3. In **Authentication → Providers → Email**, turn **off** "Confirm email".
+   Supabase's free tier has a very low limit on confirmation emails, and
+   disabling this lets accounts (including yours) activate instantly instead
+   of waiting on an email that may not arrive
+4. Copy `.env.local.example` to `.env.local` and fill in your project's URL and
    anon key (Project Settings → API in the Supabase dashboard)
-4. Run the one-time seed migration:
+5. Run the one-time seed migration:
    ```bash
    node --env-file=.env.local scripts/migrate-to-supabase.mjs
    ```
-5. Sign up for an account at `/login` on your running app, then in the Supabase
-   Table Editor (or SQL Editor), run:
+6. `npm run dev`, then sign up for an account at `/login`
+7. Make that account an admin — in the SQL Editor:
    ```sql
+   alter table profiles disable row level security;
    update profiles set is_admin = true where email = 'your-email@example.com';
+   alter table profiles enable row level security;
    ```
-   to make that account an admin
-6. When deploying to Vercel, add `NEXT_PUBLIC_SUPABASE_URL` and
+   (RLS has to be toggled off/on around this one query because the current
+   `profiles` policies only let a user read or update _their own_ row — see
+   "Known limitations" below.)
+8. When deploying to Vercel, add `NEXT_PUBLIC_SUPABASE_URL` and
    `NEXT_PUBLIC_SUPABASE_ANON_KEY` under Project Settings → Environment
-   Variables with the same values
+   Variables with the same values, then redeploy
+
+Then open http://localhost:3000 — it redirects automatically to `/en` (default
+locale). Dari and Pashto are available at `/fa` and `/ps`.
+
+Demo Admin Access (for grading):
+
+```
+Email:    admin@gmail.com
+Password: asop12
+```
+
+Sign in at `/login` with these credentials to see the admin-only Dashboard,
+including the pending-approval queue and the edit/delete management table.
 
 Note: Supabase's free tier automatically pauses a project after 7 days with no
 API requests. If the live demo looks broken after a period of inactivity, open
@@ -93,62 +123,88 @@ GitHub Link:
 _Add your GitHub repository link here after pushing._
 
 Future Improvements:
+
 - ✅ Authentication (Supabase Auth with email/password) — implemented
 - ✅ Admin role via a `profiles.is_admin` flag — implemented
-- ✅ Route protection: the Dashboard page and the Edit page (both the page
-  itself and the underlying PUT/DELETE API routes) now require an admin
-  session — implemented
-- Admin approval workflow: new submissions start as `pending` and only appear
-  publicly once an admin approves them
-- Tighten Row Level Security policies on `opportunities` to require
-  `auth.uid()` + `is_admin` at the database level too — right now the
-  `opportunities` table's own RLS policies are still fully public (see
-  `supabase/schema.sql`); application-level checks in the API routes are the
-  only thing stopping an unauthenticated direct database call, which is a
-  reasonable next hardening step
+- ✅ Route protection for the Dashboard and Edit pages (page-level and
+  API-level) — implemented
+- ✅ Admin approval workflow (`pending`/`approved` status, approve/reject
+  queue in the Dashboard) — implemented
+- Tighten Row Level Security policies on `opportunities` and `profiles` to
+  check `auth.uid()` + `is_admin` at the database level, using a
+  `service_role` key on the server for admin operations — right now
+  admin checks happen only at the application level (API routes), and the
+  `profiles` table's own RLS policies are narrow enough to require the
+  disable/enable workaround above for manual admin assignment
 - PDF CV builder
 - Real email delivery for the contact form (currently logs to the server console)
+
+Known limitations:
+
+- The `profiles` RLS policies ("users can read/update their own row") mean
+  admin assignment currently has to be done manually via SQL with RLS
+  temporarily disabled, rather than through an in-app "manage admins" screen
+- Supabase's free-tier email sending is rate-limited; this project disables
+  email confirmation to avoid depending on it
 
 ---
 
 ## Project structure
 
 ```
-middleware.ts               Locale detection and routing (en/fa/ps)
+middleware.ts               Locale routing (en/fa/ps) + Supabase session refresh
 i18n.ts                     next-intl request config
 
 messages/                   Translation files — keys must match across all three
   en.json  fa.json  ps.json
 
+supabase/                   SQL to run in the Supabase SQL Editor, in order
+  schema.sql                 opportunities table + public RLS policies
+  auth.sql                   profiles table, is_admin flag, signup trigger
+  status_column.sql          pending/approved status column + constraint
+
+scripts/
+  migrate-to-supabase.mjs   One-time script to seed data/opportunities.json into Supabase
+
 app/
   [locale]/                 All user-facing pages, wrapped in the language layout
     page.tsx                  Home (hero, stats, categories, featured, how-it-works, CTA)
-    opportunities/             Listing with search/filter
-    opportunities/[id]/        Details (dynamic route)
-    opportunities/[id]/edit/   Edit form
+    login/                     Sign in / sign up
+    opportunities/             Listing with search/filter (approved only)
+    opportunities/[id]/        Details (dynamic route; pending items are admin-only)
+    opportunities/[id]/edit/   Edit form (admin-only)
     saved/  dashboard/  add-opportunity/  about/  contact/
-  api/                       Mock REST API (file-backed, see lib/mockDb.ts)
+    dashboard/                 Admin-only: stats, pending-approval queue, manage table
+  api/                       REST API backed by Supabase (see lib/mockDb.ts)
+    opportunities/              GET (approved, or ?status=pending for admins), POST
+    opportunities/[id]/         GET, PUT (admin), DELETE (admin)
 
 components/
-  layout/        Navbar, Footer, Logo, LanguageSwitcher, ThemeScript
-  sections/      Hero, StatsBar, PopularCategories, FeaturedSection,
-                 HowItWorks, CtaBanner
-  cards/         OpportunityCard, SaveButton, DashboardCard
-  forms/         OpportunityForm (shared by add & edit), SearchFilter
-  dashboard/     CategoryChart, OpportunityManageTable
-  illustrations/ HeroIllustration, LatticePattern (hand-built SVG, on brand)
-  ui/            Button, ButtonLink, FormField, Modal, EmptyState,
-                 SkeletonCard, Toast
+  layout/         Navbar, Footer, Logo, LanguageSwitcher, ThemeScript
+  sections/       Hero, StatsBar, PopularCategories, FeaturedSection,
+                  HowItWorks, CtaBanner
+  cards/          OpportunityCard, SaveButton, DashboardCard
+  forms/          OpportunityForm (shared by add & edit), SearchFilter
+  dashboard/      CategoryChart, OpportunityManageTable, PendingApprovalQueue
+  illustrations/  HeroIllustration, LatticePattern (hand-built SVG, on brand)
+  ui/             Button, ButtonLink, FormField, Modal, EmptyState,
+                  SkeletonCard, Toast
 
 context/
   SavedContext.tsx   Saved-opportunities state (LocalStorage)
   ThemeContext.tsx   Light/dark/system theme state (LocalStorage + media query)
+  AuthContext.tsx    Current user, profile, and admin status (client-side)
 
-data/opportunities.json   Seed data (20 opportunities across 7 categories)
-lib/mockDb.ts             File-backed mock database (persists across restarts)
-lib/utils.ts              Filtering, stats, date helpers
-lib/ui.ts                 Shared Tailwind class tokens and motion variants
-types/index.ts            All TypeScript types — the single source of truth
+lib/
+  auth/client.ts     Browser Supabase client (auth)
+  auth/server.ts     Server Supabase client (auth) + getCurrentProfile() helper
+  supabase.ts        Anon Supabase client used for opportunities data
+  mockDb.ts          All opportunities queries (Supabase-backed)
+  utils.ts           Filtering, stats, date helpers
+  ui.ts              Shared Tailwind class tokens and motion variants
+
+data/opportunities.json   Seed data used only by the migration script (20 opportunities)
+types/index.ts             All TypeScript types — the single source of truth
 ```
 
 ## Adding a translation key
