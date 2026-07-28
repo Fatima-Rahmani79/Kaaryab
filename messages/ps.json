@@ -65,7 +65,11 @@
     "daysLeft": "{count} ورځې پاتې",
     "apply": "غوښتنه وکړئ",
     "expiredNotice": "د دې فرصت پای نیټه تېره شوې. دلته د معلوماتو لپاره خوندي شوی، خو نور غوښتنې نه منل کیږي.",
-    "applyClosed": "غوښتنې تړل شوي"
+    "applyClosed": "غوښتنې تړل شوي",
+    "quickInfo": "لنډ معلومات",
+    "organization": "اداره",
+    "locationDesc": "ځای",
+    "typeDesc": "د کار ډول"
   },
   "saved": {
     "title": "خوندي شوي فرصتونه",

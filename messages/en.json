@@ -65,7 +65,11 @@
     "daysLeft": "{count} days left",
     "apply": "Apply now",
     "expiredNotice": "This opportunity's deadline has passed. It's kept here for reference, but is no longer accepting applications.",
-    "applyClosed": "Applications closed"
+    "applyClosed": "Applications closed",
+    "quickInfo": "Quick info",
+    "organization": "Organization",
+    "locationDesc": "Location",
+    "typeDesc": "Work arrangement"
   },
   "saved": {
     "title": "Saved opportunities",
