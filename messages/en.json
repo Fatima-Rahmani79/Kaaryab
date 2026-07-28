@@ -114,15 +114,30 @@
     "body": "KaarYab brings together jobs, internships, scholarships, online courses, and remote work opportunities for Afghan youth in one place. Our goal is to make access to these opportunities simpler and more transparent.",
     "valueOnePlace": "One place",
     "valueYouth": "Built for youth",
-    "valueGrowing": "Always growing"
+    "valueGrowing": "Always growing",
+    "valueOnePlaceDesc": "All opportunity types gathered in one searchable list.",
+    "valueYouthDesc": "Designed to surface roles and pathways relevant to Afghan youth.",
+    "valueGrowingDesc": "We curate and add new opportunities regularly.",
+    "getInTouch": "Get in touch",
+    "browseOpportunities": "Browse opportunities"
   },
   "contact": {
     "title": "Contact us",
+    "subtitle": "Have a question or feedback? Send us a message and we'll reply within 2 business days.",
     "name": "Your name",
     "email": "Email",
     "message": "Your message",
     "send": "Send message",
-    "sent": "Your message has been sent"
+    "sent": "Your message has been sent",
+    "otherWays": "Other ways to reach us",
+    "responseTime": "We typically respond within 48 hours.",
+    "emailAddress": "hello@kaaryab.org",
+    "emailDesc": "Send us an email for partnership or media inquiries.",
+    "hours": "Mon - Fri: 09:00 - 17:00",
+    "timezone": "(local business hours)",
+    "needHelp": "Prefer direct support?",
+    "contactSupport": "Contact support",
+    "error": "Something went wrong. Please try again."
   },
   "footer": {
     "note": "An educational project (Demo Data)",
