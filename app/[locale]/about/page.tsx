@@ -130,7 +130,7 @@ export default async function AboutPage({
 
       {/* Timeline */}
       <section className={`${sectionClass} pt-6 pb-28`}>
-        <div className="max-w-4xl mx-auto">
+        <div>
           <h2 className="text-2xl md:text-3xl font-display font-bold mb-6">
             {t("timelineTitle")}
           </h2>

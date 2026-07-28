@@ -116,7 +116,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="text-sm font-medium">
-                    {t("emailAddress") ?? "hello@kaaryab.org"}
+                    {t("emailAddress") ?? "kaaryab@company.org"}
                   </p>
                   <p className="text-xs text-gray-500">
                     {t("emailDesc") ??
@@ -143,11 +143,15 @@ export default function ContactPage() {
                 <p className="text-sm text-gray-500 mb-3">
                   {t("needHelp") ?? "Prefer direct support?"}
                 </p>
-                <Link href={`/${"en"}/contact`} className="inline-block">
+                <a
+                  href={`mailto:${t("emailAddress") ?? "kaaryab@company.org"}`}
+                  className="inline-block"
+                  aria-label={t("emailAddress") ?? "Contact email"}
+                >
                   <Button variant="secondary">
                     {t("contactSupport") ?? "Contact support"}
                   </Button>
-                </Link>
+                </a>
               </div>
             </aside>
           </div>
