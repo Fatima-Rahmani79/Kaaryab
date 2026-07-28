@@ -123,7 +123,22 @@
     "valueYouthDesc": "Designed to surface roles and pathways relevant to Afghan youth.",
     "valueGrowingDesc": "We curate and add new opportunities regularly.",
     "getInTouch": "Get in touch",
-    "browseOpportunities": "Browse opportunities"
+    "browseOpportunities": "Browse opportunities",
+    "missionTitle": "Our mission",
+    "missionBody": "To make opportunity discovery easy and equitable for Afghan youth by curating reliable listings, simplifying application journeys, and partnering with organizations committed to youth employment and learning.",
+    "teamTitle": "Core team",
+    "teamIntro": "A small cross-functional team focused on product, data and partnerships.",
+    "member1Name": "Fatima Rahmani",
+    "member1Role": "Product lead",
+    "member2Name": "Fatima Rahmani",
+    "member2Role": "Engineering",
+    "timelineTitle": "Our story",
+    "timeline1Title": "Founded",
+    "timeline1Body": "KaarYab was founded to bridge information gaps and make opportunities discoverable.",
+    "timeline2Title": "Public beta",
+    "timeline2Body": "We launched a public beta with curated listings and feedback loops.",
+    "timeline3Title": "Growing network",
+    "timeline3Body": "Partnerships and content expanded to better serve job seekers and learners."
   },
   "contact": {
     "title": "Contact us",
