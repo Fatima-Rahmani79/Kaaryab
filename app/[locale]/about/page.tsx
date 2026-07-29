@@ -28,7 +28,7 @@ export default async function AboutPage({
           opacity={0.06}
           patternId="about-hero"
         />
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-6xl mx-auto px-6">
           <div className="max-w-3xl">
             <h1 className="text-3xl md:text-5xl font-display font-bold mb-4">
               {t("title")}
@@ -52,7 +52,7 @@ export default async function AboutPage({
         </div>
       </section>
 
-      <section className={`${sectionClass} bg-transparent`}>
+      <section className={`${sectionClass} bg-transparent px-6`}>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {values.map(({ icon: Icon, key }, i) => (
             <div key={i} className={`${cardClass} p-6`}>
@@ -75,7 +75,7 @@ export default async function AboutPage({
       </section>
 
       {/* Mission + Team */}
-      <section className={`${sectionClass} pt-6`}>
+      <section className={`${sectionClass} pt-6 px-6`}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div>
             <h2 className="text-2xl md:text-3xl font-display font-bold mb-4">
@@ -129,7 +129,7 @@ export default async function AboutPage({
       </section>
 
       {/* Timeline */}
-      <section className={`${sectionClass} pt-6 pb-28`}>
+      <section className={`${sectionClass} pt-6 pb-28 px-6`}>
         <div>
           <h2 className="text-2xl md:text-3xl font-display font-bold mb-6">
             {t("timelineTitle")}
