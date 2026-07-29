@@ -63,7 +63,7 @@ export default function SearchFilter({
   ].filter(Boolean).length;
 
   return (
-    <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-5 shadow-sm">
+    <div className="rounded-2xl border border-gray-100 bg-white p-4 md:p-5 shadow-sm dark:border-gray-800 dark:bg-gray-900">
       <div className="relative mb-4">
         <Search
           size={17}
@@ -77,7 +77,7 @@ export default function SearchFilter({
         />
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-3">
         <div className="relative">
           <Tag
             size={15}
@@ -91,7 +91,7 @@ export default function SearchFilter({
                 category: e.target.value as OpportunityFilters["category"],
               })
             }
-            className={selectClass + " ps-9"}
+            className={`${selectClass} w-full min-w-0 ps-9 text-sm md:text-base`}
           >
             <option value="All">{t("opportunities.allCategories")}</option>
             {categories.map((c) => (
@@ -115,7 +115,7 @@ export default function SearchFilter({
                 type: e.target.value as OpportunityFilters["type"],
               })
             }
-            className={selectClass + " ps-9"}
+            className={`${selectClass} w-full min-w-0 ps-9 text-sm md:text-base`}
           >
             <option value="All">{t("opportunities.allTypes")}</option>
             {types.map((ty) => (
@@ -134,7 +134,7 @@ export default function SearchFilter({
           <select
             value={filters.location}
             onChange={(e) => onChange({ ...filters, location: e.target.value })}
-            className={selectClass + " ps-9"}
+            className={`${selectClass} w-full min-w-0 ps-9 text-sm md:text-base`}
           >
             <option value="">{t("common.allLocations")}</option>
             {locations.map((loc) => (
@@ -159,7 +159,7 @@ export default function SearchFilter({
                   .value as OpportunityFilters["deadlineRange"],
               })
             }
-            className={selectClass + " ps-9"}
+            className={`${selectClass} w-full min-w-0 ps-9 text-sm md:text-base`}
           >
             <option value="all">{t("opportunities.deadlineAll")}</option>
             <option value="week">{t("opportunities.deadlineWeek")}</option>
@@ -180,7 +180,7 @@ export default function SearchFilter({
                 sortBy: e.target.value as OpportunityFilters["sortBy"],
               })
             }
-            className={selectClass + " ps-9"}
+            className={`${selectClass} w-full min-w-0 ps-9 text-sm md:text-base`}
           >
             <option value="newest">{t("opportunities.sortNewest")}</option>
             <option value="deadline">{t("opportunities.sortDeadline")}</option>
@@ -195,7 +195,7 @@ export default function SearchFilter({
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             onClick={() => onChange(initial)}
-            className="flex items-center gap-1 text-xs text-pomegranate mt-4 hover:underline"
+            className="flex items-center gap-1 text-sm md:text-base text-pomegranate mt-4 hover:underline"
           >
             <X size={13} /> Clear filters ({activeCount})
           </motion.button>
