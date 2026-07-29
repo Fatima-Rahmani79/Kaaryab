@@ -241,42 +241,59 @@ Login:
 
 # Screenshots
 
-## Home
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <strong>Home</strong><br><br>
+      <img src="./public/screenshotes/home.jpg" alt="Home" width="100%">
+    </td>
+    <td align="center" width="50%">
+      <strong>Home (Translated)</strong><br><br>
+      <img src="./public/screenshotes/homeTranslate.jpg" alt="Home Translated" width="100%">
+    </td>
+  </tr>
 
-![Home](public/screenshotes/home.jpg)
+  <tr>
+    <td align="center">
+      <strong>Home (Dark Mode)</strong><br><br>
+      <img src="./public/screenshotes/homeDark.jpg" alt="Home Dark Mode" width="100%">
+    </td>
+    <td align="center">
+      <strong>Opportunities</strong><br><br>
+      <img src="./public/screenshotes/opportunities.jpg" alt="Opportunities" width="100%">
+    </td>
+  </tr>
 
-## Home (Translated)
+  <tr>
+    <td align="center">
+      <strong>Dashboard</strong><br><br>
+      <img src="./public/screenshotes/dashboard.jpg" alt="Dashboard" width="100%">
+    </td>
+    <td align="center">
+      <strong>Saved Opportunities</strong><br><br>
+      <img src="./public/screenshotes/saved.jpg" alt="Saved Opportunities" width="100%">
+    </td>
+  </tr>
 
-![Translated](public/screenshotes/homeTranslate.jpg)
+  <tr>
+    <td align="center">
+      <strong>Submit Opportunity</strong><br><br>
+      <img src="./public/screenshotes/submit.jpg" alt="Submit Opportunity" width="100%">
+    </td>
+    <td align="center">
+      <strong>About</strong><br><br>
+      <img src="./public/screenshotes/about.jpg" alt="About" width="100%">
+    </td>
+  </tr>
 
-## Dark Mode
-
-![Dark](public/screenshotes/homeDark.jpg)
-
-## Opportunities
-
-![Opportunities](public/screenshotes/opportunities.jpg)
-
-## Dashboard
-
-![Dashboard](public/screenshotes/dashboard.jpg)
-
-## Saved Opportunities
-
-![Saved](public/screenshotes/saved.jpg)
-
-## Submit Opportunity
-
-![Submit](public/screenshotes/submit.jpg)
-
-## About
-
-![About](public/screenshotes/about.jpg)
-
-## Contact
-
-![Contact](public/screenshotes/contact.jpg)
-
+  <tr>
+    <td align="center">
+      <strong>Contact</strong><br><br>
+      <img src="./public/screenshotes/contact.jpg" alt="Contact" width="100%">
+    </td>
+    <td></td>
+  </tr>
+</table>
 ---
 
 # Future Improvements
