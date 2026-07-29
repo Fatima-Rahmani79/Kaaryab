@@ -22,7 +22,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="mt-24 bg-lapis-deep text-blue-100">
+    <footer className="mt-20 bg-lapis-deep text-blue-100">
       <svg
         width="100%"
         height="10"

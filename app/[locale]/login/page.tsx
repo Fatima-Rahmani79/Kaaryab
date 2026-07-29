@@ -65,12 +65,12 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="max-w-md mx-auto px-4 py-20">
+    <div className="max-w-md mx-auto px-4 py-10">
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <div className="flex items-center gap-3 mb-8">
+        <div className="flex items-center gap-3 mb-6">
           <div className="w-11 h-11 rounded-xl bg-lapis/10 flex items-center justify-center">
             {mode === "signin" ? (
               <LogIn size={20} className="text-lapis" />
@@ -83,7 +83,7 @@ export default function LoginPage() {
           </h1>
         </div>
 
-        <div className="flex gap-1 p-1 mb-8 rounded-xl bg-gray-100 dark:bg-gray-800 w-fit">
+        <div className="flex gap-1 p-1 mb-6 rounded-xl bg-gray-100 dark:bg-gray-800 w-fit">
           <button
             onClick={() => setMode("signin")}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
