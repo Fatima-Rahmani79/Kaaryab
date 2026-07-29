@@ -29,7 +29,7 @@ export default function LanguageSwitcher() {
       className="text-sm border rounded-lg px-2 py-1 bg-transparent dark:border-gray-700"
     >
       {locales.map((l) => (
-        <option key={l} value={l}>
+        <option key={l} value={l} className="dark:bg-lapis-deep">
           {labels[l]}
         </option>
       ))}
