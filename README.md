@@ -266,17 +266,6 @@ Login:
 
   <tr>
     <td align="center">
-      <strong>Dashboard</strong><br><br>
-      <img src="./public/screenshotes/dashboard.jpg" alt="Dashboard" width="100%">
-    </td>
-    <td align="center">
-      <strong>Saved Opportunities</strong><br><br>
-      <img src="./public/screenshotes/saved.jpg" alt="Saved Opportunities" width="100%">
-    </td>
-  </tr>
-
-  <tr>
-    <td align="center">
       <strong>Submit Opportunity</strong><br><br>
       <img src="./public/screenshotes/submit.jpg" alt="Submit Opportunity" width="100%">
     </td>
@@ -290,6 +279,17 @@ Login:
     <td align="center">
       <strong>Contact</strong><br><br>
       <img src="./public/screenshotes/contact.jpg" alt="Contact" width="100%">
+    </td>
+    <td align="center">
+      <strong>Saved Opportunities</strong><br><br>
+      <img src="./public/screenshotes/saved.jpg" alt="Saved Opportunities" width="100%">
+    </td>
+  </tr>
+
+  <tr>
+    <td align="center">
+      <strong>Dashboard</strong><br><br>
+      <img src="./public/screenshotes/dashboard.jpg" alt="Dashboard" width="100%">
     </td>
     <td></td>
   </tr>
