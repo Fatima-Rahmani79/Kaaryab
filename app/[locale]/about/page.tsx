@@ -42,10 +42,12 @@ export default async function AboutPage({
                   {t("getInTouch") ?? "Get in touch"}
                 </Button>
               </Link>
-              <Link href={`/${locale}/opportunities`} className="inline-block">
-                <Button variant="secondary">
-                  {t("browseOpportunities") ?? "Browse opportunities"}
-                </Button>
+
+              <Link
+                href={`/${locale}/opportunities`}
+                className="px-7 py-3 rounded-lg font-medium border border-white/40 text-white hover:bg-white/10 transition-colors"
+              >
+                {t("browseOpportunities") ?? "Browse opportunities"}
               </Link>
             </div>
           </div>

@@ -28,12 +28,12 @@ export default function Hero({
     show: {
       transition: {
         staggerChildren: reduceMotion ? 0 : 0.12,
-        delayChildren: reduceMotion ? 0 : 1,
+        delayChildren: reduceMotion ? 0 : 0.2,
       },
     },
   };
   const item = {
-    hidden: { opacity: 0, y: 16 },
+    hidden: { opacity: 0, y: 12 },
     show: {
       opacity: 1,
       y: 0,
