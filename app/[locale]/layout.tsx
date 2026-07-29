@@ -60,20 +60,22 @@ export default async function LocaleLayout({
       suppressHydrationWarning
     >
       <body>
-        <ThemeScript />
-        <ThemeProvider>
-          <NextIntlClientProvider messages={messages}>
-            <SavedProvider>
-              <AuthProvider>
-                <ToastProvider>
-                  <Navbar />
-                  <main className="min-h-screen">{children}</main>
-                  <Footer />
-                </ToastProvider>
-              </AuthProvider>
-            </SavedProvider>
-          </NextIntlClientProvider>
-        </ThemeProvider>
+        <div className="min-h-screen flex flex-col">
+          <ThemeScript />
+          <ThemeProvider>
+            <NextIntlClientProvider messages={messages}>
+              <SavedProvider>
+                <AuthProvider>
+                  <ToastProvider>
+                    <Navbar />
+                    <main className="flex-1">{children}</main>
+                    <Footer />
+                  </ToastProvider>
+                </AuthProvider>
+              </SavedProvider>
+            </NextIntlClientProvider>
+          </ThemeProvider>
+        </div>
       </body>
     </html>
   );
