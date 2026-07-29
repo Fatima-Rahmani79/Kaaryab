@@ -113,7 +113,7 @@ API requests. If the live demo looks broken after a period of inactivity, open
 the Supabase dashboard and click "Resume" — this does not affect your data.
 
 Screenshots:
-[Home Page](screenshotes/home.jpg)
+![Home Page](screenshotes/home.jpg)
 
 Live Demo Link:
 [Live Demo](https://kaaryab-gules.vercel.app/)
