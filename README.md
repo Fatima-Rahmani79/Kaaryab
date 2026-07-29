@@ -114,6 +114,15 @@ the Supabase dashboard and click "Resume" — this does not affect your data.
 
 Screenshots:
 ![Home Page](public/screenshotes/home.jpg)
+![Home Page Translated](public/screenshotes/homeTranslate.jpg)
+![Home Page Dark Mode](public/screenshotes/homeDark.jpg)
+![Opportunities Page](public/screenshotes/opportunities.jpg)
+![Opportunities Page Dark Mode](public/screenshotes/opportunitiesDark.jpg)
+![Saved Page](public/screenshotes/saved.jpg)
+![Submit Opportunity Page](public/screenshotes/submit.jpg)
+![Dashboard Page](public/screenshotes/dashboard.jpg)
+![About Page](public/screenshotes/about.jpg)
+![Contact Page](public/screenshotes/contact.jpg)
 
 Live Demo Link:
 [Live Demo](https://kaaryab-gules.vercel.app/)
