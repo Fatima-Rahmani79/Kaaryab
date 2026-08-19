@@ -68,7 +68,7 @@ The project allowed me to work with authentication, database operations, role-ba
 * **Framework:** Next.js 15, React 18
 * **Language:** TypeScript
 * **Styling:** Tailwind CSS
-* **Backend & Database:** Supabase, PostgreSQL
+* **Backend & Database:** Supabase
 * **Authentication:** Supabase Auth
 * **Localization:** next-intl
 * **Forms & Validation:** React Hook Form, Zod
@@ -207,8 +207,8 @@ Want to explore the admin dashboard?
 
 Use the demo account below:
 
-Email: your-demo-email@example.com
-Password: your-demo-password
+Email: admin@gmail.com
+Password: asop12
 
 You can use this account to explore the authentication flow,
 admin dashboard, opportunity management, and approval workflow.
@@ -225,15 +225,6 @@ admin dashboard, opportunity management, and approval workflow.
 * PDF CV builder
 * Email delivery for contact forms
 * In-app admin management
-
----
-
-## ⚠️ Known Limitations
-
-* All application data is fictional/demo data.
-* Admin assignment currently requires a manual database operation.
-* Email confirmation is disabled for the demo environment because of Supabase Free Tier limitations.
-* The project is intended for learning and portfolio demonstration, not production use.
 
 ---
 
