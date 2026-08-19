@@ -4,7 +4,7 @@ import {
   updateOpportunity,
   deleteOpportunity,
 } from "@/lib/mockDb";
-import { getCurrentProfile } from "@/lib/auth/server";
+import { getCurrentProfile, createClient } from "@/lib/auth/server";
 
 export async function GET(
   _req: NextRequest,
@@ -25,9 +25,10 @@ export async function PUT(
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
+  const authClient = await createClient();
   const { id } = await params;
   const updates = await req.json();
-  const updated = await updateOpportunity(id, updates);
+  const updated = await updateOpportunity(id, updates, authClient);
   if (!updated)
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   return NextResponse.json(updated);
@@ -42,8 +43,9 @@ export async function DELETE(
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
+  const authClient = await createClient();
   const { id } = await params;
-  const deleted = await deleteOpportunity(id);
+  const deleted = await deleteOpportunity(id, authClient);
   if (!deleted)
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   return NextResponse.json({ success: true });

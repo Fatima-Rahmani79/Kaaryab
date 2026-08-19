@@ -2,7 +2,7 @@ import { notFound, redirect } from "next/navigation";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { ShieldOff } from "lucide-react";
 import { getOpportunityById } from "@/lib/mockDb";
-import { getCurrentProfile } from "@/lib/auth/server";
+import { getCurrentProfile, createClient } from "@/lib/auth/server";
 import EditOpportunityClient from "./EditOpportunityClient";
 
 export default async function EditOpportunityPage({
@@ -35,7 +35,8 @@ export default async function EditOpportunityPage({
     );
   }
 
-  const opportunity = await getOpportunityById(id);
+  const authClient = await createClient();
+  const opportunity = await getOpportunityById(id, authClient);
   if (!opportunity) notFound();
 
   return <EditOpportunityClient opportunity={opportunity} />;

@@ -1,4 +1,5 @@
-import { supabase } from "@/lib/supabase";
+import type { SupabaseClient } from "@supabase/supabase-js";
+import { supabase as anonClient } from "@/lib/supabase";
 import { Opportunity, OpportunityStatus } from "@/types";
 
 interface OpportunityRow {
@@ -37,8 +38,10 @@ function rowToOpportunity(row: OpportunityRow): Opportunity {
   };
 }
 
-export async function getAllOpportunities(): Promise<Opportunity[]> {
-  const { data, error } = await supabase
+export async function getAllOpportunities(
+  client: SupabaseClient = anonClient,
+): Promise<Opportunity[]> {
+  const { data, error } = await client
     .from("opportunities")
     .select("*")
     .order("created_at", { ascending: false });
@@ -49,7 +52,7 @@ export async function getAllOpportunities(): Promise<Opportunity[]> {
 }
 
 export async function getApprovedOpportunities(): Promise<Opportunity[]> {
-  const { data, error } = await supabase
+  const { data, error } = await anonClient
     .from("opportunities")
     .select("*")
     .eq("status", "approved")
@@ -62,8 +65,10 @@ export async function getApprovedOpportunities(): Promise<Opportunity[]> {
   return (data as OpportunityRow[]).map(rowToOpportunity);
 }
 
-export async function getPendingOpportunities(): Promise<Opportunity[]> {
-  const { data, error } = await supabase
+export async function getPendingOpportunities(
+  client: SupabaseClient,
+): Promise<Opportunity[]> {
+  const { data, error } = await client
     .from("opportunities")
     .select("*")
     .eq("status", "pending")
@@ -78,8 +83,9 @@ export async function getPendingOpportunities(): Promise<Opportunity[]> {
 
 export async function getOpportunityById(
   id: string,
+  client: SupabaseClient = anonClient,
 ): Promise<Opportunity | null> {
-  const { data, error } = await supabase
+  const { data, error } = await client
     .from("opportunities")
     .select("*")
     .eq("id", id)
@@ -93,7 +99,7 @@ export async function getOpportunityById(
 export async function createOpportunity(
   input: Omit<Opportunity, "id" | "createdAt" | "status">,
 ): Promise<Opportunity> {
-  const { data, error } = await supabase
+  const { data, error } = await anonClient
     .from("opportunities")
     .insert({
       title: input.title,
@@ -120,6 +126,7 @@ export async function createOpportunity(
 export async function updateOpportunity(
   id: string,
   updates: Partial<Opportunity>,
+  client: SupabaseClient,
 ): Promise<Opportunity | null> {
   const patch: Record<string, unknown> = {};
   if (updates.title !== undefined) patch.title = updates.title;
@@ -138,7 +145,7 @@ export async function updateOpportunity(
   if (updates.featured !== undefined) patch.featured = updates.featured;
   if (updates.status !== undefined) patch.status = updates.status;
 
-  const { data, error } = await supabase
+  const { data, error } = await client
     .from("opportunities")
     .update(patch)
     .eq("id", id)
@@ -150,8 +157,11 @@ export async function updateOpportunity(
   return data ? rowToOpportunity(data as OpportunityRow) : null;
 }
 
-export async function deleteOpportunity(id: string): Promise<boolean> {
-  const { error, count } = await supabase
+export async function deleteOpportunity(
+  id: string,
+  client: SupabaseClient,
+): Promise<boolean> {
+  const { error, count } = await client
     .from("opportunities")
     .delete({ count: "exact" })
     .eq("id", id);

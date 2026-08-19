@@ -9,7 +9,7 @@ import {
   Hourglass,
 } from "lucide-react";
 import { getOpportunityById } from "@/lib/mockDb";
-import { getCurrentProfile } from "@/lib/auth/server";
+import { getCurrentProfile, createClient } from "@/lib/auth/server";
 import { daysUntilDeadline, isExpired } from "@/lib/utils";
 import SaveButton from "@/components/cards/SaveButton";
 import Button from "@/components/ui/Button";
@@ -22,7 +22,8 @@ export default async function OpportunityDetailsPage({
 }) {
   const { locale, id } = await params;
   setRequestLocale(locale);
-  const opportunity = await getOpportunityById(id);
+  const authClient = await createClient();
+  const opportunity = await getOpportunityById(id, authClient);
   if (!opportunity) notFound();
 
   const t = await getTranslations();

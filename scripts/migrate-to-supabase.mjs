@@ -2,11 +2,11 @@ import { createClient } from "@supabase/supabase-js";
 import { readFile } from "node:fs/promises";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const supabaseKey = process.env.SUPABASE_SECRET_KEY;
 
 if (!supabaseUrl || !supabaseKey) {
   console.error(
-    "❌ NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY is not configured.\n" +
+    "❌ NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SECRET_KEY is not configured.\n" +
       "Run the script using: node --env-file=.env.local scripts/migrate-to-supabase.mjs",
   );
   process.exit(1);

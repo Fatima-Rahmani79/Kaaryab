@@ -3,7 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ShieldOff } from "lucide-react";
 import { getAllOpportunities, getPendingOpportunities } from "@/lib/mockDb";
 import { calculateStats } from "@/lib/utils";
-import { getCurrentProfile } from "@/lib/auth/server";
+import { getCurrentProfile, createClient } from "@/lib/auth/server";
 import {
   Layers,
   Briefcase,
@@ -49,8 +49,9 @@ export default async function DashboardPage({
     );
   }
 
-  const opportunities = await getAllOpportunities();
-  const pending = await getPendingOpportunities();
+  const authClient = await createClient();
+  const opportunities = await getAllOpportunities(authClient);
+  const pending = await getPendingOpportunities(authClient);
   const stats = calculateStats(opportunities);
 
   return (

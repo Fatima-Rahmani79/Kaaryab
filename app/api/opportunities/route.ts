@@ -5,7 +5,7 @@ import {
   getPendingOpportunities,
   createOpportunity,
 } from "@/lib/mockDb";
-import { getCurrentProfile } from "@/lib/auth/server";
+import { getCurrentProfile, createClient } from "@/lib/auth/server";
 
 export async function GET(req: NextRequest) {
   const status = req.nextUrl.searchParams.get("status");
@@ -15,7 +15,8 @@ export async function GET(req: NextRequest) {
     if (!profile?.is_admin) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
-    return NextResponse.json(await getPendingOpportunities());
+    const authClient = await createClient();
+    return NextResponse.json(await getPendingOpportunities(authClient));
   }
 
   return NextResponse.json(await getApprovedOpportunities());

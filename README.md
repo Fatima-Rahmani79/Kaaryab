@@ -108,7 +108,7 @@ The admin dashboard includes:
 ## Technologies Used
 
 - Next.js 15 (App Router)
-- React 19
+- React 18
 - TypeScript
 - Supabase (Authentication + PostgreSQL)
 - Tailwind CSS
@@ -144,7 +144,14 @@ Run these SQL files **in order**:
 supabase/schema.sql
 supabase/auth.sql
 supabase/status_column.sql
+supabase/rls_hardening.sql
 ```
+
+`rls_hardening.sql` replaces the original fully-public policies with real
+checks: only approved opportunities are publicly readable, only admins can
+update/delete, and — importantly — it also closes a gap in the original
+`profiles` policy that let any signed-in user grant themselves admin access
+directly from the browser.
 
 ---
 
@@ -298,17 +305,21 @@ Login:
 
 # Future Improvements
 
-- Strengthen Row Level Security (RLS) policies
 - PDF CV Builder
 - Email delivery for the contact form
 - User profile management
 - Opportunity analytics
+- An in-app screen for managing admins (currently requires a manual SQL query)
 
 ---
 
 # Known Limitations
 
-- Admin assignment currently requires one SQL query because of the project's RLS policies.
+- Admin assignment currently requires one SQL query (with RLS briefly disabled)
+  because there's no in-app screen for managing admins yet.
+- Row Level Security now enforces admin-only writes and pending/approved
+  visibility at the database level (see `supabase/rls_hardening.sql`), on top
+  of the existing application-level checks in the API routes.
 - Supabase Free Tier limits outgoing email, so email confirmation is disabled.
 
 ---
