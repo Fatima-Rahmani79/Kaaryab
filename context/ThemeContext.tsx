@@ -36,9 +36,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<Theme>("system");
   const [resolvedTheme, setResolvedTheme] = useState<ResolvedTheme>("light");
 
-  // خواندن اولیه از localStorage بعد از mount (سمت مرورگر)
-  // نکته: ThemeScript.tsx همین کار را قبل از رندر React انجام می‌دهد تا از فلاش جلوگیری شود؛
-  // این افکت فقط state داخلی React را با همان تصمیم هماهنگ می‌کند.
   useEffect(() => {
     const stored = (localStorage.getItem(STORAGE_KEY) as Theme | null) ?? "system";
     const resolved = stored === "system" ? getSystemPreference() : stored;
@@ -47,7 +44,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     applyTheme(resolved);
   }, []);
 
-  // اگر کاربر روی "system" باشد، تغییر تنظیمات سیستم‌عامل را هم زنده دنبال می‌کنیم
   useEffect(() => {
     if (theme !== "system") return;
     const mq = window.matchMedia("(prefers-color-scheme: dark)");
