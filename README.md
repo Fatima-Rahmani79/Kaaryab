@@ -1,252 +1,102 @@
-# KaarYab Afghanistan
+# 🇦🇫 KaarYab Afghanistan
 
-A modern **trilingual opportunity-finder platform** that helps Afghan youth discover jobs, internships, scholarships, online courses, remote work, and training programs — all in one place.
+A **trilingual portfolio project** inspired by the idea of bringing jobs, internships, scholarships, remote work, courses, and training opportunities together in one searchable platform.
 
-Built with **Next.js 15 (App Router)**, **TypeScript**, **Supabase**, and **Tailwind CSS**.
+Built with **Next.js 15 (App Router), TypeScript, Supabase, and Tailwind CSS**.
 
-> **Demo Data:** All opportunity listings in this project are for demonstration purposes only.
+> **Note:** KaarYab is an educational/portfolio project. All opportunities, users, and other content are demo data created for development and testing. It is not a production service.
 
-## Live Demo
+## 🌐 Links
 
-🌐 https://kaaryab-gules.vercel.app/
-
-## GitHub Repository
-
-📂 https://github.com/Fatima-Rahmani79/Kaaryab
+* **Live Demo:** https://kaaryab-gules.vercel.app/
+* **Repository:** https://github.com/Fatima-Rahmani79/Kaaryab
 
 ---
 
-## Project Overview
+## 🎯 Why I Built It
 
-Many young people in Afghanistan struggle to find reliable information about jobs, scholarships, internships, online work, and training opportunities because the information is scattered across multiple websites and social media platforms.
+I built KaarYab to practice developing a complete web application with **Next.js, TypeScript, and Supabase** around a real-world use case.
 
-**KaarYab Afghanistan**
-
-Problem It Solves:
-Many young people in Afghanistan need better access to opportunities such as jobs,
-internships, scholarships, online work, and training programs, but this information
-is scattered across many different websites and social media pages. KaarYab solves
-this by bringing everything into one clean, searchable, filterable platform where
-people can browse, save, and submit opportunities.
+The project allowed me to work with authentication, database operations, role-based access, multilingual interfaces, form validation, search and filtering, and database security.
 
 ---
 
-# Features
+## ✨ Features
 
-## Opportunity Platform
+### Opportunity Platform
 
-- Browse jobs, internships, scholarships, remote work, online courses, volunteer work, and training programs
-- Dynamic opportunity details page (`/opportunities/[id]`)
-- Search opportunities by title
-- Filter by:
-  - Category
-  - Location
-  - Opportunity type
-  - Deadline
-- Save opportunities using LocalStorage
-- Featured opportunities
-- Deadline countdown
-- Expiring Soon / Expired badges
+* Browse jobs, internships, scholarships, remote work, courses, volunteering, and training opportunities
+* Search and filter opportunities
+* Dynamic opportunity detail pages
+* Save opportunities with LocalStorage
+* Featured and expiring opportunities
+* Deadline countdowns
 
----
+### Authentication & Admin
 
-## Authentication & Admin
+* Supabase Authentication
+* User registration and login
+* Role-based admin access
+* Protected routes and API endpoints
+* Opportunity submission and approval workflow
+* CRUD operations
+* Pending / approved opportunity status
 
-- Supabase Authentication
-- User registration & login
-- Admin role
-- Route protection
-- API protection
-- Admin approval workflow
-- Full CRUD operations
+### Dashboard
 
-Every submitted opportunity is created with a **Pending** status and remains hidden until an administrator approves it.
+* Statistics overview
+* Category breakdown
+* Pending approval queue
+* Opportunity management
+* Edit and delete actions
 
----
+### User Experience
 
-## Dashboard
-
-The admin dashboard includes:
-
-- Live statistics
-- Category breakdown chart
-- Pending approval queue
-- Opportunity management table
-- Edit/Delete actions
+* Responsive design
+* Light / dark mode
+* English, Dari, and Pashto
+* RTL / LTR support
+* Loading and empty states
+* Toast notifications
+* Confirmation dialogs
+* Framer Motion animations
 
 ---
 
-## User Experience
+## 🛠️ Tech Stack
 
-- Fully responsive design
-- Mobile navigation
-- Light & Dark mode
-- Automatic system theme detection
-- English, Dari & Pashto
-- RTL support
-- Framer Motion animations
-- Loading skeletons
-- Empty states
-- Toast notifications
-- Confirmation dialogs
+* **Framework:** Next.js 15, React 18
+* **Language:** TypeScript
+* **Styling:** Tailwind CSS
+* **Backend & Database:** Supabase
+* **Authentication:** Supabase Auth
+* **Localization:** next-intl
+* **Forms & Validation:** React Hook Form, Zod
+* **Animations:** Framer Motion
+* **Charts:** Recharts
 
 ---
 
-# Architecture
+## 🔐 Security & Data Handling
 
-- Next.js App Router
-- Server Components for rendering
-- Client Components for interactive UI
-- Supabase Authentication
-- PostgreSQL database
-- REST API Routes
-- Context API
-- next-intl localization
+The project uses **Supabase Row Level Security (RLS)** alongside application-level authorization.
 
----
+The database policies ensure that:
 
-## Technologies Used
+* Public users can only read approved opportunities.
+* Pending submissions are not publicly visible.
+* Only authorized administrators can update or delete opportunities.
+* Profile permissions cannot be escalated directly by regular users.
 
-- Next.js 15 (App Router)
-- React 18
-- TypeScript
-- Supabase (Authentication + PostgreSQL)
-- Tailwind CSS
-- next-intl
-- React Hook Form
-- Zod
-- Framer Motion
-- Recharts
+The security policies are available in:
 
----
-
-# Running Locally
-
-## 1. Install dependencies
-
-```bash
-npm install
-```
-
----
-
-## 2. Create a Supabase project
-
-Create a free Supabase project.
-
----
-
-## 3. Run SQL files
-
-Run these SQL files **in order**:
-
-```
-supabase/schema.sql
-supabase/auth.sql
-supabase/status_column.sql
+```text
 supabase/rls_hardening.sql
 ```
 
-`rls_hardening.sql` replaces the original fully-public policies with real
-checks: only approved opportunities are publicly readable, only admins can
-update/delete, and — importantly — it also closes a gap in the original
-`profiles` policy that let any signed-in user grant themselves admin access
-directly from the browser.
-
 ---
 
-## 4. Disable email confirmation
-
-Authentication → Providers → Email
-
-Turn **Confirm Email** OFF.
-
----
-
-## 5. Configure environment variables
-
-Copy
-
-```
-.env.local.example
-```
-
-to
-
-```
-.env.local
-```
-
-and fill in
-
-```
-NEXT_PUBLIC_SUPABASE_URL
-NEXT_PUBLIC_SUPABASE_ANON_KEY
-```
-
----
-
-## 6. Seed the database
-
-```bash
-node --env-file=.env.local scripts/migrate-to-supabase.mjs
-```
-
----
-
-## 7. Start the project
-
-```bash
-npm run dev
-```
-
----
-
-## 8. Make your account an admin
-
-Run:
-
-```sql
-alter table profiles disable row level security;
-
-update profiles
-set is_admin = true
-where email = 'your-email@example.com';
-
-alter table profiles enable row level security;
-```
-
----
-
-## 9. Deploy to Vercel
-
-Add the same environment variables in
-
-Project Settings → Environment Variables
-
----
-
-# Demo Admin Account
-
-For grading purposes, an administrator account is provided.
-
-```
-Email:
-admin@gmail.com
-
-Password:
-asop12
-```
-
-Login:
-
-```
-/login
-```
-
----
-
-# Screenshots
+## 📸 Screenshots
 
 <table>
   <tr>
@@ -255,15 +105,15 @@ Login:
       <img src="./public/screenshotes/home.jpg" alt="Home" width="100%">
     </td>
     <td align="center" width="50%">
-      <strong>Home (Translated)</strong><br><br>
-      <img src="./public/screenshotes/homeTranslate.jpg" alt="Home Translated" width="100%">
+      <strong>Home — Translated</strong><br><br>
+      <img src="./public/screenshotes/homeTranslate.jpg" alt="Translated Home" width="100%">
     </td>
   </tr>
 
   <tr>
     <td align="center">
-      <strong>Home (Dark Mode)</strong><br><br>
-      <img src="./public/screenshotes/homeDark.jpg" alt="Home Dark Mode" width="100%">
+      <strong>Dark Mode</strong><br><br>
+      <img src="./public/screenshotes/homeDark.jpg" alt="Dark Mode" width="100%">
     </td>
     <td align="center">
       <strong>Opportunities</strong><br><br>
@@ -277,85 +127,118 @@ Login:
       <img src="./public/screenshotes/submit.jpg" alt="Submit Opportunity" width="100%">
     </td>
     <td align="center">
-      <strong>About</strong><br><br>
-      <img src="./public/screenshotes/about.jpg" alt="About" width="100%">
-    </td>
-  </tr>
-
-  <tr>
-    <td align="center">
-      <strong>Contact</strong><br><br>
-      <img src="./public/screenshotes/contact.jpg" alt="Contact" width="100%">
-    </td>
-    <td align="center">
-      <strong>Saved Opportunities</strong><br><br>
-      <img src="./public/screenshotes/saved.jpg" alt="Saved Opportunities" width="100%">
-    </td>
-  </tr>
-
-  <tr>
-    <td align="center">
       <strong>Dashboard</strong><br><br>
       <img src="./public/screenshotes/dashboard.jpg" alt="Dashboard" width="100%">
     </td>
-    <td></td>
   </tr>
 </table>
----
-
-# Future Improvements
-
-- PDF CV Builder
-- Email delivery for the contact form
-- User profile management
-- Opportunity analytics
-- An in-app screen for managing admins (currently requires a manual SQL query)
 
 ---
 
-# Known Limitations
-
-- Admin assignment currently requires one SQL query (with RLS briefly disabled)
-  because there's no in-app screen for managing admins yet.
-- Row Level Security now enforces admin-only writes and pending/approved
-  visibility at the database level (see `supabase/rls_hardening.sql`), on top
-  of the existing application-level checks in the API routes.
-- Supabase Free Tier limits outgoing email, so email confirmation is disabled.
-
----
-
-# Project Structure
+## 🧩 Project Structure
 
 ```text
-middleware.ts
+├── app/
+├── components/
+├── context/
+├── data/
+├── lib/
+├── messages/
+├── scripts/
+├── supabase/
+└── types/
+```
 
-i18n.ts
+The application uses the **Next.js App Router**, with Server Components for rendering and Client Components where interactivity is required.
 
-messages/
-    en.json
-    fa.json
-    ps.json
+---
 
-supabase/
-scripts/
-app/
-components/
-context/
-lib/
-types/
-data/
+## 🚀 Getting Started
+
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+### 2. Configure Supabase
+
+Create a Supabase project and run the SQL files in this order:
+
+```text
+supabase/schema.sql
+supabase/auth.sql
+supabase/status_column.sql
+supabase/rls_hardening.sql
+```
+
+### 3. Configure environment variables
+
+Create `.env.local` based on `.env.local.example`:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+### 4. Seed demo data
+
+```bash
+node --env-file=.env.local scripts/migrate-to-supabase.mjs
+```
+
+### 5. Start the development server
+
+```bash
+npm run dev
+```
+
+The application will be available at:
+
+```text
+http://localhost:3000
 ```
 
 ---
 
-# Translation
+## 🔑 Demo Account
 
-When adding a new translation key, add it to all three files:
+Want to explore the admin dashboard?
 
-```
-messages/en.json
-messages/fa.json
-messages/ps.json
-```
+Use the demo account below:
 
-Missing keys will cause runtime errors.
+Email: admin@gmail.com
+Password: asop12
+
+You can use this account to explore the authentication flow,
+admin dashboard, opportunity management, and approval workflow.
+
+> This is a demo account created specifically for portfolio evaluation.
+> Please do not use it for any personal or sensitive information.
+
+---
+
+## 🌱 Future Improvements
+
+* User profile management
+* Opportunity analytics
+* PDF CV builder
+* Email delivery for contact forms
+* In-app admin management
+
+---
+
+## 💡 What I Learned
+
+Building KaarYab gave me hands-on experience with:
+
+* Structuring a Next.js App Router application
+* TypeScript in a larger frontend project
+* Supabase authentication and PostgreSQL
+* Row Level Security
+* Role-based authorization
+* Multilingual and RTL interfaces
+* Form validation with React Hook Form and Zod
+* Building reusable components
+* Managing loading, error, and empty states
+* Designing a responsive application from end to end
