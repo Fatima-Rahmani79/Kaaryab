@@ -8,8 +8,8 @@ Built with **Next.js 15 (App Router), TypeScript, Supabase, and Tailwind CSS**.
 
 ## 🌐 Links
 
-* **Live Demo:** https://kaaryab-gules.vercel.app/
-* **Repository:** https://github.com/Fatima-Rahmani79/Kaaryab
+- **Live Demo:** https://kaaryab-gules.vercel.app/
+- **Repository:** https://github.com/Fatima-Rahmani79/Kaaryab
 
 ---
 
@@ -18,81 +18,6 @@ Built with **Next.js 15 (App Router), TypeScript, Supabase, and Tailwind CSS**.
 I built KaarYab to practice developing a complete web application with **Next.js, TypeScript, and Supabase** around a real-world use case.
 
 The project allowed me to work with authentication, database operations, role-based access, multilingual interfaces, form validation, search and filtering, and database security.
-
----
-
-## ✨ Features
-
-### Opportunity Platform
-
-* Browse jobs, internships, scholarships, remote work, courses, volunteering, and training opportunities
-* Search and filter opportunities
-* Dynamic opportunity detail pages
-* Save opportunities with LocalStorage
-* Featured and expiring opportunities
-* Deadline countdowns
-
-### Authentication & Admin
-
-* Supabase Authentication
-* User registration and login
-* Role-based admin access
-* Protected routes and API endpoints
-* Opportunity submission and approval workflow
-* CRUD operations
-* Pending / approved opportunity status
-
-### Dashboard
-
-* Statistics overview
-* Category breakdown
-* Pending approval queue
-* Opportunity management
-* Edit and delete actions
-
-### User Experience
-
-* Responsive design
-* Light / dark mode
-* English, Dari, and Pashto
-* RTL / LTR support
-* Loading and empty states
-* Toast notifications
-* Confirmation dialogs
-* Framer Motion animations
-
----
-
-## 🛠️ Tech Stack
-
-* **Framework:** Next.js 15, React 18
-* **Language:** TypeScript
-* **Styling:** Tailwind CSS
-* **Backend & Database:** Supabase
-* **Authentication:** Supabase Auth
-* **Localization:** next-intl
-* **Forms & Validation:** React Hook Form, Zod
-* **Animations:** Framer Motion
-* **Charts:** Recharts
-
----
-
-## 🔐 Security & Data Handling
-
-The project uses **Supabase Row Level Security (RLS)** alongside application-level authorization.
-
-The database policies ensure that:
-
-* Public users can only read approved opportunities.
-* Pending submissions are not publicly visible.
-* Only authorized administrators can update or delete opportunities.
-* Profile permissions cannot be escalated directly by regular users.
-
-The security policies are available in:
-
-```text
-supabase/rls_hardening.sql
-```
 
 ---
 
@@ -132,6 +57,109 @@ supabase/rls_hardening.sql
     </td>
   </tr>
 </table>
+
+---
+
+## ✨ Features
+
+### Opportunity Platform
+
+- Browse jobs, internships, scholarships, remote work, courses, volunteering, and training opportunities
+- Search and filter opportunities
+- Dynamic opportunity detail pages
+- Save opportunities with LocalStorage
+- Featured and expiring opportunities
+- Deadline countdowns
+
+### Authentication & Admin
+
+- Supabase Authentication
+- User registration and login
+- Role-based admin access
+- Protected routes and API endpoints
+- Opportunity submission and approval workflow
+- CRUD operations
+- Pending / approved opportunity status
+
+### Dashboard
+
+- Statistics overview
+- Category breakdown
+- Pending approval queue
+- Opportunity management
+- Edit and delete actions
+
+### User Experience
+
+- Responsive design
+- Light / dark mode
+- English, Dari, and Pashto
+- RTL / LTR support
+- Loading and empty states
+- Toast notifications
+- Confirmation dialogs
+- Framer Motion animations
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework:** Next.js 15, React 18
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **Backend & Database:** Supabase
+- **Authentication:** Supabase Auth
+- **Localization:** next-intl
+- **Forms & Validation:** React Hook Form, Zod
+- **Animations:** Framer Motion
+- **Charts:** Recharts
+- **Test:** Vitest + React Testing Library (automated tests)
+
+---
+
+## 🔐 Security & Data Handling
+
+The project uses **Supabase Row Level Security (RLS)** alongside application-level authorization.
+
+The database policies ensure that:
+
+- Public users can only read approved opportunities.
+- Pending submissions are not publicly visible.
+- Only authorized administrators can update or delete opportunities.
+- Profile permissions cannot be escalated directly by regular users.
+
+The security policies are available in:
+
+```text
+supabase/rls_hardening.sql
+```
+
+---
+
+# Testing
+
+This project uses [Vitest](https://vitest.dev) and
+[React Testing Library](https://testing-library.com/react) for automated tests.
+
+```bash
+npm test          # run once
+npm run test:watch # re-run on file changes while developing
+```
+
+Current coverage:
+
+- `lib/utils.test.ts` — unit tests for the pure filtering, date, and stats
+  logic in `lib/utils.ts` (26 tests): deadline calculations, every filter
+  combination in `filterOpportunities`, `calculateStats`, and
+  `categoryBreakdown`
+- `components/cards/OpportunityCard.test.tsx` — renders correctly, links to
+  the right URL, and shows the expired badge at the right time
+- `components/forms/SearchFilter.test.tsx` — search input fires `onChange`,
+  the location dropdown is built correctly from the given opportunities, and
+  "Clear filters" resets everything
+
+Not covered yet (see Future Improvements): API routes and Supabase-backed
+data flows, which would need mocking the database layer.
 
 ---
 
@@ -220,11 +248,11 @@ admin dashboard, opportunity management, and approval workflow.
 
 ## 🌱 Future Improvements
 
-* User profile management
-* Opportunity analytics
-* PDF CV builder
-* Email delivery for contact forms
-* In-app admin management
+- User profile management
+- Opportunity analytics
+- PDF CV builder
+- Email delivery for contact forms
+- In-app admin management
 
 ---
 
@@ -232,13 +260,13 @@ admin dashboard, opportunity management, and approval workflow.
 
 Building KaarYab gave me hands-on experience with:
 
-* Structuring a Next.js App Router application
-* TypeScript in a larger frontend project
-* Supabase authentication and PostgreSQL
-* Row Level Security
-* Role-based authorization
-* Multilingual and RTL interfaces
-* Form validation with React Hook Form and Zod
-* Building reusable components
-* Managing loading, error, and empty states
-* Designing a responsive application from end to end
+- Structuring a Next.js App Router application
+- TypeScript in a larger frontend project
+- Supabase authentication and PostgreSQL
+- Row Level Security
+- Role-based authorization
+- Multilingual and RTL interfaces
+- Form validation with React Hook Form and Zod
+- Building reusable components
+- Managing loading, error, and empty states
+- Designing a responsive application from end to end
