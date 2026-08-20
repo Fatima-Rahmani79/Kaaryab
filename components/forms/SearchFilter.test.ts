@@ -1,4 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
+import { createElement } from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import SearchFilter from "./SearchFilter";
@@ -37,10 +38,16 @@ describe("SearchFilter", () => {
     const user = userEvent.setup();
     const onChange = vi.fn();
     render(
-      <SearchFilter filters={baseFilters} onChange={onChange} opportunities={[]} />,
+      createElement(SearchFilter, {
+        filters: baseFilters,
+        onChange,
+        opportunities: [],
+      }),
     );
 
-    const input = screen.getByPlaceholderText("opportunities.searchPlaceholder");
+    const input = screen.getByPlaceholderText(
+      "opportunities.searchPlaceholder",
+    );
     await user.type(input, "React");
 
     expect(onChange).toHaveBeenLastCalledWith({ ...baseFilters, search: "t" });
@@ -54,7 +61,11 @@ describe("SearchFilter", () => {
       makeOpportunity({ id: "3", location: "Kabul" }),
     ];
     render(
-      <SearchFilter filters={baseFilters} onChange={vi.fn()} opportunities={opportunities} />,
+      createElement(SearchFilter, {
+        filters: baseFilters,
+        onChange: vi.fn(),
+        opportunities,
+      }),
     );
 
     expect(screen.getAllByText("Kabul")).toHaveLength(1);
@@ -63,7 +74,11 @@ describe("SearchFilter", () => {
 
   it("does not show the 'clear filters' button when no filter is active", () => {
     render(
-      <SearchFilter filters={baseFilters} onChange={vi.fn()} opportunities={[]} />,
+      createElement(SearchFilter, {
+        filters: baseFilters,
+        onChange: vi.fn(),
+        opportunities: [],
+      }),
     );
     expect(screen.queryByText(/clear filters/i)).not.toBeInTheDocument();
   });
@@ -75,7 +90,11 @@ describe("SearchFilter", () => {
       search: "react",
     };
     render(
-      <SearchFilter filters={activeFilters} onChange={vi.fn()} opportunities={[]} />,
+      createElement(SearchFilter, {
+        filters: activeFilters,
+        onChange: vi.fn(),
+        opportunities: [],
+      }),
     );
     expect(screen.getByText(/clear filters \(2\)/i)).toBeInTheDocument();
   });
@@ -83,9 +102,16 @@ describe("SearchFilter", () => {
   it("resets all filters when 'clear filters' is clicked", async () => {
     const user = userEvent.setup();
     const onChange = vi.fn();
-    const activeFilters: OpportunityFilters = { ...baseFilters, category: "Job" };
+    const activeFilters: OpportunityFilters = {
+      ...baseFilters,
+      category: "Job",
+    };
     render(
-      <SearchFilter filters={activeFilters} onChange={onChange} opportunities={[]} />,
+      createElement(SearchFilter, {
+        filters: activeFilters,
+        onChange,
+        opportunities: [],
+      }),
     );
 
     await user.click(screen.getByText(/clear filters/i));
